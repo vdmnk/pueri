@@ -1,0 +1,1990 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Puericultura · Consulta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:           #f4efe6;
+  --bg-card:      #fbf8f2;
+  --bg-card-alt:  #f0e9dc;
+  --line:         #d9d0bc;
+  --line-strong:  #b8ac90;
+  --ink:          #1a1d23;
+  --ink-soft:     #5c5f66;
+  --ink-faint:    #8a8d93;
+  --accent:       #1e3a5f;
+  --accent-soft:  #2c5282;
+  --level-1: #4a6b3a;
+  --level-2: #b87333;
+  --level-3: #b84a1f;
+  --level-4: #8a2525;
+  --level-5: #3e1622;
+  --level-1-bg: #e8ecd9;
+  --level-2-bg: #f5e6cc;
+  --level-3-bg: #f5dfd1;
+  --level-4-bg: #e8cccc;
+  --shadow-sm: 0 1px 2px rgba(26,29,35,0.06);
+  --shadow-md: 0 4px 12px rgba(26,29,35,0.08);
+  --shadow-lg: 0 12px 32px rgba(26,29,35,0.12);
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body:    'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono:    'Geist Mono', 'SF Mono', Monaco, 'Courier New', monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.55;
+  font-size: 15px;
+  font-feature-settings: "ss01","cv11";
+  background-image:
+    radial-gradient(ellipse at top left, rgba(30,58,95,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(184,115,51,0.04) 0%, transparent 50%);
+  min-height: 100vh;
+}
+
+/* HEADER */
+.header {
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-card);
+  padding: 24px 0 20px;
+  position: relative;
+}
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 50%;
+  transform: translateX(-50%);
+  width: 60px; height: 3px;
+  background: var(--accent);
+}
+.header-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.header-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: var(--ink);
+  font-variation-settings: "opsz" 72, "SOFT" 30;
+}
+.header-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+  font-variation-settings: "opsz" 72, "SOFT" 100;
+}
+.header-sub {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-top: 6px;
+  letter-spacing: 0.02em;
+}
+.header-sub strong { font-weight: 500; color: var(--ink); }
+
+/* LAYOUT */
+.wrapper {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 28px 32px 60px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: 28px;
+  align-items: start;
+}
+.main-col { min-width: 0; }
+.side-col { position: sticky; top: 20px; }
+
+/* SECTION CARD */
+.section {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+.section-header {
+  padding: 16px 22px 14px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(to bottom, var(--bg-card) 0%, var(--bg-card-alt) 100%);
+}
+.section-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink-faint);
+  letter-spacing: 0.12em;
+  margin-bottom: 4px;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  font-variation-settings: "opsz" 48, "SOFT" 30;
+}
+.section-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+  font-variation-settings: "opsz" 48, "SOFT" 100;
+}
+.section-subtitle {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  margin-top: 4px;
+  line-height: 1.5;
+}
+.section-body { padding: 18px 22px 20px; }
+
+/* FORM */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px 16px;
+}
+.field { display: flex; flex-direction: column; gap: 5px; }
+.field-full { grid-column: 1 / -1; }
+.field-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+}
+.field input[type="text"],
+.field input[type="date"],
+.field input[type="number"],
+.field select,
+.field textarea {
+  font-family: var(--font-body);
+  font-size: 14px;
+  padding: 8px 10px;
+  border: 1px solid var(--line-strong);
+  background: #fff;
+  color: var(--ink);
+  border-radius: 2px;
+  transition: border-color 0.15s ease;
+  width: 100%;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.field textarea {
+  resize: vertical;
+  min-height: 60px;
+  font-family: var(--font-body);
+}
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.field-hint {
+  font-size: 11px;
+  color: var(--ink-faint);
+  margin-top: 2px;
+  line-height: 1.4;
+}
+
+/* CHECKBOX/RADIO GROUPS */
+.check-group { display: flex; flex-direction: column; gap: 1px; }
+.check-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 7px 10px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.12s ease;
+  line-height: 1.45;
+}
+.check-item:hover { background: var(--bg-card-alt); }
+.check-item input[type="checkbox"],
+.check-item input[type="radio"] {
+  appearance: none;
+  width: 17px; height: 17px;
+  min-width: 17px;
+  border: 1.5px solid var(--line-strong);
+  background: #fff;
+  margin-top: 2px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.15s ease;
+}
+.check-item input[type="radio"] { border-radius: 50%; }
+.check-item input[type="checkbox"]:checked,
+.check-item input[type="radio"]:checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.check-item input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 3.5px; top: -1px;
+  width: 5px; height: 10px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.check-item input[type="radio"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: 7px; height: 7px;
+  background: #fff;
+  border-radius: 50%;
+}
+.check-item input:checked ~ .check-label { font-weight: 500; }
+.check-label { font-size: 13.5px; color: var(--ink); flex: 1; }
+.check-label small {
+  display: block;
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  font-weight: 400;
+  margin-top: 2px;
+  line-height: 1.4;
+}
+
+/* DPM area styling */
+.dpm-area {
+  margin-bottom: 12px;
+}
+.dpm-area-title {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  padding-bottom: 4px;
+  border-bottom: 1px dashed var(--line);
+}
+
+/* BUTTONS */
+.btn {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border: 1px solid var(--line-strong);
+  background: var(--bg-card);
+  color: var(--ink);
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.01em;
+}
+.btn:hover { background: var(--bg-card-alt); border-color: var(--ink-soft); }
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.btn-primary:hover { background: var(--accent-soft); }
+.btn-ghost { background: transparent; border-color: transparent; color: var(--ink-soft); }
+.btn-ghost:hover { color: var(--ink); background: var(--bg-card-alt); }
+
+/* SIDEBAR PANEL */
+.side-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 16px;
+}
+.side-panel-label {
+  font-family: var(--font-body);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  padding: 14px 18px 0;
+}
+.side-panel-headline {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.05;
+  padding: 4px 18px 12px;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 72, "SOFT" 30;
+}
+.side-panel-headline em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+  font-variation-settings: "opsz" 72, "SOFT" 100;
+}
+.side-panel-headline small {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--ink-soft);
+  font-weight: 400;
+  font-style: normal;
+  margin-top: 4px;
+  letter-spacing: 0.01em;
+}
+.side-panel-bar {
+  height: 4px;
+  background: var(--line);
+  transition: background 0.3s ease;
+}
+.side-section {
+  padding: 13px 18px;
+  border-top: 1px solid var(--line);
+}
+.side-section:nth-of-type(odd) { background: var(--bg-card-alt); }
+.side-section-title {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 7px;
+}
+.side-meta {
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 0;
+  font-size: 13px;
+  gap: 8px;
+}
+.side-meta strong { font-weight: 500; color: var(--ink); }
+.side-meta span { color: var(--ink-soft); text-align: right; }
+.side-list {
+  list-style: none;
+  font-size: 12.5px;
+  color: var(--ink);
+}
+.side-list li {
+  padding: 3px 0 3px 14px;
+  position: relative;
+  line-height: 1.45;
+}
+.side-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--ink-faint);
+}
+
+/* Z SCORE BADGE */
+.z-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 2px;
+  color: #fff;
+  background: var(--ink-soft);
+}
+.z-badge[data-level="1"] { background: var(--level-1); }
+.z-badge[data-level="2"] { background: var(--level-2); }
+.z-badge[data-level="3"] { background: var(--level-3); }
+.z-badge[data-level="4"] { background: var(--level-4); }
+.z-badge[data-level="5"] { background: var(--level-5); }
+
+/* ALERT LIST */
+.alerts {
+  list-style: none;
+  font-size: 12.5px;
+  color: var(--ink);
+  columns: 1;
+}
+.alerts li {
+  padding: 2px 0 2px 12px;
+  position: relative;
+  line-height: 1.4;
+}
+.alerts li::before {
+  content: '·';
+  position: absolute;
+  left: 2px;
+  color: var(--level-4);
+  font-weight: 700;
+}
+
+/* INFO/WARN BOXES */
+.info-box, .warn-box {
+  padding: 10px 14px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  margin-top: 10px;
+}
+.info-box {
+  border-left: 3px solid var(--ink-faint);
+  background: var(--bg-card-alt);
+  color: var(--ink-soft);
+}
+.info-box strong { color: var(--ink); font-weight: 500; }
+.warn-box {
+  border-left: 3px solid var(--level-3);
+  background: var(--level-2-bg);
+  color: var(--ink);
+}
+
+/* CHART */
+.chart-wrap {
+  background: var(--bg-card-alt);
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  margin-top: 10px;
+}
+.chart-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.chart-svg .grid { stroke: var(--line); stroke-width: 0.5; }
+.chart-svg .axis { stroke: var(--ink-faint); stroke-width: 0.8; }
+.chart-svg .ref-line { stroke: var(--line-strong); stroke-width: 1; fill: none; opacity: 0.5; }
+.chart-svg .ref-line.bold { stroke: var(--accent); opacity: 0.65; stroke-width: 1.5; }
+.chart-svg .ref-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  fill: var(--ink-faint);
+}
+.chart-svg .axis-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  fill: var(--ink-soft);
+}
+.chart-svg .axis-title {
+  font-family: var(--font-body);
+  font-size: 10px;
+  fill: var(--ink-soft);
+}
+.chart-svg .point {
+  fill: var(--level-3);
+  stroke: var(--bg-card);
+  stroke-width: 2;
+}
+
+/* PRONTUÁRIO BLOCK */
+.prontuario-out {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.55;
+  background: #fff;
+  border: 1px solid var(--line-strong);
+  padding: 14px 16px;
+  border-radius: 2px;
+  max-height: 400px;
+  overflow: auto;
+  white-space: pre-wrap;
+  color: var(--ink);
+}
+
+/* COLLAPSIBLE */
+details.collapsible {
+  border-top: 1px solid var(--line);
+  background: var(--bg-card-alt);
+}
+details.collapsible:first-of-type { border-top: none; }
+.collapsible summary {
+  padding: 10px 16px;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+.collapsible summary::-webkit-details-marker { display: none; }
+.collapsible summary::after { content: '+'; font-size: 15px; color: var(--ink-faint); }
+.collapsible[open] summary::after { content: '−'; }
+.collapsible-body {
+  padding: 4px 16px 14px;
+  font-size: 13px;
+  color: var(--ink);
+}
+
+/* TOAST */
+.toast {
+  position: fixed;
+  bottom: 24px; left: 50%;
+  transform: translateX(-50%) translateY(calc(100% + 48px));
+  background: var(--ink);
+  color: #fff;
+  padding: 11px 22px;
+  border-radius: 2px;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+.toast.visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+/* AUTOSAVE BANNER (persistente até clicar) */
+.autosave-banner {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--line-strong);
+  border-left: 3px solid var(--accent);
+  padding: 12px 16px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 280px;
+  z-index: 99;
+  transform: translateX(calc(100% + 30px));
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  visibility: hidden;
+}
+.autosave-banner.visible {
+  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
+}
+.autosave-banner-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+}
+.autosave-banner-msg {
+  font-size: 13px;
+  color: var(--ink);
+  line-height: 1.4;
+}
+.autosave-banner-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+}
+.autosave-banner button {
+  font-family: var(--font-body);
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 2px;
+  border: 1px solid var(--line-strong);
+  background: var(--bg-card);
+  cursor: pointer;
+}
+.autosave-banner button.primary {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.autosave-banner button:hover { background: var(--bg-card-alt); }
+.autosave-banner button.primary:hover { background: var(--accent-soft); }
+@media print {
+  .autosave-banner { display: none; }
+}
+
+/* FOOTNOTE */
+.footnote {
+  max-width: 1320px;
+  margin: 16px auto 40px;
+  padding: 20px 32px;
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  border-top: 1px solid var(--line);
+}
+.footnote strong { color: var(--ink); font-weight: 500; }
+.footnote-sig {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--line);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--ink-faint);
+  letter-spacing: 0.04em;
+  text-align: right;
+}
+
+/* RESPONSIVE */
+@media (max-width: 980px) {
+  .wrapper {
+    grid-template-columns: 1fr;
+    padding: 20px 16px 40px;
+    gap: 16px;
+  }
+  .side-col { position: static; }
+}
+@media (max-width: 600px) {
+  .header-inner { padding: 0 16px; }
+  .section-body { padding: 14px 16px 16px; }
+  .field-row { grid-template-columns: 1fr; }
+}
+@media print {
+  .no-print { display: none; }
+  body { background: #fff; }
+  .side-col { position: static; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div>
+      <h1 class="header-title">Puericultura · <em>Consulta</em></h1>
+      <p class="header-sub"><strong>0 a 24 meses</strong> · Linha de Cuidado SMS Curitiba v.3 · PNI 2026 · OMS Child Growth Standards</p>
+    </div>
+    <div class="header-actions no-print">
+      <button class="btn btn-ghost" id="btnReset">↻ <span>Nova consulta</span></button>
+      <button class="btn" id="btnPrint">⧉ <span>Imprimir</span></button>
+    </div>
+  </div>
+</header>
+
+<div class="wrapper">
+
+<main class="main-col">
+
+  <!-- ========== SEÇÃO 1: IDENTIFICAÇÃO ========== -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-num">BLOCO 01 · IDENTIFICAÇÃO</div>
+      <h2 class="section-title">Dados <em>gerais</em> da criança</h2>
+      <p class="section-subtitle">Informações que não mudam entre consultas. Definem o protocolo aplicável.</p>
+    </div>
+    <div class="section-body">
+      <div class="form-grid">
+        <div class="field">
+          <label class="field-label" for="fName">Nome</label>
+          <input type="text" id="fName" placeholder="Nome da criança">
+        </div>
+        <div class="field">
+          <label class="field-label" for="fDob">Data de nascimento</label>
+          <input type="date" id="fDob">
+        </div>
+        <div class="field">
+          <label class="field-label">Sexo</label>
+          <div class="check-row">
+            <label class="check-item"><input type="radio" name="sex" value="M"><span class="check-label">Masculino</span></label>
+            <label class="check-item"><input type="radio" name="sex" value="F"><span class="check-label">Feminino</span></label>
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label">Idade gestacional ao nascer</label>
+          <div class="field-row">
+            <input type="number" id="fIgWeeks" min="22" max="42" placeholder="Semanas">
+            <input type="number" id="fIgDays" min="0" max="6" placeholder="Dias">
+          </div>
+          <span class="field-hint" id="igHint">Prematuro se &lt; 37 semanas</span>
+        </div>
+        <div class="field">
+          <label class="field-label" for="fBw">Peso ao nascer (g)</label>
+          <input type="number" id="fBw" min="400" max="6000" step="10" placeholder="Ex: 3200">
+        </div>
+        <div class="field">
+          <label class="field-label">Classificação de risco</label>
+          <select id="fRisk">
+            <option value="habitual">Habitual (sem risco)</option>
+            <option value="biologico">Risco biológico</option>
+            <option value="social">Risco social</option>
+            <option value="ambos">Risco bio + social</option>
+          </select>
+        </div>
+      </div>
+
+      <details class="collapsible" style="margin-top: 14px; border: 1px solid var(--line);">
+        <summary>Fatores adicionais para protocolo de ferro e seguimento</summary>
+        <div class="collapsible-body">
+          <div class="check-group">
+            <label class="check-item"><input type="checkbox" id="fAnemiaRisk"><span class="check-label">Grupo de risco para anemia ferropriva<small>Deficiência de Fe na gestação, DM/HAS materna, baixo PN ou prematuridade, clampeamento precoce, interrupção precoce do LM, vulnerabilidade, consumo de LV em &lt;1a, dieta restritiva.</small></span></label>
+            <label class="check-item"><input type="checkbox" id="fTorsch"><span class="check-label">Exposição a TORSCHZ <small>Toxoplasmose, rubéola, sífilis, CMV, herpes, HIV, Zika. Atenção ao DPM nos 2 primeiros anos.</small></span></label>
+            <label class="check-item"><input type="checkbox" id="fHiv"><span class="check-label">Exposição ao HIV<small>Necessita CV-HIV com 14 dias, 6 e 12 semanas. Anti-HIV aos 12 meses. LM contraindicado.</small></span></label>
+            <label class="check-item"><input type="checkbox" id="fSyph"><span class="check-label">Exposição a sífilis ou sífilis congênita<small>VDRL com 1, 3, 6, 12 e 18 meses. Interromper se dois Não Reagentes consecutivos.</small></span></label>
+            <label class="check-item"><input type="checkbox" id="fPneumoCardio"><span class="check-label">Pneumopatia ou cardiopatia grave<small>Avaliar palivizumabe na sazonalidade do VSR (abril a agosto).</small></span></label>
+          </div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ========== SEÇÃO 2: CONSULTA ATUAL ========== -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-num">BLOCO 02 · CONSULTA</div>
+      <h2 class="section-title">Medidas e <em>achados</em> de hoje</h2>
+    </div>
+    <div class="section-body">
+      <div class="form-grid">
+        <div class="field">
+          <label class="field-label" for="cDate">Data da consulta</label>
+          <input type="date" id="cDate">
+        </div>
+        <div class="field">
+          <label class="field-label" for="cWeight">Peso (kg)</label>
+          <input type="number" id="cWeight" min="0.5" max="40" step="0.01" placeholder="Ex: 5.40">
+        </div>
+        <div class="field">
+          <label class="field-label" for="cHeight">Estatura (cm)</label>
+          <input type="number" id="cHeight" min="40" max="130" step="0.1" placeholder="Ex: 58.5">
+        </div>
+        <div class="field">
+          <label class="field-label" for="cHc">Perímetro cefálico (cm)</label>
+          <input type="number" id="cHc" min="25" max="60" step="0.1" placeholder="Ex: 37.0">
+        </div>
+        <div class="field field-full">
+          <label class="field-label" for="cInter">Intercorrências desde a última consulta</label>
+          <textarea id="cInter" placeholder="Cólicas, eventos agudos, internamentos, idas à UPA..."></textarea>
+        </div>
+        <div class="field field-full">
+          <label class="field-label">Alimentação atual</label>
+          <select id="cFeeding">
+            <option value="lme">Leite materno exclusivo</option>
+            <option value="lm_compl">LM + alimentação complementar</option>
+            <option value="formula">Fórmula infantil (LM contraindicado ou insuficiente)</option>
+            <option value="familia">Dieta da família + LM ou leite</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SEÇÃO 3: VERIFICAR E AVALIAR (DINÂMICO) ========== -->
+  <section class="section" id="secVerify">
+    <div class="section-header">
+      <div class="section-num">BLOCO 03 · VERIFICAR E AVALIAR</div>
+      <h2 class="section-title">Roteiro <em>específico</em> da idade</h2>
+      <p class="section-subtitle" id="verifyAge">Defina a data de nascimento e a data da consulta para ver o roteiro.</p>
+    </div>
+    <div class="section-body" id="verifyBody">
+      <div class="info-box"><strong>Aguardando idade.</strong> O roteiro de verificação aparece quando a data de nascimento estiver preenchida.</div>
+    </div>
+  </section>
+
+  <!-- ========== SEÇÃO 4: DPM ========== -->
+  <section class="section" id="secDpm">
+    <div class="section-header">
+      <div class="section-num">BLOCO 04 · DESENVOLVIMENTO</div>
+      <h2 class="section-title">Marcos <em>esperados</em> para a idade</h2>
+      <p class="section-subtitle">Adaptado da Caderneta de Saúde da Criança e Linha de Cuidado SMS Curitiba. Marcar o que a criança realiza.</p>
+    </div>
+    <div class="section-body" id="dpmBody">
+      <div class="info-box">Aguardando idade da criança.</div>
+    </div>
+  </section>
+
+  <!-- ========== SEÇÃO 5: GRÁFICO ========== -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-num">BLOCO 05 · CRESCIMENTO</div>
+      <h2 class="section-title">Curva de <em>peso por idade</em></h2>
+      <p class="section-subtitle">OMS Child Growth Standards 2006. Z-score calculado pelo método LMS oficial. Para prematuro, usa idade corrigida (até 24 meses para peso).</p>
+    </div>
+    <div class="section-body">
+      <div class="chart-wrap">
+        <svg class="chart-svg" id="chart" viewBox="0 0 720 360" preserveAspectRatio="xMidYMid meet" aria-label="Curva de peso por idade"></svg>
+      </div>
+      <div class="info-box" id="chartInfo" style="margin-top: 12px;">
+        <strong>Sobre as linhas.</strong> Linhas finas: percentis 3, 15, 50, 85, 97 (z = −2, −1, 0, +1, +2). Linha em azul destacada: mediana (z = 0). Pontos extremos a ±3 z.
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SEÇÃO 6: VACINAS ========== -->
+  <section class="section" id="secVac">
+    <div class="section-header">
+      <div class="section-num">BLOCO 06 · VACINAÇÃO</div>
+      <h2 class="section-title">Calendário <em>nacional</em> 2026</h2>
+      <p class="section-subtitle">Marcar as vacinas aplicadas nesta consulta. As doses devidas para a idade aparecem destacadas.</p>
+    </div>
+    <div class="section-body" id="vacBody">
+      <div class="info-box">Aguardando idade da criança.</div>
+    </div>
+  </section>
+
+  <!-- ========== SEÇÃO 7: ORIENTAR ========== -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-num">BLOCO 07 · ORIENTAR</div>
+      <h2 class="section-title">Condutas e <em>orientações</em></h2>
+    </div>
+    <div class="section-body" id="orientBody">
+      <div class="info-box">Aguardando dados.</div>
+    </div>
+  </section>
+
+  <!-- ========== SEÇÃO 8: PRONTUÁRIO ========== -->
+  <section class="section" id="secPront">
+    <div class="section-header">
+      <div class="section-num">BLOCO 08 · PRONTUÁRIO</div>
+      <h2 class="section-title">Texto pronto para o <em>eSaúde</em></h2>
+      <p class="section-subtitle">Formato ReSOAP. Gera a cada atualização. Use o botão para copiar.</p>
+    </div>
+    <div class="section-body">
+      <pre class="prontuario-out" id="prontOut">Aguardando dados.</pre>
+      <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+        <button class="btn btn-primary" id="btnCopy">⧉ Copiar prontuário</button>
+        <button class="btn" id="btnDownload">↓ Baixar como .txt</button>
+        <button class="btn" id="btnDownloadJson">↓ Baixar dados (JSON)</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ========== SIDEBAR ========== -->
+<aside class="side-col no-print">
+
+  <div class="side-panel" id="sidePanel">
+    <div class="side-panel-label">Idade da consulta</div>
+    <div class="side-panel-headline" id="sideAge">
+      <em>Aguardando</em>
+      <small>Preencha a data de nascimento</small>
+    </div>
+    <div class="side-panel-bar"></div>
+
+    <div class="side-section">
+      <div class="side-section-title">Antropometria</div>
+      <div class="side-meta"><strong>Peso</strong><span id="sidePeso">—</span></div>
+      <div class="side-meta"><strong>Z (peso/idade)</strong><span id="sideZ">—</span></div>
+      <div class="side-meta"><strong>Estatura</strong><span id="sideEst">—</span></div>
+      <div class="side-meta"><strong>P. cefálico</strong><span id="sidePc">—</span></div>
+    </div>
+
+    <div class="side-section">
+      <div class="side-section-title">Próxima consulta</div>
+      <div class="side-meta"><strong>Quem</strong><span id="sideQuem">—</span></div>
+      <div class="side-meta"><strong>Quando</strong><span id="sideQuando">—</span></div>
+    </div>
+
+    <div class="side-section">
+      <div class="side-section-title">Ferro hoje</div>
+      <div id="sideFerro" style="font-size: 13px; color: var(--ink);">Aguardando peso e dados.</div>
+    </div>
+  </div>
+
+  <div class="side-panel" style="border-color: var(--level-4); border-top: 3px solid var(--level-4);">
+    <div class="side-panel-label" style="color: var(--level-4);">Sinais clínicos de alerta</div>
+    <div style="padding: 4px 18px 14px;">
+      <ul class="alerts">
+        <li>Irritabilidade ou apatia</li>
+        <li>Vômitos frequentes, abdome endurecido</li>
+        <li>Taquipneia, gemência, cianose, tiragem subcostal</li>
+        <li>Convulsão</li>
+        <li>Umbigo inflamado ou com pus</li>
+        <li>Fontanela abaulada, tensa ou muito funda</li>
+        <li>Sinais meníngeos</li>
+        <li>Desidratação</li>
+        <li>Fezes com sangue ou acólicas</li>
+        <li>Petéquias ou sufusões hemorrágicas</li>
+        <li>Otorreia</li>
+        <li>Urina escura ou com sangue</li>
+        <li>Febre persistente</li>
+        <li>Recusa em mamar</li>
+      </ul>
+      <div class="warn-box" style="margin-top: 10px;">Presença de qualquer um destes: <strong>consulta médica imediata</strong>.</div>
+    </div>
+  </div>
+
+</aside>
+
+</div>
+
+<footer class="footnote">
+  <p><strong>Fontes.</strong> SMS Curitiba, Linha de Cuidado Atenção Integral à Saúde da Criança, v.3, 07/02/2023. Ministério da Saúde, Calendário Nacional de Vacinação 2026. WHO Multicentre Growth Reference Study Group, WHO Child Growth Standards 2006 (peso por idade, tabelas LMS oficiais). SBP, suplementação de ferro.</p>
+  <p style="margin-top: 6px;">Ferramenta de apoio à consulta. Não substitui julgamento clínico nem o registro oficial no eSaúde. Validar achados com a Caderneta de Saúde da Criança Curitibana.</p>
+  <p class="footnote-sig">v0.1 · fase 1 · peso por idade 0 a 24 meses</p>
+</footer>
+
+<div class="toast" id="toast">Mensagem</div>
+
+<div class="autosave-banner" id="autosaveBanner">
+  <div class="autosave-banner-label">Auto-save</div>
+  <div class="autosave-banner-msg">Você preencheu dados clínicos importantes. Quer baixar um backup desta consulta?</div>
+  <div class="autosave-banner-actions">
+    <button class="primary" id="autosaveDownload">↓ Baixar JSON</button>
+    <button id="autosaveDismiss">Depois</button>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   DADOS LMS OMS · Peso por idade · 0 a 24 meses
+   Extraído de pygrowup (que usa as tabelas oficiais OMS 2006)
+   ============================================================ */
+const WFA_LMS = {"M":[{"m":0,"L":0.3487,"M":3.3464,"S":0.14602,"sd3n":2.1,"sd2n":2.5,"sd1n":2.9,"sd0":3.3,"sd1":3.9,"sd2":4.4,"sd3":5.0},{"m":1,"L":0.2297,"M":4.4709,"S":0.13395,"sd3n":2.9,"sd2n":3.4,"sd1n":3.9,"sd0":4.5,"sd1":5.1,"sd2":5.8,"sd3":6.6},{"m":2,"L":0.197,"M":5.5675,"S":0.12385,"sd3n":3.8,"sd2n":4.3,"sd1n":4.9,"sd0":5.6,"sd1":6.3,"sd2":7.1,"sd3":8.0},{"m":3,"L":0.1738,"M":6.3762,"S":0.11727,"sd3n":4.4,"sd2n":5.0,"sd1n":5.7,"sd0":6.4,"sd1":7.2,"sd2":8.0,"sd3":9.0},{"m":4,"L":0.1553,"M":7.0023,"S":0.11316,"sd3n":4.9,"sd2n":5.6,"sd1n":6.2,"sd0":7.0,"sd1":7.8,"sd2":8.7,"sd3":9.7},{"m":5,"L":0.1395,"M":7.5105,"S":0.1108,"sd3n":5.3,"sd2n":6.0,"sd1n":6.7,"sd0":7.5,"sd1":8.4,"sd2":9.3,"sd3":10.4},{"m":6,"L":0.1257,"M":7.934,"S":0.10958,"sd3n":5.7,"sd2n":6.4,"sd1n":7.1,"sd0":7.9,"sd1":8.8,"sd2":9.8,"sd3":10.9},{"m":7,"L":0.1134,"M":8.297,"S":0.10902,"sd3n":5.9,"sd2n":6.7,"sd1n":7.4,"sd0":8.3,"sd1":9.2,"sd2":10.3,"sd3":11.4},{"m":8,"L":0.1021,"M":8.6151,"S":0.10882,"sd3n":6.2,"sd2n":6.9,"sd1n":7.7,"sd0":8.6,"sd1":9.6,"sd2":10.7,"sd3":11.9},{"m":9,"L":0.0917,"M":8.9014,"S":0.10881,"sd3n":6.4,"sd2n":7.1,"sd1n":8.0,"sd0":8.9,"sd1":9.9,"sd2":11.0,"sd3":12.3},{"m":10,"L":0.082,"M":9.1649,"S":0.10891,"sd3n":6.6,"sd2n":7.4,"sd1n":8.2,"sd0":9.2,"sd1":10.2,"sd2":11.4,"sd3":12.7},{"m":11,"L":0.073,"M":9.4122,"S":0.10906,"sd3n":6.8,"sd2n":7.6,"sd1n":8.4,"sd0":9.4,"sd1":10.5,"sd2":11.7,"sd3":13.0},{"m":12,"L":0.0644,"M":9.6479,"S":0.10925,"sd3n":6.9,"sd2n":7.7,"sd1n":8.6,"sd0":9.6,"sd1":10.8,"sd2":12.0,"sd3":13.3},{"m":13,"L":0.0563,"M":9.8749,"S":0.10949,"sd3n":7.1,"sd2n":7.9,"sd1n":8.8,"sd0":9.9,"sd1":11.0,"sd2":12.3,"sd3":13.7},{"m":14,"L":0.0487,"M":10.0953,"S":0.10976,"sd3n":7.2,"sd2n":8.1,"sd1n":9.0,"sd0":10.1,"sd1":11.3,"sd2":12.6,"sd3":14.0},{"m":15,"L":0.0413,"M":10.3108,"S":0.11007,"sd3n":7.4,"sd2n":8.3,"sd1n":9.2,"sd0":10.3,"sd1":11.5,"sd2":12.8,"sd3":14.3},{"m":16,"L":0.0343,"M":10.5228,"S":0.11041,"sd3n":7.5,"sd2n":8.4,"sd1n":9.4,"sd0":10.5,"sd1":11.7,"sd2":13.1,"sd3":14.6},{"m":17,"L":0.0275,"M":10.7319,"S":0.11079,"sd3n":7.7,"sd2n":8.6,"sd1n":9.6,"sd0":10.7,"sd1":12.0,"sd2":13.4,"sd3":14.9},{"m":18,"L":0.0211,"M":10.9385,"S":0.11119,"sd3n":7.8,"sd2n":8.8,"sd1n":9.8,"sd0":10.9,"sd1":12.2,"sd2":13.7,"sd3":15.3},{"m":19,"L":0.0148,"M":11.143,"S":0.11164,"sd3n":8.0,"sd2n":8.9,"sd1n":10.0,"sd0":11.1,"sd1":12.5,"sd2":13.9,"sd3":15.6},{"m":20,"L":0.0087,"M":11.3462,"S":0.11211,"sd3n":8.1,"sd2n":9.1,"sd1n":10.1,"sd0":11.3,"sd1":12.7,"sd2":14.2,"sd3":15.9},{"m":21,"L":0.0029,"M":11.5486,"S":0.11261,"sd3n":8.2,"sd2n":9.2,"sd1n":10.3,"sd0":11.5,"sd1":12.9,"sd2":14.5,"sd3":16.2},{"m":22,"L":-0.0028,"M":11.7504,"S":0.11314,"sd3n":8.4,"sd2n":9.4,"sd1n":10.5,"sd0":11.8,"sd1":13.2,"sd2":14.7,"sd3":16.5},{"m":23,"L":-0.0083,"M":11.9514,"S":0.11369,"sd3n":8.5,"sd2n":9.5,"sd1n":10.7,"sd0":12.0,"sd1":13.4,"sd2":15.0,"sd3":16.8},{"m":24,"L":-0.0137,"M":12.1515,"S":0.11426,"sd3n":8.6,"sd2n":9.7,"sd1n":10.8,"sd0":12.2,"sd1":13.6,"sd2":15.3,"sd3":17.1}],"F":[{"m":0,"L":0.3809,"M":3.2322,"S":0.14171,"sd3n":2.0,"sd2n":2.4,"sd1n":2.8,"sd0":3.2,"sd1":3.7,"sd2":4.2,"sd3":4.8},{"m":1,"L":0.1714,"M":4.1873,"S":0.13724,"sd3n":2.7,"sd2n":3.2,"sd1n":3.6,"sd0":4.2,"sd1":4.8,"sd2":5.5,"sd3":6.2},{"m":2,"L":0.0962,"M":5.1282,"S":0.13,"sd3n":3.4,"sd2n":3.9,"sd1n":4.5,"sd0":5.1,"sd1":5.8,"sd2":6.6,"sd3":7.5},{"m":3,"L":0.0402,"M":5.8458,"S":0.12619,"sd3n":4.0,"sd2n":4.5,"sd1n":5.2,"sd0":5.8,"sd1":6.6,"sd2":7.5,"sd3":8.5},{"m":4,"L":-0.005,"M":6.4237,"S":0.12402,"sd3n":4.4,"sd2n":5.0,"sd1n":5.7,"sd0":6.4,"sd1":7.3,"sd2":8.2,"sd3":9.3},{"m":5,"L":-0.043,"M":6.8985,"S":0.12274,"sd3n":4.8,"sd2n":5.4,"sd1n":6.1,"sd0":6.9,"sd1":7.8,"sd2":8.8,"sd3":10.0},{"m":6,"L":-0.0756,"M":7.297,"S":0.12204,"sd3n":5.1,"sd2n":5.7,"sd1n":6.5,"sd0":7.3,"sd1":8.2,"sd2":9.3,"sd3":10.6},{"m":7,"L":-0.1039,"M":7.6422,"S":0.12178,"sd3n":5.3,"sd2n":6.0,"sd1n":6.8,"sd0":7.6,"sd1":8.6,"sd2":9.8,"sd3":11.1},{"m":8,"L":-0.1288,"M":7.9487,"S":0.12181,"sd3n":5.6,"sd2n":6.3,"sd1n":7.0,"sd0":7.9,"sd1":9.0,"sd2":10.2,"sd3":11.6},{"m":9,"L":-0.1507,"M":8.2254,"S":0.12199,"sd3n":5.8,"sd2n":6.5,"sd1n":7.3,"sd0":8.2,"sd1":9.3,"sd2":10.5,"sd3":12.0},{"m":10,"L":-0.17,"M":8.48,"S":0.12223,"sd3n":5.9,"sd2n":6.7,"sd1n":7.5,"sd0":8.5,"sd1":9.6,"sd2":10.9,"sd3":12.4},{"m":11,"L":-0.1872,"M":8.7192,"S":0.12247,"sd3n":6.1,"sd2n":6.9,"sd1n":7.7,"sd0":8.7,"sd1":9.9,"sd2":11.2,"sd3":12.8},{"m":12,"L":-0.2024,"M":8.9481,"S":0.12268,"sd3n":6.3,"sd2n":7.0,"sd1n":7.9,"sd0":8.9,"sd1":10.1,"sd2":11.5,"sd3":13.1},{"m":13,"L":-0.2158,"M":9.1699,"S":0.12283,"sd3n":6.4,"sd2n":7.2,"sd1n":8.1,"sd0":9.2,"sd1":10.4,"sd2":11.8,"sd3":13.5},{"m":14,"L":-0.2278,"M":9.387,"S":0.12294,"sd3n":6.6,"sd2n":7.4,"sd1n":8.3,"sd0":9.4,"sd1":10.6,"sd2":12.1,"sd3":13.8},{"m":15,"L":-0.2384,"M":9.6008,"S":0.12299,"sd3n":6.7,"sd2n":7.6,"sd1n":8.5,"sd0":9.6,"sd1":10.9,"sd2":12.4,"sd3":14.1},{"m":16,"L":-0.2478,"M":9.8124,"S":0.12303,"sd3n":6.9,"sd2n":7.7,"sd1n":8.7,"sd0":9.8,"sd1":11.1,"sd2":12.6,"sd3":14.5},{"m":17,"L":-0.2562,"M":10.0226,"S":0.12306,"sd3n":7.0,"sd2n":7.9,"sd1n":8.9,"sd0":10.0,"sd1":11.4,"sd2":12.9,"sd3":14.8},{"m":18,"L":-0.2637,"M":10.2315,"S":0.12309,"sd3n":7.2,"sd2n":8.1,"sd1n":9.1,"sd0":10.2,"sd1":11.6,"sd2":13.2,"sd3":15.1},{"m":19,"L":-0.2703,"M":10.4393,"S":0.12315,"sd3n":7.3,"sd2n":8.2,"sd1n":9.2,"sd0":10.4,"sd1":11.8,"sd2":13.5,"sd3":15.4},{"m":20,"L":-0.2762,"M":10.6464,"S":0.12323,"sd3n":7.5,"sd2n":8.4,"sd1n":9.4,"sd0":10.6,"sd1":12.1,"sd2":13.7,"sd3":15.7},{"m":21,"L":-0.2815,"M":10.8534,"S":0.12335,"sd3n":7.6,"sd2n":8.6,"sd1n":9.6,"sd0":10.9,"sd1":12.3,"sd2":14.0,"sd3":16.0},{"m":22,"L":-0.2862,"M":11.0608,"S":0.1235,"sd3n":7.8,"sd2n":8.7,"sd1n":9.8,"sd0":11.1,"sd1":12.5,"sd2":14.3,"sd3":16.4},{"m":23,"L":-0.2903,"M":11.2688,"S":0.12369,"sd3n":7.9,"sd2n":8.9,"sd1n":10.0,"sd0":11.3,"sd1":12.8,"sd2":14.6,"sd3":16.7},{"m":24,"L":-0.2941,"M":11.4775,"S":0.1239,"sd3n":8.1,"sd2n":9.0,"sd1n":10.2,"sd0":11.5,"sd1":13.0,"sd2":14.8,"sd3":17.0}]};
+
+/* ============================================================
+   PROTOCOLOS · estruturados por idade
+   ============================================================ */
+
+/* As consultas oficiais da LC (em meses):
+   0(RN), 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 18, 21, 24 */
+const CONSULTAS_IDX = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 18, 21, 24];
+
+/* Quem atende, por idade e risco (LC pág 2)
+   Códigos: MP=Pediatra, M=MFC/Generalista, E=Enfermeiro, TE=Téc Enfermagem */
+const QUEM_RISCO = {
+  0: "MP + E", 1: "MP/M/E", 2: "M ou E", 3: "MP",
+  4: "M ou E", 5: "M ou E", 6: "MP", 7: "M ou E",
+  8: "M ou E", 9: "MP", 10: "M ou E", 11: "M ou E",
+  12: "MP", 15: "M ou E", 18: "MP", 21: "M ou E", 24: "MP"
+};
+const QUEM_HABITUAL = {
+  0: "MP + E", 1: "MP/M/E", 2: "M ou E", 3: "M ou E",
+  4: "MP/M/E", 5: "M ou E", 6: "M ou E", 7: "E ou TE",
+  8: "MP/M/E", 9: "E ou TE", 10: "E ou TE", 11: "E ou TE",
+  12: "MP/M/E", 15: "E ou TE", 18: "MP/M/E", 21: "E ou TE", 24: "MP/M/E"
+};
+
+/* Vacinas devidas em cada consulta (PNI 2026) */
+const VACINAS = {
+  0: [
+    {nome: "Hepatite B", dose: "1ª dose (ao nascer)"},
+    {nome: "BCG", dose: "dose única"}
+  ],
+  2: [
+    {nome: "Pentavalente (DTP+Hib+HB)", dose: "1ª dose"},
+    {nome: "VIP (poliomielite inativada)", dose: "1ª dose"},
+    {nome: "Pneumocócica 10-valente", dose: "1ª dose"},
+    {nome: "Rotavírus humano", dose: "1ª dose"}
+  ],
+  3: [
+    {nome: "Meningocócica C", dose: "1ª dose"}
+  ],
+  4: [
+    {nome: "Pentavalente (DTP+Hib+HB)", dose: "2ª dose"},
+    {nome: "VIP (poliomielite inativada)", dose: "2ª dose"},
+    {nome: "Pneumocócica 10-valente", dose: "2ª dose"},
+    {nome: "Rotavírus humano", dose: "2ª dose"}
+  ],
+  5: [
+    {nome: "Meningocócica C", dose: "2ª dose"}
+  ],
+  6: [
+    {nome: "Pentavalente (DTP+Hib+HB)", dose: "3ª dose"},
+    {nome: "VIP (poliomielite inativada)", dose: "3ª dose"},
+    {nome: "Influenza", dose: "1ª dose (anual; 2 doses na primeira vez)"},
+    {nome: "Covid-19", dose: "1ª dose"}
+  ],
+  7: [
+    {nome: "Covid-19", dose: "2ª dose"}
+  ],
+  9: [
+    {nome: "Covid-19", dose: "3ª dose (se Comirnaty)"},
+    {nome: "Febre amarela", dose: "1ª dose"}
+  ],
+  12: [
+    {nome: "Pneumocócica 10-valente", dose: "1ª dose de reforço"},
+    {nome: "Meningocócica ACWY", dose: "dose única"},
+    {nome: "Tríplice viral (SCR)", dose: "1ª dose"}
+  ],
+  15: [
+    {nome: "DTP", dose: "1ª dose de reforço"},
+    {nome: "VIP", dose: "1ª dose de reforço"},
+    {nome: "Tríplice viral (SCR)", dose: "2ª dose"},
+    {nome: "Varicela", dose: "1ª dose"},
+    {nome: "Hepatite A", dose: "dose única"}
+  ]
+};
+
+/* Marcos do DPM por idade · adaptado da Caderneta Brasileira e LC.
+   Quatro áreas: motor grosso, motor fino, audição/linguagem, social/cognitivo. */
+const DPM = {
+  1: {
+    mg: ["Levanta brevemente a cabeça em prono", "Postura assimétrica do tônus"],
+    mf: ["Mãos predominantemente fechadas", "Reflexo de preensão palmar"],
+    al: ["Reage a sons (sobressalta-se ou se acalma)", "Emite sons guturais"],
+    sc: ["Observa rosto humano (fixa olhar brevemente)", "Sorriso reflexo"]
+  },
+  2: {
+    mg: ["Sustenta a cabeça em prono apoiada nos antebraços"],
+    mf: ["Abre as mãos espontaneamente em alguns momentos"],
+    al: ["Emite sons (gugu)", "Acompanha objeto na linha média"],
+    sc: ["Sorriso social (responsivo ao estímulo)"]
+  },
+  3: {
+    mg: ["Sustenta a cabeça quando puxado para sentar (parcial)"],
+    mf: ["Junta as mãos na linha média"],
+    al: ["Vocaliza com prazer", "Vira a cabeça em direção ao som"],
+    sc: ["Ri alto", "Observa as próprias mãos"]
+  },
+  4: {
+    mg: ["Sustenta a cabeça firmemente em sedestação"],
+    mf: ["Pega objeto colocado em sua mão", "Junta as mãos com firmeza"],
+    al: ["Gargalha", "Vocaliza com inflexões"],
+    sc: ["Responde ao examinador com sorriso"]
+  },
+  5: {
+    mg: ["Rola da posição supina para o lado"],
+    mf: ["Alcança objetos próximos com a mão"],
+    al: ["Emite sons consonantais (ba, da, ga)"],
+    sc: ["Reconhece o cuidador principal"]
+  },
+  6: {
+    mg: ["Rola supino-prono e prono-supino", "Senta com apoio das mãos"],
+    mf: ["Transfere objetos de uma mão para outra", "Leva tudo à boca"],
+    al: ["Balbucia (papa, dada sem significado)"],
+    sc: ["Estranha pessoas desconhecidas (estranhamento)"]
+  },
+  7: {
+    mg: ["Senta sem apoio por instantes"],
+    mf: ["Pega objetos pequenos com toda a mão (preensão palmar)"],
+    al: ["Imita sons (ba-ba, da-da)"],
+    sc: ["Brinca de bater objetos um no outro"]
+  },
+  8: {
+    mg: ["Senta sem apoio firmemente", "Pode começar a engatinhar"],
+    mf: ["Pinça inferior (polegar + lateral do indicador)"],
+    al: ["Duplica sílabas (mamã, papá, sem significado ainda)"],
+    sc: ["Responde quando chamado pelo nome"]
+  },
+  9: {
+    mg: ["Engatinha ou se desloca", "Fica em pé com apoio"],
+    mf: ["Aponta com o indicador"],
+    al: ["Diz pelo menos uma palavra com significado (mamã, papá direcionado)"],
+    sc: ["Brinca de esconde-esconde (achou)"]
+  },
+  10: {
+    mg: ["Permanece em pé com apoio mínimo"],
+    mf: ["Pinça superior (polegar + ponta do indicador)"],
+    al: ["Emite jargão (parece falar uma frase em sua língua)"],
+    sc: ["Atende ao 'não' com inibição momentânea"]
+  },
+  11: {
+    mg: ["Anda lateralmente segurando-se em móveis (cruise)"],
+    mf: ["Põe um objeto sobre o outro"],
+    al: ["Fala 1 a 2 palavras com significado"],
+    sc: ["Imita gestos simples (tchau)"]
+  },
+  12: {
+    mg: ["Primeiros passos sozinha ou anda com apoio mínimo"],
+    mf: ["Pinça polegar-indicador fina e precisa", "Solta objetos voluntariamente"],
+    al: ["Diz 2 a 3 palavras com significado", "Atende a comandos simples ('dá', 'não')"],
+    sc: ["Aponta para o que quer", "Reconhece familiares no espelho"]
+  },
+  15: {
+    mg: ["Anda sozinha com firmeza"],
+    mf: ["Faz torre de 2 cubos", "Bebe em copo com pouca perda"],
+    al: ["Fala 3 a 6 palavras com significado", "Mostra figuras familiares"],
+    sc: ["Imita atividades domésticas (varrer, falar ao telefone)"]
+  },
+  18: {
+    mg: ["Corre (ainda desajeitada)", "Sobe escada com apoio"],
+    mf: ["Faz torre de 3 a 4 cubos", "Rabisca espontaneamente"],
+    al: ["Fala várias palavras isoladas", "Aponta para 1 a 3 partes do corpo nomeadas"],
+    sc: ["Aplicar M-CHAT-R", "Brinca paralelamente a outras crianças"]
+  },
+  21: {
+    mg: ["Sobe escadas com apoio, um pé de cada vez", "Joga bola com as mãos"],
+    mf: ["Faz torre de 4 a 5 cubos"],
+    al: ["Combina 2 palavras (frases curtas)", "Reconhece figuras nomeadas"],
+    sc: ["Imita afazeres domésticos com mais detalhe"]
+  },
+  24: {
+    mg: ["Corre bem", "Chuta bola", "Sobe e desce escada alternando pés (com apoio)"],
+    mf: ["Faz torre de 6 cubos", "Vira páginas de livro uma por vez"],
+    al: ["Vocabulário > 50 palavras", "Frases de 2 a 3 palavras com sintaxe"],
+    sc: ["Aplicar M-CHAT-R", "Brinca de faz-de-conta", "Veste roupa simples com ajuda"]
+  }
+};
+
+/* Verificações específicas por idade (do "Verificar, avaliar e registrar" da LC) */
+const VERIFICAR = {
+  0: ["História pré-natal, parto, período neonatal", "IG, peso ao nascer, peso na alta, talhe, PC, Apgar", "Testes de triagem neonatais (TTN)", "Período de internamento (UTI?)", "Exames realizados (sífilis, HIV, toxoplasmose, TTN)", "Tratamentos em curso", "Vacina Hepatite B aplicada na maternidade", "Aleitamento, higiene, sono, segurança", "Dados antropométricos, exame segmentar, reflexos do RN"],
+  1: ["Cólicas do RN, dificuldades de adaptação", "Nutrição (ênfase no LM)", "Cuidados com o bebê", "Diurese e hábito intestinal", "Vacina BCG (foi aplicada?)", "Adesão à orientações, coleta de exames pendentes", "Condição clínica, gráficos, DPM"],
+  2: ["Intercorrências desde a última consulta", "Nutrição (LM)", "Cuidados com o bebê", "Diurese e hábito intestinal", "Vacinas dos 2 meses já aplicadas?", "Adesão e exames pendentes", "Condição clínica, gráficos, DPM"],
+  3: ["Intercorrências, retorno ao trabalho", "Nutrição (LM)", "Cuidados com o bebê", "Diurese, hábito intestinal", "Vacinas em dia?", "Condição clínica, gráficos, DPM"],
+  4: ["Intercorrências, retorno ao trabalho, adaptação à creche", "Nutrição (LM)", "Vacinas dos 4 meses", "Adesão", "Condição clínica, gráficos, DPM"],
+  5: ["Intercorrências, adaptação à creche", "Nutrição (LM)", "Vacinas", "Condição clínica, gráficos, DPM"],
+  6: ["Intercorrências", "Nutrição: LM e início da introdução alimentar", "Vacinas dos 6 meses", "Condição clínica, gráficos, DPM"],
+  7: ["Intercorrências", "Nutrição: LM + almoço/frutas, introduzir janta", "Diurese, hábito intestinal", "Condição clínica, gráficos, DPM"],
+  8: ["Intercorrências", "Nutrição: LM + almoço + janta + frutas", "Condição clínica, gráficos, DPM"],
+  9: ["Intercorrências", "Nutrição: 3 refeições + frutas + LM", "Vacina Febre Amarela", "Condição clínica, gráficos, DPM"],
+  10: ["Intercorrências", "Nutrição: aumentar consistência dos alimentos", "Condição clínica, gráficos, DPM"],
+  11: ["Intercorrências", "Nutrição: transição para dieta da família", "Condição clínica, gráficos, DPM"],
+  12: ["Intercorrências", "Nutrição: dieta da família + LM", "Vacinas dos 12 meses", "Condição clínica, gráficos, DPM"],
+  15: ["Intercorrências", "Nutrição: qualidade da dieta", "Vacinas dos 15 meses", "Condição clínica, gráficos, DPM"],
+  18: ["Intercorrências", "Nutrição: qualidade da dieta da família + LM", "Aplicar M-CHAT-R", "Condição clínica, gráficos, DPM"],
+  21: ["Intercorrências", "Nutrição: qualidade da dieta", "Condição clínica, gráficos, DPM"],
+  24: ["Intercorrências", "Nutrição: qualidade da dieta", "Atenção ao IMC", "Aplicar M-CHAT-R", "Condição clínica, gráficos, DPM"]
+};
+
+/* Orientações nutricionais por idade */
+const NUTRICAO = {
+  0: "LM exclusivo até 6 meses. Livre demanda. Se contraindicado, fórmula infantil em diluição correta.",
+  1: "LM exclusivo. Livre demanda.",
+  2: "LM exclusivo. Livre demanda.",
+  3: "LM exclusivo. Orientar coleta e armazenamento do leite antes do retorno ao trabalho. Mama Nenê em CMEIs conveniados.",
+  4: "LM exclusivo até 6 meses.",
+  5: "LM exclusivo. Preparar a mãe e a família para a introdução alimentar aos 6 meses.",
+  6: "LM + introdução alimentar: papa de frutas e almoço (almoço com cereal, proteína, leguminosa, hortaliça). Consistência amassada com garfo.",
+  7: "LM + almoço + frutas + introduzir jantar.",
+  8: "LM + almoço + janta + frutas. Verificar oferta hídrica.",
+  9: "LM + almoço + janta + frutas. Aumentar a consistência dos alimentos.",
+  10: "LM + almoço + janta + frutas. Consistência mais sólida.",
+  11: "LM + almoço + janta + frutas. Transição gradual para a dieta da família.",
+  12: "Dieta da família (com adaptações) + frutas/cereal + LM. Sem leite de vaca puro antes desta idade.",
+  15: "Qualidade da dieta da família + LM. Apresentar variedade de texturas e sabores.",
+  18: "Qualidade da dieta da família + LM. Evitar ultraprocessados, açúcar e sal em excesso.",
+  21: "Qualidade da dieta da família + LM. Reforçar consumo de frutas, hortaliças e leguminosas.",
+  24: "Qualidade da dieta da família + LM (se em curso). Atenção ao IMC. Evitar telas durante refeições."
+};
+
+/* ============================================================
+   FUNÇÕES DE CÁLCULO
+   ============================================================ */
+
+function diffDays(d1, d2) {
+  return Math.floor((d2 - d1) / (1000*60*60*24));
+}
+
+function ageInMonths(dob, refDate) {
+  /* Idade em meses inteiros + dias residuais. */
+  if (!dob || !refDate) return null;
+  let m = (refDate.getFullYear() - dob.getFullYear()) * 12 + (refDate.getMonth() - dob.getMonth());
+  let dayDiff = refDate.getDate() - dob.getDate();
+  if (dayDiff < 0) {
+    m -= 1;
+    /* dias até o fim do mês anterior */
+    const prevMonth = new Date(refDate.getFullYear(), refDate.getMonth(), 0);
+    dayDiff = prevMonth.getDate() - dob.getDate() + refDate.getDate();
+  }
+  if (m < 0) return null;
+  return { months: m, days: dayDiff, totalDays: diffDays(dob, refDate) };
+}
+
+function correctedAge(dob, refDate, igWeeks, igDays) {
+  /* Idade corrigida: subtrai (40 - IG) semanas da idade cronológica.
+     Se a termo, retorna a própria idade. */
+  const real = ageInMonths(dob, refDate);
+  if (!real) return null;
+  const igTotalDays = (igWeeks || 40) * 7 + (igDays || 0);
+  if (igTotalDays >= 37*7) {
+    return { ...real, corrected: false };
+  }
+  const correctionDays = 40*7 - igTotalDays;
+  const correctedTotalDays = real.totalDays - correctionDays;
+  if (correctedTotalDays < 0) {
+    return { months: 0, days: 0, totalDays: correctedTotalDays, corrected: true, weeksCorrected: Math.floor(correctedTotalDays / 7) };
+  }
+  /* converter dias para meses aproximado */
+  const correctedDate = new Date(dob.getTime() + correctionDays*86400000);
+  const corr = ageInMonths(correctedDate, refDate);
+  return { ...corr, corrected: true, correctionDays };
+}
+
+function zScorePeso(weight, ageMonthsTotal, sex) {
+  /* Calcula z-score peso por idade pelo método LMS oficial.
+     ageMonthsTotal pode ser fracionário (mês.fração). Interpola entre os dois meses mais próximos. */
+  if (!weight || ageMonthsTotal == null || !sex) return null;
+  const table = WFA_LMS[sex];
+  if (!table) return null;
+
+  const mFloor = Math.max(0, Math.min(24, Math.floor(ageMonthsTotal)));
+  const mCeil  = Math.max(0, Math.min(24, Math.ceil(ageMonthsTotal)));
+  const r1 = table[mFloor];
+  const r2 = table[mCeil];
+  if (!r1 || !r2) return null;
+
+  let L, M, S;
+  if (mFloor === mCeil) {
+    L = r1.L; M = r1.M; S = r1.S;
+  } else {
+    const t = ageMonthsTotal - mFloor;
+    L = r1.L + (r2.L - r1.L) * t;
+    M = r1.M + (r2.M - r1.M) * t;
+    S = r1.S + (r2.S - r1.S) * t;
+  }
+  let z;
+  if (Math.abs(L) < 1e-7) {
+    z = Math.log(weight / M) / S;
+  } else {
+    z = (Math.pow(weight / M, L) - 1) / (L * S);
+  }
+  /* Ajuste OMS para |z| > 3 */
+  if (z > 3) {
+    const SD3 = M * Math.pow(1 + L*S*3, 1/L);
+    const SD23 = SD3 - M * Math.pow(1 + L*S*2, 1/L);
+    z = 3 + (weight - SD3) / SD23;
+  } else if (z < -3) {
+    const SD3n = M * Math.pow(1 + L*S*(-3), 1/L);
+    const SD23n = M * Math.pow(1 + L*S*(-2), 1/L) - SD3n;
+    z = -3 + (weight - SD3n) / SD23n;
+  }
+  return z;
+}
+
+function classifyZ(z) {
+  /* Retorna nível 1-5 e rótulo. Para peso por idade (PI). */
+  if (z == null || isNaN(z)) return { level: 0, label: "—" };
+  if (z < -3) return { level: 5, label: "Muito baixo peso" };
+  if (z < -2) return { level: 4, label: "Baixo peso" };
+  if (z < -1) return { level: 2, label: "Peso adequado (limítrofe inferior)" };
+  if (z <= 2) return { level: 1, label: "Peso adequado" };
+  if (z <= 3) return { level: 2, label: "Peso elevado" };
+  return { level: 3, label: "Peso muito elevado" };
+}
+
+function consultIndex(ageMonths) {
+  /* Pega o índice oficial de consulta correspondente à idade.
+     Se idade está entre duas consultas, retorna a mais recente já passada. */
+  if (ageMonths == null) return null;
+  let idx = 0;
+  for (const c of CONSULTAS_IDX) {
+    if (ageMonths >= c) idx = c;
+    else break;
+  }
+  return idx;
+}
+
+function nextConsult(currentIdx) {
+  if (currentIdx == null) return null;
+  const i = CONSULTAS_IDX.indexOf(currentIdx);
+  if (i < 0 || i >= CONSULTAS_IDX.length - 1) return null;
+  return CONSULTAS_IDX[i+1];
+}
+
+function calcFerro(state, ageMonthsCorr) {
+  /* Retorna texto da prescrição de ferro ou null se não indicado.
+     state inclui: igWeeks, igDays, bwGrams, anemiaRisk, weight */
+  const w = state.weight;
+  if (!w) return { text: "Aguardando peso para calcular dose.", dose: null };
+
+  const igTotalDays = (state.igWeeks || 40)*7 + (state.igDays || 0);
+  const isPreterm = igTotalDays < 37*7;
+  const bw = state.bwGrams || null;
+  const hasRisk = state.anemiaRisk || isPreterm || (bw && bw < 2500);
+
+  /* Dose por kg/dia: */
+  let mgKgDia, inicio, ate;
+  const ageM = ageMonthsCorr != null ? ageMonthsCorr : 0;
+
+  if (isPreterm) {
+    if (bw && bw < 1000)       mgKgDia = 4;
+    else if (bw && bw < 1500)  mgKgDia = 3;
+    else                       mgKgDia = 2;
+    inicio = "30 dias de vida";
+    ate = "12 meses; depois 1 mg/kg/dia por mais 1 ano";
+  } else if (bw && bw < 2500) {
+    mgKgDia = 2;
+    inicio = "30 dias de vida";
+    ate = "12 meses; depois 1 mg/kg/dia por mais 1 ano";
+  } else if (hasRisk) {
+    mgKgDia = 1;
+    inicio = "90 dias de vida (3 meses)";
+    ate = "24 meses";
+  } else {
+    /* Termo, peso adequado, sem risco · LM exclusivo */
+    mgKgDia = 1;
+    inicio = "180 dias de vida (6 meses)";
+    ate = "24 meses";
+  }
+
+  const doseMg = (mgKgDia * w).toFixed(1);
+
+  /* Checa se a criança já está na idade de iniciar */
+  let status;
+  if (mgKgDia === 1 && !hasRisk && !isPreterm && (!bw || bw >= 2500)) {
+    status = ageM >= 6 ? "iniciar agora" : "aguardar até 6 meses";
+  } else if (mgKgDia === 1 && hasRisk && !isPreterm) {
+    status = ageM >= 3 ? "iniciar agora" : "aguardar até 3 meses";
+  } else {
+    status = ageM >= 1 ? "iniciar agora" : "aguardar 30 dias de vida";
+  }
+
+  return {
+    text: `${mgKgDia} mg de ferro elementar/kg/dia\n= ${doseMg} mg/dia para ${w} kg\nInício: ${inicio}\nDuração: ${ate}\nStatus: ${status}`,
+    dose: doseMg,
+    mgKgDia: mgKgDia,
+    status: status,
+    inicio: inicio,
+    ate: ate
+  };
+}
+
+/* ============================================================
+   STATE E LEITURA DO FORM
+   ============================================================ */
+
+const state = {};
+
+function readForm() {
+  const dob = document.getElementById('fDob').value;
+  const cDate = document.getElementById('cDate').value;
+  state.dob = dob ? new Date(dob + 'T12:00:00') : null;
+  state.cDate = cDate ? new Date(cDate + 'T12:00:00') : new Date();
+  state.name = document.getElementById('fName').value;
+  const sexEl = document.querySelector('input[name="sex"]:checked');
+  state.sex = sexEl ? sexEl.value : null;
+  state.igWeeks = parseInt(document.getElementById('fIgWeeks').value) || null;
+  state.igDays = parseInt(document.getElementById('fIgDays').value) || 0;
+  state.bwGrams = parseFloat(document.getElementById('fBw').value) || null;
+  state.risk = document.getElementById('fRisk').value;
+  state.anemiaRisk = document.getElementById('fAnemiaRisk').checked;
+  state.torsch = document.getElementById('fTorsch').checked;
+  state.hiv = document.getElementById('fHiv').checked;
+  state.syph = document.getElementById('fSyph').checked;
+  state.pneumoCardio = document.getElementById('fPneumoCardio').checked;
+  state.weight = parseFloat(document.getElementById('cWeight').value) || null;
+  state.height = parseFloat(document.getElementById('cHeight').value) || null;
+  state.hc = parseFloat(document.getElementById('cHc').value) || null;
+  state.intercurrences = document.getElementById('cInter').value;
+  state.feeding = document.getElementById('cFeeding').value;
+
+  /* Marcos DPM checados */
+  state.dpmDone = Array.from(document.querySelectorAll('#dpmBody input[type="checkbox"]:checked')).map(e => e.dataset.marco);
+  /* Vacinas marcadas */
+  state.vacGiven = Array.from(document.querySelectorAll('#vacBody input[type="checkbox"]:checked')).map(e => e.dataset.vac);
+  state.vacExtra = document.getElementById('vacExtra') ? document.getElementById('vacExtra').value : "";
+}
+
+/* ============================================================
+   RENDER
+   ============================================================ */
+
+function fmtMonths(m) {
+  if (m == null) return "—";
+  const yr = Math.floor(m.months / 12);
+  const remM = m.months % 12;
+  let s = "";
+  if (yr > 0) s += `${yr}a `;
+  if (remM > 0 || yr === 0) s += `${remM}m`;
+  if (m.days > 0 && yr === 0) s += ` ${m.days}d`;
+  return s.trim();
+}
+
+function fmtDateBR(d) {
+  if (!d) return "—";
+  return d.toLocaleDateString('pt-BR');
+}
+
+function render() {
+  readForm();
+
+  const realAge = state.dob ? ageInMonths(state.dob, state.cDate) : null;
+  const corrAge = state.dob ? correctedAge(state.dob, state.cDate, state.igWeeks, state.igDays) : null;
+  const isPreterm = corrAge && corrAge.corrected;
+
+  /* idade total em meses (fracionário) para z-score */
+  let ageMTotal = null;
+  let ageMTotalRaw = null;
+  if (realAge) {
+    ageMTotalRaw = realAge.totalDays / 30.4375;
+    /* para gráfico/protocolo: usa corrigida se prematuro e dentro dos prazos (até 24m) */
+    if (isPreterm && corrAge.totalDays != null && corrAge.totalDays / 30.4375 <= 24) {
+      ageMTotal = corrAge.totalDays / 30.4375;
+    } else {
+      ageMTotal = ageMTotalRaw;
+    }
+  }
+
+  const consultIdx = realAge ? consultIndex(corrAge ? corrAge.months : realAge.months) : null;
+  const nextIdx = consultIdx != null ? nextConsult(consultIdx) : null;
+
+  /* ============ SIDEBAR ============ */
+  const sideAge = document.getElementById('sideAge');
+  if (realAge) {
+    let label = fmtMonths(realAge);
+    let sub = isPreterm ? `Corrigida: ${fmtMonths(corrAge)} · IG ${state.igWeeks}s${state.igDays || 0}d` : "Termo";
+    sideAge.innerHTML = `<em>${label}</em><small>${sub}</small>`;
+  } else {
+    sideAge.innerHTML = `<em>Aguardando</em><small>Preencha a data de nascimento</small>`;
+  }
+
+  /* Antropometria */
+  document.getElementById('sidePeso').textContent = state.weight ? `${state.weight.toFixed(2)} kg` : "—";
+  document.getElementById('sideEst').textContent = state.height ? `${state.height.toFixed(1)} cm` : "—";
+  document.getElementById('sidePc').textContent = state.hc ? `${state.hc.toFixed(1)} cm` : "—";
+
+  /* Z-score */
+  let z = null;
+  if (state.weight && ageMTotal != null && state.sex) {
+    z = zScorePeso(state.weight, ageMTotal, state.sex);
+  }
+  const sideZ = document.getElementById('sideZ');
+  const sidePanelBar = document.querySelector('.side-panel-bar');
+  if (z != null) {
+    const c = classifyZ(z);
+    sideZ.innerHTML = `<span class="z-badge" data-level="${c.level}">${z >= 0 ? '+' : ''}${z.toFixed(2)} · ${c.label}</span>`;
+    /* cor da barra superior */
+    const colors = ["var(--ink-soft)", "var(--level-1)", "var(--level-2)", "var(--level-3)", "var(--level-4)", "var(--level-5)"];
+    if (sidePanelBar) sidePanelBar.style.background = colors[c.level] || "var(--line)";
+  } else {
+    sideZ.textContent = "—";
+    if (sidePanelBar) sidePanelBar.style.background = "var(--line)";
+  }
+
+  /* Próxima consulta */
+  if (nextIdx != null && state.dob) {
+    const nextDate = new Date(state.dob.getTime() + nextIdx * 30.4375 * 86400000);
+    document.getElementById('sideQuando').textContent = `${nextIdx}m · ${fmtDateBR(nextDate)}`;
+    const quemMap = (state.risk === 'habitual') ? QUEM_HABITUAL : QUEM_RISCO;
+    document.getElementById('sideQuem').textContent = quemMap[nextIdx] || "—";
+  } else {
+    document.getElementById('sideQuando').textContent = "—";
+    document.getElementById('sideQuem').textContent = "—";
+  }
+
+  /* Ferro */
+  if (state.weight && state.dob) {
+    const ferro = calcFerro(state, corrAge ? corrAge.months + corrAge.days/30.4375 : realAge.months + realAge.days/30.4375);
+    document.getElementById('sideFerro').innerHTML = `<div style="white-space: pre-wrap; font-size: 12.5px; line-height: 1.5;">${ferro.text}</div>`;
+    state._ferro = ferro;
+  } else {
+    document.getElementById('sideFerro').textContent = "Aguardando peso.";
+    state._ferro = null;
+  }
+
+  /* ============ VERIFICAR E AVALIAR ============ */
+  const verifyBody = document.getElementById('verifyBody');
+  const verifyAge = document.getElementById('verifyAge');
+  if (consultIdx != null) {
+    verifyAge.textContent = `Consulta de ${consultIdx === 0 ? "1º mês (recém-nascido)" : consultIdx + " meses"}`;
+    const items = VERIFICAR[consultIdx] || [];
+    let html = '<div class="check-group">';
+    items.forEach((it, i) => {
+      html += `<label class="check-item"><input type="checkbox" data-verify="${i}"><span class="check-label">${it}</span></label>`;
+    });
+    html += '</div>';
+
+    /* Alertas condicionais */
+    const condBlocks = [];
+    if (isPreterm) condBlocks.push("<strong>Prematuro.</strong> Considerar idade corrigida (PC até 18m, peso até 24m, estatura até 42m).");
+    if (state.torsch) condBlocks.push("<strong>TORSCHZ.</strong> Atenção redobrada ao DPM nos 2 primeiros anos. Checar seguimento na Infectopediatria.");
+    if (state.hiv) condBlocks.push("<strong>Exposição HIV.</strong> Conferir CV-HIV (14d, 6 e 12 semanas), profilaxia ARV, uso adequado da fórmula infantil. LM contraindicado.");
+    if (state.syph) condBlocks.push("<strong>Sífilis congênita/exposição.</strong> VDRL com 1, 3, 6, 12 e 18 meses. Interromper se dois Não Reagentes consecutivos.");
+    if (state.pneumoCardio) condBlocks.push("<strong>Pneumopatia/cardiopatia.</strong> Verificar elegibilidade para palivizumabe na sazonalidade do VSR (abril a agosto).");
+    if (condBlocks.length) {
+      html += '<div style="margin-top: 14px; display: flex; flex-direction: column; gap: 8px;">';
+      condBlocks.forEach(b => { html += `<div class="warn-box">${b}</div>`; });
+      html += '</div>';
+    }
+    verifyBody.innerHTML = html;
+  } else {
+    verifyAge.textContent = "Defina a data de nascimento e a data da consulta para ver o roteiro.";
+    verifyBody.innerHTML = '<div class="info-box"><strong>Aguardando idade.</strong> O roteiro de verificação aparece quando a data de nascimento estiver preenchida.</div>';
+  }
+
+  /* ============ DPM ============ */
+  const dpmBody = document.getElementById('dpmBody');
+  if (consultIdx != null && DPM[consultIdx]) {
+    const m = DPM[consultIdx];
+    const areas = [
+      {key: 'mg', label: 'Motor grosso'},
+      {key: 'mf', label: 'Motor fino'},
+      {key: 'al', label: 'Audição e linguagem'},
+      {key: 'sc', label: 'Social e cognitivo'}
+    ];
+    let html = '';
+    areas.forEach(a => {
+      if (!m[a.key] || m[a.key].length === 0) return;
+      html += `<div class="dpm-area"><div class="dpm-area-title">${a.label}</div><div class="check-group">`;
+      m[a.key].forEach((marco, i) => {
+        html += `<label class="check-item"><input type="checkbox" data-marco="${a.key}:${marco}"><span class="check-label">${marco}</span></label>`;
+      });
+      html += `</div></div>`;
+    });
+    if (consultIdx === 18 || consultIdx === 24) {
+      html += `<div class="warn-box" style="margin-top: 8px;"><strong>M-CHAT-R.</strong> Aplicar questionário de triagem para TEA. Se positivo, encaminhar à avaliação Neuro/TEA.</div>`;
+    }
+    dpmBody.innerHTML = html;
+  } else if (consultIdx != null) {
+    dpmBody.innerHTML = '<div class="info-box">Faixa etária sem marcos pré-definidos nesta versão.</div>';
+  }
+
+  /* ============ VACINAS ============ */
+  const vacBody = document.getElementById('vacBody');
+  if (consultIdx != null) {
+    /* Junta vacinas DEVIDAS para idades até a atual (acumulado) */
+    const dueNow = VACINAS[consultIdx] || [];
+    let html = '';
+    if (dueNow.length) {
+      html += '<div class="dpm-area"><div class="dpm-area-title">Devidas nesta consulta</div><div class="check-group">';
+      dueNow.forEach(v => {
+        html += `<label class="check-item"><input type="checkbox" data-vac="${v.nome} ${v.dose}"><span class="check-label">${v.nome}<small>${v.dose}</small></span></label>`;
+      });
+      html += '</div></div>';
+    } else {
+      html += '<div class="info-box">Nenhuma vacina nova devida pelo calendário 2026 nesta consulta. Conferir esquema anterior em atraso.</div>';
+    }
+    /* Anotação livre */
+    html += `<div class="field" style="margin-top: 12px;"><label class="field-label" for="vacExtra">Outras vacinas aplicadas ou observações</label><input type="text" id="vacExtra" placeholder="Ex: catch-up de doses em atraso"></div>`;
+    /* Alerta de janela do rotavírus */
+    if (consultIdx <= 4) {
+      html += `<div class="info-box" style="margin-top: 10px;"><strong>Atenção, rotavírus.</strong> 1ª dose até 3m 15d, 2ª dose até 7m 29d. Perdida a janela, não há recuperação.</div>`;
+    }
+    /* Influenza fora do calendário fixo */
+    if (consultIdx >= 6) {
+      html += `<div class="info-box" style="margin-top: 6px;"><strong>Influenza.</strong> Anual de 6m a &lt;6a. Na 1ª vez são 2 doses com 30 dias de intervalo. Nos anos seguintes, 1 dose por ano.</div>`;
+    }
+    vacBody.innerHTML = html;
+  }
+
+  /* ============ ORIENTAR ============ */
+  const orientBody = document.getElementById('orientBody');
+  if (consultIdx != null) {
+    const nut = NUTRICAO[consultIdx] || "";
+    const ferroTxt = state._ferro ? state._ferro.text : "Aguardando peso.";
+    let html = `
+      <div class="dpm-area">
+        <div class="dpm-area-title">Nutrição</div>
+        <div style="font-size: 13.5px; line-height: 1.6;">${nut}</div>
+      </div>
+      <div class="dpm-area">
+        <div class="dpm-area-title">Suplementação de ferro</div>
+        <div style="font-size: 13.5px; line-height: 1.6; white-space: pre-wrap;">${ferroTxt}</div>
+      </div>
+      <div class="dpm-area">
+        <div class="dpm-area-title">Vitamina D</div>
+        <div style="font-size: 13.5px; line-height: 1.6;">400 UI/dia do nascimento aos 24 meses (SBP/MS).</div>
+      </div>
+    `;
+    if (consultIdx <= 6) {
+      html += `<div class="dpm-area"><div class="dpm-area-title">Cuidados gerais</div><div style="font-size: 13.5px; line-height: 1.6;">Higiene (coto umbilical até queda, banho diário, troca de fraldas), prevenção de morte súbita (decúbito dorsal para dormir, sem objetos no berço), prevenção de acidentes domésticos.</div></div>`;
+    }
+    orientBody.innerHTML = html;
+  }
+
+  /* ============ PRONTUÁRIO ============ */
+  renderProntuario(consultIdx, realAge, corrAge, z);
+
+  /* ============ GRÁFICO ============ */
+  renderChart(state.sex, ageMTotal, state.weight);
+}
+
+/* ============================================================
+   PRONTUÁRIO (formato ReSOAP)
+   ============================================================ */
+
+function renderProntuario(consultIdx, realAge, corrAge, z) {
+  const out = document.getElementById('prontOut');
+  if (consultIdx == null || !state.dob) {
+    out.textContent = "Aguardando dados.";
+    return;
+  }
+  const lines = [];
+
+  /* CTX · contexto */
+  lines.push("#CTX");
+  const ctx = [];
+  ctx.push(`Consulta de puericultura de ${consultIdx === 0 ? "RN (1º mês)" : consultIdx + " meses"}.`);
+  if (state.name) ctx.push(`Nome: ${state.name}.`);
+  ctx.push(`Idade: ${fmtMonths(realAge)}${corrAge && corrAge.corrected ? ` (corrigida: ${fmtMonths(corrAge)}, IG ${state.igWeeks}s${state.igDays}d)` : ""}.`);
+  if (state.bwGrams) ctx.push(`PN ${state.bwGrams}g.`);
+  if (state.risk !== 'habitual') ctx.push(`Risco: ${state.risk}.`);
+  if (state.torsch) ctx.push("Exposição TORSCHZ.");
+  if (state.hiv) ctx.push("Exposição HIV.");
+  if (state.syph) ctx.push("Exposição sífilis/sífilis congênita.");
+  lines.push(ctx.join(" "));
+  lines.push("");
+
+  /* S · subjetivo */
+  lines.push("#S");
+  const s = [];
+  if (state.intercurrences) s.push(`Intercorrências: ${state.intercurrences}.`);
+  else s.push("Sem intercorrências relatadas pela acompanhante.");
+  const feedingTxt = {
+    lme: "leite materno exclusivo, livre demanda, sem queixas",
+    lm_compl: "leite materno + alimentação complementar conforme idade",
+    formula: "fórmula infantil em diluição apropriada (LM contraindicado/insuficiente)",
+    familia: "dieta da família + LM ou leite"
+  };
+  s.push(`Alimentação: ${feedingTxt[state.feeding] || state.feeding}.`);
+  s.push("Diurese e hábito intestinal sem alterações.");
+  s.push("Sono adequado para a idade.");
+  lines.push(s.join(" "));
+  lines.push("");
+
+  /* O · objetivo */
+  lines.push("#O");
+  const o = [];
+  o.push("BEG, ativo, reativo, hidratado, corado, eupneico em ar ambiente, acianótico, anictérico, afebril.");
+  if (state.weight) o.push(`Peso ${state.weight.toFixed(2)} kg${z != null ? ` (z PI = ${z >= 0 ? '+' : ''}${z.toFixed(2)} · ${classifyZ(z).label})` : ''}.`);
+  if (state.height) o.push(`Estatura ${state.height.toFixed(1)} cm.`);
+  if (state.hc) o.push(`PC ${state.hc.toFixed(1)} cm.`);
+  o.push("ACV: BNF 2T, RCR, sem sopros.");
+  o.push("AP: MV+ bilateralmente, sem RA.");
+  o.push("Abd: plano, RHA+, sem visceromegalias, sem dor à palpação.");
+  if (consultIdx === 0) o.push("Coto umbilical: aspecto preservado, sem sinais flogísticos.");
+  o.push("Fontanela anterior normotensa.");
+  o.push("Reflexos arcaicos compatíveis com a idade.");
+
+  /* DPM marcados */
+  if (state.dpmDone && state.dpmDone.length) {
+    o.push(`DPM: marcos atingidos para a idade (${state.dpmDone.length} de ${countDpm(consultIdx)} avaliados).`);
+  } else {
+    o.push(`DPM avaliado conforme Caderneta de Saúde da Criança.`);
+  }
+  lines.push(o.join(" "));
+  lines.push("");
+
+  /* A · avaliação */
+  lines.push("#A");
+  const a = [];
+  a.push(`Lactente em ${consultIdx === 0 ? "primeira consulta" : "consulta de " + consultIdx + " meses"} de puericultura.`);
+  if (z != null) {
+    const c = classifyZ(z);
+    a.push(`Estado nutricional: ${c.label.toLowerCase()}.`);
+  }
+  if (corrAge && corrAge.corrected) a.push("Prematuridade considerada para idade corrigida.");
+  if (state.risk !== 'habitual') a.push(`Criança em ${state.risk === 'biologico' ? 'risco biológico' : state.risk === 'social' ? 'risco social' : 'risco bio e social'}, em seguimento.`);
+  a.push("Crescimento e desenvolvimento sem alterações clinicamente significativas no momento.");
+  lines.push(a.join(" "));
+  lines.push("");
+
+  /* P · plano */
+  lines.push("#P");
+  const p = [];
+  /* Nutrição */
+  const nut = NUTRICAO[consultIdx];
+  if (nut) p.push(`Orientações nutricionais: ${nut.toLowerCase()}`);
+  /* Ferro */
+  if (state._ferro && state._ferro.dose) {
+    p.push(`Sulfato ferroso ${state._ferro.mgKgDia} mg/kg/dia (= ${state._ferro.dose} mg/dia), iniciar a partir de ${state._ferro.inicio}, manter até ${state._ferro.ate}.`);
+  }
+  p.push("Vitamina D 400 UI/dia.");
+  /* Vacinas */
+  if (state.vacGiven && state.vacGiven.length) {
+    p.push(`Vacinas aplicadas hoje: ${state.vacGiven.join("; ")}.`);
+  } else if (VACINAS[consultIdx]) {
+    p.push(`Vacinas devidas (verificar caderneta e aplicar): ${VACINAS[consultIdx].map(v => v.nome + " " + v.dose).join("; ")}.`);
+  }
+  /* Próxima consulta */
+  const ni = nextConsult(consultIdx);
+  if (ni && state.dob) {
+    const nd = new Date(state.dob.getTime() + ni * 30.4375 * 86400000);
+    const quem = (state.risk === 'habitual') ? QUEM_HABITUAL[ni] : QUEM_RISCO[ni];
+    p.push(`Retorno em ${ni - consultIdx} ${(ni - consultIdx) === 1 ? 'mês' : 'meses'} (${fmtDateBR(nd)}) com ${quem}.`);
+  }
+  p.push("Orientações sobre sinais de alerta e quando retornar antes.");
+  if (state.dpmDone && state.dpmDone.length < countDpm(consultIdx) / 2 && consultIdx > 0) {
+    p.push("Atenção a marcos do DPM não atingidos; revisar na próxima consulta e considerar avaliação pelo NASF se persistir.");
+  }
+  if ((consultIdx === 18 || consultIdx === 24)) p.push("M-CHAT-R aplicado; se positivo, encaminhar Neuro/Avaliação TEA.");
+
+  lines.push(p.join(" "));
+
+  /* Registro do Plano de Cuidado, se houver risco */
+  if (state.risk !== 'habitual') {
+    lines.push("");
+    lines.push("Alerta/Plano de Cuidado: atualizar no eSaúde com a classificação de risco e ações pactuadas.");
+  }
+
+  out.textContent = lines.join("\n");
+}
+
+function countDpm(idx) {
+  if (!DPM[idx]) return 0;
+  const m = DPM[idx];
+  return (m.mg||[]).length + (m.mf||[]).length + (m.al||[]).length + (m.sc||[]).length;
+}
+
+/* ============================================================
+   GRÁFICO SVG · peso por idade
+   ============================================================ */
+
+function renderChart(sex, ageM, weight) {
+  const svg = document.getElementById('chart');
+  if (!sex) {
+    svg.innerHTML = `<text x="360" y="180" text-anchor="middle" fill="#8a8d93" font-family="Geist" font-size="13">Selecione o sexo para ver a curva.</text>`;
+    return;
+  }
+  const table = WFA_LMS[sex];
+  /* Padding interno do SVG (viewBox 720x360) */
+  const pad = { l: 44, r: 16, t: 14, b: 32 };
+  const W = 720, H = 360;
+  const plotW = W - pad.l - pad.r;
+  const plotH = H - pad.t - pad.b;
+
+  /* Eixo X: 0 a 24 meses */
+  const xMin = 0, xMax = 24;
+  /* Eixo Y: dinâmico de acordo com sexo, ajustado para caber sd3 com folga */
+  const yMax = sex === 'M' ? 18 : 18;
+  const yMin = 0;
+
+  const xScale = m => pad.l + (m - xMin) / (xMax - xMin) * plotW;
+  const yScale = w => pad.t + plotH - (w - yMin) / (yMax - yMin) * plotH;
+
+  /* Linhas de referência: sd3n, sd2n, sd1n, sd0, sd1, sd2, sd3 */
+  const refKeys = [
+    {k: 'sd3n', label: '−3', bold: false},
+    {k: 'sd2n', label: '−2', bold: false},
+    {k: 'sd1n', label: '−1', bold: false},
+    {k: 'sd0',  label: ' 0', bold: true},
+    {k: 'sd1',  label: '+1', bold: false},
+    {k: 'sd2',  label: '+2', bold: false},
+    {k: 'sd3',  label: '+3', bold: false}
+  ];
+
+  let lines = '';
+
+  /* Grid de meses */
+  for (let m = 0; m <= 24; m += 2) {
+    const x = xScale(m);
+    lines += `<line class="grid" x1="${x}" y1="${pad.t}" x2="${x}" y2="${pad.t + plotH}"/>`;
+    lines += `<text class="axis-label" x="${x}" y="${pad.t + plotH + 14}" text-anchor="middle">${m}</text>`;
+  }
+  /* Grid de kg */
+  for (let w = 0; w <= yMax; w += 2) {
+    const y = yScale(w);
+    lines += `<line class="grid" x1="${pad.l}" y1="${y}" x2="${pad.l + plotW}" y2="${y}"/>`;
+    lines += `<text class="axis-label" x="${pad.l - 6}" y="${y + 3}" text-anchor="end">${w}</text>`;
+  }
+
+  /* Linhas de referência sd */
+  refKeys.forEach(ref => {
+    let d = '';
+    table.forEach((row, i) => {
+      const x = xScale(row.m);
+      const y = yScale(row[ref.k]);
+      d += (i === 0 ? 'M' : 'L') + ' ' + x.toFixed(1) + ' ' + y.toFixed(1) + ' ';
+    });
+    lines += `<path class="ref-line${ref.bold ? ' bold' : ''}" d="${d}"/>`;
+    /* Rótulo à direita */
+    const lastRow = table[table.length - 1];
+    const lx = xScale(lastRow.m) + 3;
+    const ly = yScale(lastRow[ref.k]) + 3;
+    lines += `<text class="ref-label" x="${lx}" y="${ly}">${ref.label}</text>`;
+  });
+
+  /* Eixos */
+  lines += `<line class="axis" x1="${pad.l}" y1="${pad.t + plotH}" x2="${pad.l + plotW}" y2="${pad.t + plotH}"/>`;
+  lines += `<line class="axis" x1="${pad.l}" y1="${pad.t}" x2="${pad.l}" y2="${pad.t + plotH}"/>`;
+
+  /* Títulos dos eixos */
+  lines += `<text class="axis-title" x="${pad.l + plotW/2}" y="${H - 6}" text-anchor="middle">Idade (meses)</text>`;
+  lines += `<text class="axis-title" x="14" y="${pad.t + plotH/2}" text-anchor="middle" transform="rotate(-90 14 ${pad.t + plotH/2})">Peso (kg)</text>`;
+
+  /* Ponto da criança */
+  if (ageM != null && weight != null && ageM >= 0 && ageM <= 24 && weight > 0) {
+    const px = xScale(Math.min(ageM, 24));
+    const py = yScale(Math.min(weight, yMax));
+    lines += `<circle class="point" cx="${px}" cy="${py}" r="6"/>`;
+    /* Linha guia tracejada */
+    lines += `<line x1="${pad.l}" y1="${py}" x2="${px}" y2="${py}" stroke="var(--ink-faint)" stroke-width="0.5" stroke-dasharray="3 3" opacity="0.5"/>`;
+    lines += `<line x1="${px}" y1="${pad.t + plotH}" x2="${px}" y2="${py}" stroke="var(--ink-faint)" stroke-width="0.5" stroke-dasharray="3 3" opacity="0.5"/>`;
+  } else if (ageM != null && ageM > 24) {
+    lines += `<text x="${pad.l + plotW/2}" y="${pad.t + 20}" text-anchor="middle" fill="var(--ink-faint)" font-family="Geist" font-size="11">Idade fora do range desta versão (0 a 24m).</text>`;
+  }
+
+  /* Título sutil do sexo */
+  lines += `<text x="${pad.l + plotW - 4}" y="${pad.t + 12}" text-anchor="end" font-family="Geist Mono" font-size="10" fill="var(--ink-faint)" letter-spacing="0.1em">${sex === 'M' ? 'MENINOS · OMS 2006' : 'MENINAS · OMS 2006'}</text>`;
+
+  svg.innerHTML = lines;
+}
+
+/* ============================================================
+   AUTO-SAVE de backup (download de JSON)
+   ============================================================ */
+
+function snapshotJson() {
+  readForm();
+  return {
+    version: "0.1",
+    exported_at: new Date().toISOString(),
+    child: {
+      name: state.name,
+      dob: state.dob ? state.dob.toISOString().slice(0,10) : null,
+      sex: state.sex,
+      ig_weeks: state.igWeeks,
+      ig_days: state.igDays,
+      birth_weight_g: state.bwGrams,
+      risk: state.risk,
+      anemia_risk: state.anemiaRisk,
+      torsch: state.torsch,
+      hiv: state.hiv,
+      syph: state.syph,
+      pneumo_cardio: state.pneumoCardio
+    },
+    consult: {
+      date: state.cDate ? state.cDate.toISOString().slice(0,10) : null,
+      weight_kg: state.weight,
+      height_cm: state.height,
+      hc_cm: state.hc,
+      intercurrences: state.intercurrences,
+      feeding: state.feeding,
+      dpm_done: state.dpmDone,
+      vac_given: state.vacGiven,
+      vac_extra: state.vacExtra
+    }
+  };
+}
+
+function downloadJson() {
+  const snap = snapshotJson();
+  const name = (state.name || 'crianca').replace(/\s+/g, '_').replace(/[^\w\-]/g, '');
+  const dt = state.cDate ? state.cDate.toISOString().slice(0,10) : new Date().toISOString().slice(0,10);
+  const blob = new Blob([JSON.stringify(snap, null, 2)], {type: 'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = `puericultura_${name}_${dt}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+/* Banner de auto-save: aparece quando há preenchimento substancial e
+   fica visível até o usuário interagir. Reaparece a cada novo preenchimento
+   significativo após ter sido dispensado. */
+let autosaveShownThisRound = false;
+let autosaveDismissedAt = 0;
+const AUTOSAVE_COOLDOWN = 90 * 1000; // 90s após dispensar antes de reaparecer
+
+function shouldShowAutosave() {
+  // Critério: tem DN + sexo + peso + (z-score calculado OU intercorrências)
+  const hasCore = state.dob && state.sex && state.weight;
+  const hasContent = state.intercurrences || state.height || state.hc ||
+                     (state.dpmDone && state.dpmDone.length) ||
+                     (state.vacGiven && state.vacGiven.length);
+  return hasCore && hasContent;
+}
+
+function showAutosaveBanner() {
+  document.getElementById('autosaveBanner').classList.add('visible');
+}
+function hideAutosaveBanner() {
+  document.getElementById('autosaveBanner').classList.remove('visible');
+}
+
+let saveTimer = null;
+function debounceSave() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => {
+    if (shouldShowAutosave()) {
+      const now = Date.now();
+      const recentlyDismissed = (now - autosaveDismissedAt) < AUTOSAVE_COOLDOWN;
+      if (!autosaveShownThisRound || (!recentlyDismissed && autosaveDismissedAt > 0)) {
+        showAutosaveBanner();
+        autosaveShownThisRound = true;
+      }
+    }
+  }, 3500);
+}
+
+/* ============================================================
+   AÇÕES DE BOTÕES
+   ============================================================ */
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('visible');
+  setTimeout(() => t.classList.remove('visible'), 2400);
+}
+
+document.getElementById('btnCopy').addEventListener('click', () => {
+  const txt = document.getElementById('prontOut').textContent;
+  navigator.clipboard.writeText(txt).then(() => {
+    showToast("Prontuário copiado para a área de transferência");
+  }).catch(() => {
+    /* Fallback */
+    const ta = document.createElement('textarea');
+    ta.value = txt; document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); showToast("Prontuário copiado"); } catch (e) { showToast("Falha ao copiar"); }
+    document.body.removeChild(ta);
+  });
+});
+
+document.getElementById('btnDownload').addEventListener('click', () => {
+  const txt = document.getElementById('prontOut').textContent;
+  const name = (state.name || 'puericultura').replace(/\s+/g, '_');
+  const dt = state.cDate ? state.cDate.toISOString().slice(0,10) : new Date().toISOString().slice(0,10);
+  const blob = new Blob([txt], {type: 'text/plain;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = `prontuario_${name}_${dt}.txt`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast("Arquivo baixado");
+});
+
+document.getElementById('btnReset').addEventListener('click', () => {
+  if (!confirm("Limpar todos os campos? Os dados desta consulta serão perdidos.")) return;
+  document.querySelectorAll('input').forEach(el => {
+    if (el.type === 'checkbox' || el.type === 'radio') el.checked = false;
+    else el.value = '';
+  });
+  document.querySelectorAll('select').forEach(el => { el.selectedIndex = 0; });
+  document.querySelectorAll('textarea').forEach(el => { el.value = ''; });
+  document.getElementById('cDate').value = new Date().toISOString().slice(0,10);
+  render();
+  showToast("Limpo. Pronto para nova criança.");
+});
+
+document.getElementById('btnDownloadJson').addEventListener('click', () => {
+  downloadJson();
+  showToast("Backup JSON baixado");
+  hideAutosaveBanner();
+});
+
+document.getElementById('autosaveDownload').addEventListener('click', () => {
+  downloadJson();
+  showToast("Backup JSON baixado");
+  hideAutosaveBanner();
+  autosaveDismissedAt = Date.now();
+});
+
+document.getElementById('autosaveDismiss').addEventListener('click', () => {
+  hideAutosaveBanner();
+  autosaveDismissedAt = Date.now();
+});
+
+document.getElementById('btnPrint').addEventListener('click', () => {
+  window.print();
+});
+
+/* ============================================================
+   INIT
+   ============================================================ */
+
+/* Setar data da consulta como hoje */
+document.getElementById('cDate').value = new Date().toISOString().slice(0,10);
+
+/* Reagir a qualquer mudança */
+document.addEventListener('input', () => { render(); debounceSave(); });
+document.addEventListener('change', () => { render(); debounceSave(); });
+
+render();
+</script>
+
+</body>
+</html>
