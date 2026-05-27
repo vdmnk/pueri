@@ -416,6 +416,39 @@ body {
 .z-badge[data-level="4"] { background: var(--level-4); }
 .z-badge[data-level="5"] { background: var(--level-5); }
 
+/* Z-score rows na sidebar */
+.side-z-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+  gap: 8px;
+  border-bottom: 1px dotted var(--line);
+}
+.side-z-row:last-child { border-bottom: none; }
+.side-z-name { font-size: 12.5px; color: var(--ink); }
+.z-mini {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  font-size: 12px;
+  text-align: right;
+}
+.z-mini .z-val {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  padding: 1px 6px;
+  border-radius: 2px;
+  color: #fff;
+  background: var(--ink-soft);
+}
+.z-mini .z-val[data-level="1"] { background: var(--level-1); }
+.z-mini .z-val[data-level="2"] { background: var(--level-2); }
+.z-mini .z-val[data-level="3"] { background: var(--level-3); }
+.z-mini .z-val[data-level="4"] { background: var(--level-4); }
+.z-mini .z-val[data-level="5"] { background: var(--level-5); }
+.z-mini .z-lab { font-size: 11px; color: var(--ink-soft); }
+
 /* ALERT LIST */
 .alerts {
   list-style: none;
@@ -456,11 +489,39 @@ body {
 }
 
 /* CHART */
+.chart-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  border-bottom: 1px solid var(--line);
+}
+.chart-tab {
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-weight: 500;
+  padding: 8px 13px;
+  border: 1px solid transparent;
+  border-bottom: none;
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+  border-radius: 2px 2px 0 0;
+  transition: all 0.15s ease;
+  position: relative;
+  top: 1px;
+}
+.chart-tab:hover { color: var(--ink); background: var(--bg-card-alt); }
+.chart-tab.active {
+  color: var(--accent);
+  background: var(--bg-card-alt);
+  border-color: var(--line);
+  border-bottom: 1px solid var(--bg-card-alt);
+}
 .chart-wrap {
   background: var(--bg-card-alt);
   padding: 14px 16px;
   border: 1px solid var(--line);
-  margin-top: 10px;
+  margin-top: 0;
 }
 .chart-svg {
   display: block;
@@ -623,6 +684,248 @@ details.collapsible:first-of-type { border-top: none; }
   .autosave-banner { display: none; }
 }
 
+/* BANCO DE CRIANÇAS */
+.bank-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.bank-count {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-faint);
+  letter-spacing: 0.06em;
+  margin-left: auto;
+}
+.bank-search { margin-bottom: 12px; }
+.bank-search input {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 14px;
+  padding: 8px 10px;
+  border: 1px solid var(--line-strong);
+  background: #fff;
+  border-radius: 2px;
+}
+.bank-search input:focus { outline: none; border-color: var(--accent); }
+.bank-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 8px;
+}
+.child-card {
+  border: 1px solid var(--line);
+  background: var(--bg-card-alt);
+  padding: 10px 12px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  position: relative;
+}
+.child-card:hover { border-color: var(--line-strong); background: var(--bg-card); }
+.child-card.active {
+  border-color: var(--accent);
+  border-left: 3px solid var(--accent);
+  background: var(--bg-card);
+}
+.child-card-name {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 500;
+  font-variation-settings: "opsz" 24, "SOFT" 30;
+  line-height: 1.2;
+  margin-bottom: 2px;
+  padding-right: 20px;
+}
+.child-card-meta {
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+.child-card-meta .mono { font-family: var(--font-mono); font-size: 10.5px; }
+.child-card-del {
+  position: absolute;
+  top: 6px; right: 6px;
+  width: 18px; height: 18px;
+  border: none;
+  background: transparent;
+  color: var(--ink-faint);
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 1;
+  border-radius: 2px;
+}
+.child-card-del:hover { background: var(--level-4); color: #fff; }
+.child-active-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 2px;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+.child-active-banner strong { font-weight: 600; }
+.child-active-banner .deselect {
+  margin-left: auto;
+  background: rgba(255,255,255,0.15);
+  border: none;
+  color: #fff;
+  padding: 3px 10px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.child-active-banner .deselect:hover { background: rgba(255,255,255,0.28); }
+
+/* HISTÓRICO DE CONSULTAS */
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+.history-table th {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  text-align: left;
+  padding: 7px 8px;
+  border-bottom: 1px solid var(--line-strong);
+  font-weight: 500;
+}
+.history-table td {
+  padding: 7px 8px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+}
+.history-table tr:hover td { background: var(--bg-card-alt); }
+.history-table .z-cell {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+}
+.save-consult-bar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 12px 14px;
+  background: var(--level-1-bg);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--level-1);
+  margin-bottom: 16px;
+}
+.save-consult-bar .scb-text {
+  font-size: 13px;
+  color: var(--ink);
+  flex: 1;
+  min-width: 180px;
+}
+.save-consult-bar .scb-text strong { font-weight: 600; }
+
+/* M-CHAT-R */
+.mchat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+.mchat-item:last-of-type { border-bottom: none; }
+.mchat-q { font-size: 13.5px; line-height: 1.45; flex: 1; }
+.mchat-n {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-faint);
+  margin-right: 6px;
+  font-weight: 500;
+}
+.mchat-q small { display: block; font-size: 11.5px; color: var(--ink-soft); margin-top: 2px; line-height: 1.4; }
+.mchat-opts { display: flex; gap: 4px; flex-shrink: 0; }
+.mchat-opts label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12.5px;
+  padding: 5px 11px;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  cursor: pointer;
+  background: #fff;
+  transition: all 0.12s ease;
+  user-select: none;
+}
+.mchat-opts label:hover { background: var(--bg-card-alt); }
+.mchat-opts input { appearance: none; margin: 0; width: 0; height: 0; position: absolute; }
+.mchat-opts label:has(input:checked) { background: var(--accent); color: #fff; border-color: var(--accent); }
+.mchat-result {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--line-strong);
+  background: var(--bg-card-alt);
+  border-radius: 2px;
+}
+.mchat-score-num {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 500;
+  font-variation-settings: "opsz" 60, "SOFT" 30;
+  line-height: 1;
+}
+.mchat-ref {
+  margin-top: 12px;
+  font-size: 10.5px;
+  color: var(--ink-faint);
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* PALIVIZUMABE / ENCAMINHAMENTOS */
+.elig-badge {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+}
+.elig-badge.yes { background: var(--level-1); }
+.elig-badge.no { background: var(--ink-soft); }
+.enc-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  background: var(--bg-card-alt);
+  border-radius: 2px;
+  margin-bottom: 8px;
+}
+.enc-item.urgent { border-left-color: var(--level-4); }
+.enc-area { font-weight: 600; font-size: 13.5px; }
+.enc-motivo { font-size: 12.5px; color: var(--ink-soft); margin-top: 2px; line-height: 1.4; }
+.enc-tag {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 2px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.enc-tag.urgent { background: var(--level-4); color: #fff; }
+.enc-tag.routine { background: var(--bg-card); color: var(--ink-soft); border: 1px solid var(--line); }
+
 /* FOOTNOTE */
 .footnote {
   max-width: 1320px;
@@ -685,6 +988,30 @@ details.collapsible:first-of-type { border-top: none; }
 
 <main class="main-col">
 
+  <!-- ========== SEÇÃO 0: BANCO DE CRIANÇAS ========== -->
+  <section class="section" id="secBank">
+    <div class="section-header">
+      <div class="section-num">BLOCO 00 · BANCO</div>
+      <h2 class="section-title">Crianças <em>acompanhadas</em></h2>
+      <p class="section-subtitle">Carregue o banco do seu pendrive ao começar, salve ao terminar. Os dados ficam no arquivo JSON, não no navegador.</p>
+    </div>
+    <div class="section-body">
+      <div class="bank-toolbar no-print">
+        <button class="btn" id="btnLoadDb">↑ Carregar banco</button>
+        <button class="btn btn-primary" id="btnSaveDb">↓ Salvar banco</button>
+        <button class="btn" id="btnNewChild">+ Nova criança</button>
+        <input type="file" id="fileDb" accept="application/json,.json" style="display:none">
+        <span class="bank-count" id="bankCount">Banco vazio</span>
+      </div>
+      <div class="bank-search no-print">
+        <input type="text" id="bankSearch" placeholder="Buscar criança pelo nome...">
+      </div>
+      <div class="bank-list" id="bankList">
+        <div class="info-box">Nenhuma criança no banco. Carregue um arquivo ou crie uma nova. Ao preencher a identificação abaixo e salvar a consulta, a criança é adicionada automaticamente.</div>
+      </div>
+    </div>
+  </section>
+
   <!-- ========== SEÇÃO 1: IDENTIFICAÇÃO ========== -->
   <section class="section">
     <div class="section-header">
@@ -744,6 +1071,30 @@ details.collapsible:first-of-type { border-top: none; }
           </div>
         </div>
       </details>
+
+      <details class="collapsible" style="margin-top: 0; border: 1px solid var(--line); border-top: none;">
+        <summary>Antecedentes pessoais (triagens, comorbidades, alergias)</summary>
+        <div class="collapsible-body">
+          <div class="form-grid">
+            <div class="field field-full">
+              <label class="field-label" for="fTriagens">Triagens neonatais</label>
+              <input type="text" id="fTriagens" placeholder="Ex: TTN, teste do olhinho, orelhinha, do coraçãozinho realizados, sem alterações">
+            </div>
+            <div class="field field-full">
+              <label class="field-label" for="fComorb">Comorbidades prévias</label>
+              <input type="text" id="fComorb" placeholder="Deixe vazio para 'Nega'">
+            </div>
+            <div class="field field-full">
+              <label class="field-label" for="fAlergias">Alergias medicamentosas</label>
+              <input type="text" id="fAlergias" placeholder="Deixe vazio para 'Nega'">
+            </div>
+            <div class="field field-full">
+              <label class="field-label" for="fPeriodoNeo">Período neonatal (observações)</label>
+              <input type="text" id="fPeriodoNeo" placeholder="Ex: parto vaginal, sem intercorrências, alta com 48h">
+            </div>
+          </div>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -758,6 +1109,10 @@ details.collapsible:first-of-type { border-top: none; }
         <div class="field">
           <label class="field-label" for="cDate">Data da consulta</label>
           <input type="date" id="cDate">
+        </div>
+        <div class="field">
+          <label class="field-label" for="cAcomp">Acompanhado por</label>
+          <input type="text" id="cAcomp" placeholder="Mãe, pai, avó...">
         </div>
         <div class="field">
           <label class="field-label" for="cWeight">Peso (kg)</label>
@@ -812,19 +1167,36 @@ details.collapsible:first-of-type { border-top: none; }
     </div>
   </section>
 
-  <!-- ========== SEÇÃO 5: GRÁFICO ========== -->
+  <!-- ========== SEÇÃO 4B: M-CHAT-R ========== -->
+  <section class="section" id="secMchat" style="display:none;">
+    <div class="section-header">
+      <div class="section-num">BLOCO 05 · TRIAGEM TEA</div>
+      <h2 class="section-title">M-CHAT-R <em>interativo</em></h2>
+      <p class="section-subtitle">Triagem de risco para Transtorno do Espectro Autista, validada de 16 a 30 meses. Responda pensando no comportamento habitual da criança. Se vir o comportamento poucas vezes, responda Não.</p>
+    </div>
+    <div class="section-body" id="mchatBody"></div>
+  </section>
+
+  <!-- ========== SEÇÃO 5: GRÁFICOS ========== -->
   <section class="section">
     <div class="section-header">
-      <div class="section-num">BLOCO 05 · CRESCIMENTO</div>
-      <h2 class="section-title">Curva de <em>peso por idade</em></h2>
-      <p class="section-subtitle">OMS Child Growth Standards 2006. Z-score calculado pelo método LMS oficial. Para prematuro, usa idade corrigida (até 24 meses para peso).</p>
+      <div class="section-num">BLOCO 06 · CRESCIMENTO</div>
+      <h2 class="section-title">Curvas de <em>crescimento</em></h2>
+      <p class="section-subtitle">OMS Child Growth Standards 2006, método LMS oficial. Para prematuro, usa idade corrigida (peso até 24m, estatura até 42m, PC até 18m).</p>
     </div>
     <div class="section-body">
+      <div class="chart-tabs" id="chartTabs">
+        <button class="chart-tab active" data-chart="wfa">Peso / idade</button>
+        <button class="chart-tab" data-chart="lhfa">Estatura / idade</button>
+        <button class="chart-tab" data-chart="hcfa">P. cefálico / idade</button>
+        <button class="chart-tab" data-chart="bmifa">IMC / idade</button>
+        <button class="chart-tab" data-chart="wfl">Peso / estatura</button>
+      </div>
       <div class="chart-wrap">
-        <svg class="chart-svg" id="chart" viewBox="0 0 720 360" preserveAspectRatio="xMidYMid meet" aria-label="Curva de peso por idade"></svg>
+        <svg class="chart-svg" id="chart" viewBox="0 0 720 360" preserveAspectRatio="xMidYMid meet" aria-label="Curva de crescimento"></svg>
       </div>
       <div class="info-box" id="chartInfo" style="margin-top: 12px;">
-        <strong>Sobre as linhas.</strong> Linhas finas: percentis 3, 15, 50, 85, 97 (z = −2, −1, 0, +1, +2). Linha em azul destacada: mediana (z = 0). Pontos extremos a ±3 z.
+        <strong>Sobre as linhas.</strong> As sete linhas são os escores-z −3, −2, −1, 0, +1, +2, +3. A linha em azul é a mediana (z = 0). O ponto em terracota é a criança.
       </div>
     </div>
   </section>
@@ -832,7 +1204,7 @@ details.collapsible:first-of-type { border-top: none; }
   <!-- ========== SEÇÃO 6: VACINAS ========== -->
   <section class="section" id="secVac">
     <div class="section-header">
-      <div class="section-num">BLOCO 06 · VACINAÇÃO</div>
+      <div class="section-num">BLOCO 07 · VACINAÇÃO</div>
       <h2 class="section-title">Calendário <em>nacional</em> 2026</h2>
       <p class="section-subtitle">Marcar as vacinas aplicadas nesta consulta. As doses devidas para a idade aparecem destacadas.</p>
     </div>
@@ -844,7 +1216,7 @@ details.collapsible:first-of-type { border-top: none; }
   <!-- ========== SEÇÃO 7: ORIENTAR ========== -->
   <section class="section">
     <div class="section-header">
-      <div class="section-num">BLOCO 07 · ORIENTAR</div>
+      <div class="section-num">BLOCO 08 · ORIENTAR</div>
       <h2 class="section-title">Condutas e <em>orientações</em></h2>
     </div>
     <div class="section-body" id="orientBody">
@@ -852,10 +1224,32 @@ details.collapsible:first-of-type { border-top: none; }
     </div>
   </section>
 
-  <!-- ========== SEÇÃO 8: PRONTUÁRIO ========== -->
+  <!-- ========== SEÇÃO 7B: PALIVIZUMABE ========== -->
+  <section class="section" id="secPvz" style="display:none;">
+    <div class="section-header">
+      <div class="section-num">BLOCO 09 · PROFILAXIA VSR</div>
+      <h2 class="section-title">Palivizumabe</h2>
+      <p class="section-subtitle">Profilaxia do vírus sincicial respiratório. Critérios do Protocolo Nacional (Ministério da Saúde).</p>
+    </div>
+    <div class="section-body" id="pvzBody"></div>
+  </section>
+
+  <!-- ========== SEÇÃO 7C: ENCAMINHAMENTOS ========== -->
+  <section class="section" id="secEnc">
+    <div class="section-header">
+      <div class="section-num">BLOCO 10 · ENCAMINHAMENTOS</div>
+      <h2 class="section-title">Gatilhos de <em>encaminhamento</em></h2>
+      <p class="section-subtitle">Sugestões geradas a partir dos achados desta consulta. Conferir critérios do protocolo de regulação antes de encaminhar.</p>
+    </div>
+    <div class="section-body" id="encBody">
+      <div class="info-box">Sem gatilhos de encaminhamento até o momento. As sugestões aparecem conforme os achados (z-scores alterados, DPM, M-CHAT-R, comorbidades).</div>
+    </div>
+  </section>
+
+  <!-- ========== SEÇÃO: PRONTUÁRIO ========== -->
   <section class="section" id="secPront">
     <div class="section-header">
-      <div class="section-num">BLOCO 08 · PRONTUÁRIO</div>
+      <div class="section-num">BLOCO 11 · PRONTUÁRIO</div>
       <h2 class="section-title">Texto pronto para o <em>eSaúde</em></h2>
       <p class="section-subtitle">Formato ReSOAP. Gera a cada atualização. Use o botão para copiar.</p>
     </div>
@@ -865,6 +1259,24 @@ details.collapsible:first-of-type { border-top: none; }
         <button class="btn btn-primary" id="btnCopy">⧉ Copiar prontuário</button>
         <button class="btn" id="btnDownload">↓ Baixar como .txt</button>
         <button class="btn" id="btnDownloadJson">↓ Baixar dados (JSON)</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SEÇÃO 9: HISTÓRICO E TRAJETÓRIA ========== -->
+  <section class="section" id="secHistory">
+    <div class="section-header">
+      <div class="section-num">BLOCO 12 · HISTÓRICO</div>
+      <h2 class="section-title">Consultas <em>anteriores</em></h2>
+      <p class="section-subtitle">Salve a consulta de hoje no banco para acompanhar a trajetória de crescimento ao longo do tempo nas curvas acima.</p>
+    </div>
+    <div class="section-body">
+      <div class="save-consult-bar no-print">
+        <div class="scb-text" id="scbText">Nenhuma criança ativa. Ao salvar, uma nova criança é criada com os dados de identificação.</div>
+        <button class="btn btn-primary" id="btnSaveConsult">↓ Salvar consulta no banco</button>
+      </div>
+      <div id="historyBody">
+        <div class="info-box">Sem consultas salvas para a criança ativa.</div>
       </div>
     </div>
   </section>
@@ -883,11 +1295,20 @@ details.collapsible:first-of-type { border-top: none; }
     <div class="side-panel-bar"></div>
 
     <div class="side-section">
-      <div class="side-section-title">Antropometria</div>
+      <div class="side-section-title">Medidas de hoje</div>
       <div class="side-meta"><strong>Peso</strong><span id="sidePeso">—</span></div>
-      <div class="side-meta"><strong>Z (peso/idade)</strong><span id="sideZ">—</span></div>
       <div class="side-meta"><strong>Estatura</strong><span id="sideEst">—</span></div>
       <div class="side-meta"><strong>P. cefálico</strong><span id="sidePc">—</span></div>
+      <div class="side-meta"><strong>IMC</strong><span id="sideImc">—</span></div>
+    </div>
+
+    <div class="side-section">
+      <div class="side-section-title">Z-scores · OMS</div>
+      <div class="side-z-row"><span class="side-z-name">Peso / idade</span><span id="sideZwfa">—</span></div>
+      <div class="side-z-row"><span class="side-z-name">Estatura / idade</span><span id="sideZlhfa">—</span></div>
+      <div class="side-z-row"><span class="side-z-name">Perímetro cefálico</span><span id="sideZhcfa">—</span></div>
+      <div class="side-z-row"><span class="side-z-name">IMC / idade</span><span id="sideZbmifa">—</span></div>
+      <div class="side-z-row"><span class="side-z-name">Peso / estatura</span><span id="sideZwfl">—</span></div>
     </div>
 
     <div class="side-section">
@@ -897,7 +1318,7 @@ details.collapsible:first-of-type { border-top: none; }
     </div>
 
     <div class="side-section">
-      <div class="side-section-title">Ferro hoje</div>
+      <div class="side-section-title">Doses do dia</div>
       <div id="sideFerro" style="font-size: 13px; color: var(--ink);">Aguardando peso e dados.</div>
     </div>
   </div>
@@ -932,16 +1353,16 @@ details.collapsible:first-of-type { border-top: none; }
 <footer class="footnote">
   <p><strong>Fontes.</strong> SMS Curitiba, Linha de Cuidado Atenção Integral à Saúde da Criança, v.3, 07/02/2023. Ministério da Saúde, Calendário Nacional de Vacinação 2026. WHO Multicentre Growth Reference Study Group, WHO Child Growth Standards 2006 (peso por idade, tabelas LMS oficiais). SBP, suplementação de ferro.</p>
   <p style="margin-top: 6px;">Ferramenta de apoio à consulta. Não substitui julgamento clínico nem o registro oficial no eSaúde. Validar achados com a Caderneta de Saúde da Criança Curitibana.</p>
-  <p class="footnote-sig">v0.1 · fase 1 · peso por idade 0 a 24 meses</p>
+  <p class="footnote-sig">v1.1 · prontuário no template MFC · DPM detalhado · 0 a 24 meses</p>
 </footer>
 
 <div class="toast" id="toast">Mensagem</div>
 
 <div class="autosave-banner" id="autosaveBanner">
   <div class="autosave-banner-label">Auto-save</div>
-  <div class="autosave-banner-msg">Você preencheu dados clínicos importantes. Quer baixar um backup desta consulta?</div>
+  <div class="autosave-banner-msg" id="autosaveMsg">Você preencheu dados clínicos importantes. Quer salvar um backup?</div>
   <div class="autosave-banner-actions">
-    <button class="primary" id="autosaveDownload">↓ Baixar JSON</button>
+    <button class="primary" id="autosaveDownload">↓ Salvar</button>
     <button id="autosaveDismiss">Depois</button>
   </div>
 </div>
@@ -952,6 +1373,10 @@ details.collapsible:first-of-type { border-top: none; }
    Extraído de pygrowup (que usa as tabelas oficiais OMS 2006)
    ============================================================ */
 const WFA_LMS = {"M":[{"m":0,"L":0.3487,"M":3.3464,"S":0.14602,"sd3n":2.1,"sd2n":2.5,"sd1n":2.9,"sd0":3.3,"sd1":3.9,"sd2":4.4,"sd3":5.0},{"m":1,"L":0.2297,"M":4.4709,"S":0.13395,"sd3n":2.9,"sd2n":3.4,"sd1n":3.9,"sd0":4.5,"sd1":5.1,"sd2":5.8,"sd3":6.6},{"m":2,"L":0.197,"M":5.5675,"S":0.12385,"sd3n":3.8,"sd2n":4.3,"sd1n":4.9,"sd0":5.6,"sd1":6.3,"sd2":7.1,"sd3":8.0},{"m":3,"L":0.1738,"M":6.3762,"S":0.11727,"sd3n":4.4,"sd2n":5.0,"sd1n":5.7,"sd0":6.4,"sd1":7.2,"sd2":8.0,"sd3":9.0},{"m":4,"L":0.1553,"M":7.0023,"S":0.11316,"sd3n":4.9,"sd2n":5.6,"sd1n":6.2,"sd0":7.0,"sd1":7.8,"sd2":8.7,"sd3":9.7},{"m":5,"L":0.1395,"M":7.5105,"S":0.1108,"sd3n":5.3,"sd2n":6.0,"sd1n":6.7,"sd0":7.5,"sd1":8.4,"sd2":9.3,"sd3":10.4},{"m":6,"L":0.1257,"M":7.934,"S":0.10958,"sd3n":5.7,"sd2n":6.4,"sd1n":7.1,"sd0":7.9,"sd1":8.8,"sd2":9.8,"sd3":10.9},{"m":7,"L":0.1134,"M":8.297,"S":0.10902,"sd3n":5.9,"sd2n":6.7,"sd1n":7.4,"sd0":8.3,"sd1":9.2,"sd2":10.3,"sd3":11.4},{"m":8,"L":0.1021,"M":8.6151,"S":0.10882,"sd3n":6.2,"sd2n":6.9,"sd1n":7.7,"sd0":8.6,"sd1":9.6,"sd2":10.7,"sd3":11.9},{"m":9,"L":0.0917,"M":8.9014,"S":0.10881,"sd3n":6.4,"sd2n":7.1,"sd1n":8.0,"sd0":8.9,"sd1":9.9,"sd2":11.0,"sd3":12.3},{"m":10,"L":0.082,"M":9.1649,"S":0.10891,"sd3n":6.6,"sd2n":7.4,"sd1n":8.2,"sd0":9.2,"sd1":10.2,"sd2":11.4,"sd3":12.7},{"m":11,"L":0.073,"M":9.4122,"S":0.10906,"sd3n":6.8,"sd2n":7.6,"sd1n":8.4,"sd0":9.4,"sd1":10.5,"sd2":11.7,"sd3":13.0},{"m":12,"L":0.0644,"M":9.6479,"S":0.10925,"sd3n":6.9,"sd2n":7.7,"sd1n":8.6,"sd0":9.6,"sd1":10.8,"sd2":12.0,"sd3":13.3},{"m":13,"L":0.0563,"M":9.8749,"S":0.10949,"sd3n":7.1,"sd2n":7.9,"sd1n":8.8,"sd0":9.9,"sd1":11.0,"sd2":12.3,"sd3":13.7},{"m":14,"L":0.0487,"M":10.0953,"S":0.10976,"sd3n":7.2,"sd2n":8.1,"sd1n":9.0,"sd0":10.1,"sd1":11.3,"sd2":12.6,"sd3":14.0},{"m":15,"L":0.0413,"M":10.3108,"S":0.11007,"sd3n":7.4,"sd2n":8.3,"sd1n":9.2,"sd0":10.3,"sd1":11.5,"sd2":12.8,"sd3":14.3},{"m":16,"L":0.0343,"M":10.5228,"S":0.11041,"sd3n":7.5,"sd2n":8.4,"sd1n":9.4,"sd0":10.5,"sd1":11.7,"sd2":13.1,"sd3":14.6},{"m":17,"L":0.0275,"M":10.7319,"S":0.11079,"sd3n":7.7,"sd2n":8.6,"sd1n":9.6,"sd0":10.7,"sd1":12.0,"sd2":13.4,"sd3":14.9},{"m":18,"L":0.0211,"M":10.9385,"S":0.11119,"sd3n":7.8,"sd2n":8.8,"sd1n":9.8,"sd0":10.9,"sd1":12.2,"sd2":13.7,"sd3":15.3},{"m":19,"L":0.0148,"M":11.143,"S":0.11164,"sd3n":8.0,"sd2n":8.9,"sd1n":10.0,"sd0":11.1,"sd1":12.5,"sd2":13.9,"sd3":15.6},{"m":20,"L":0.0087,"M":11.3462,"S":0.11211,"sd3n":8.1,"sd2n":9.1,"sd1n":10.1,"sd0":11.3,"sd1":12.7,"sd2":14.2,"sd3":15.9},{"m":21,"L":0.0029,"M":11.5486,"S":0.11261,"sd3n":8.2,"sd2n":9.2,"sd1n":10.3,"sd0":11.5,"sd1":12.9,"sd2":14.5,"sd3":16.2},{"m":22,"L":-0.0028,"M":11.7504,"S":0.11314,"sd3n":8.4,"sd2n":9.4,"sd1n":10.5,"sd0":11.8,"sd1":13.2,"sd2":14.7,"sd3":16.5},{"m":23,"L":-0.0083,"M":11.9514,"S":0.11369,"sd3n":8.5,"sd2n":9.5,"sd1n":10.7,"sd0":12.0,"sd1":13.4,"sd2":15.0,"sd3":16.8},{"m":24,"L":-0.0137,"M":12.1515,"S":0.11426,"sd3n":8.6,"sd2n":9.7,"sd1n":10.8,"sd0":12.2,"sd1":13.6,"sd2":15.3,"sd3":17.1}],"F":[{"m":0,"L":0.3809,"M":3.2322,"S":0.14171,"sd3n":2.0,"sd2n":2.4,"sd1n":2.8,"sd0":3.2,"sd1":3.7,"sd2":4.2,"sd3":4.8},{"m":1,"L":0.1714,"M":4.1873,"S":0.13724,"sd3n":2.7,"sd2n":3.2,"sd1n":3.6,"sd0":4.2,"sd1":4.8,"sd2":5.5,"sd3":6.2},{"m":2,"L":0.0962,"M":5.1282,"S":0.13,"sd3n":3.4,"sd2n":3.9,"sd1n":4.5,"sd0":5.1,"sd1":5.8,"sd2":6.6,"sd3":7.5},{"m":3,"L":0.0402,"M":5.8458,"S":0.12619,"sd3n":4.0,"sd2n":4.5,"sd1n":5.2,"sd0":5.8,"sd1":6.6,"sd2":7.5,"sd3":8.5},{"m":4,"L":-0.005,"M":6.4237,"S":0.12402,"sd3n":4.4,"sd2n":5.0,"sd1n":5.7,"sd0":6.4,"sd1":7.3,"sd2":8.2,"sd3":9.3},{"m":5,"L":-0.043,"M":6.8985,"S":0.12274,"sd3n":4.8,"sd2n":5.4,"sd1n":6.1,"sd0":6.9,"sd1":7.8,"sd2":8.8,"sd3":10.0},{"m":6,"L":-0.0756,"M":7.297,"S":0.12204,"sd3n":5.1,"sd2n":5.7,"sd1n":6.5,"sd0":7.3,"sd1":8.2,"sd2":9.3,"sd3":10.6},{"m":7,"L":-0.1039,"M":7.6422,"S":0.12178,"sd3n":5.3,"sd2n":6.0,"sd1n":6.8,"sd0":7.6,"sd1":8.6,"sd2":9.8,"sd3":11.1},{"m":8,"L":-0.1288,"M":7.9487,"S":0.12181,"sd3n":5.6,"sd2n":6.3,"sd1n":7.0,"sd0":7.9,"sd1":9.0,"sd2":10.2,"sd3":11.6},{"m":9,"L":-0.1507,"M":8.2254,"S":0.12199,"sd3n":5.8,"sd2n":6.5,"sd1n":7.3,"sd0":8.2,"sd1":9.3,"sd2":10.5,"sd3":12.0},{"m":10,"L":-0.17,"M":8.48,"S":0.12223,"sd3n":5.9,"sd2n":6.7,"sd1n":7.5,"sd0":8.5,"sd1":9.6,"sd2":10.9,"sd3":12.4},{"m":11,"L":-0.1872,"M":8.7192,"S":0.12247,"sd3n":6.1,"sd2n":6.9,"sd1n":7.7,"sd0":8.7,"sd1":9.9,"sd2":11.2,"sd3":12.8},{"m":12,"L":-0.2024,"M":8.9481,"S":0.12268,"sd3n":6.3,"sd2n":7.0,"sd1n":7.9,"sd0":8.9,"sd1":10.1,"sd2":11.5,"sd3":13.1},{"m":13,"L":-0.2158,"M":9.1699,"S":0.12283,"sd3n":6.4,"sd2n":7.2,"sd1n":8.1,"sd0":9.2,"sd1":10.4,"sd2":11.8,"sd3":13.5},{"m":14,"L":-0.2278,"M":9.387,"S":0.12294,"sd3n":6.6,"sd2n":7.4,"sd1n":8.3,"sd0":9.4,"sd1":10.6,"sd2":12.1,"sd3":13.8},{"m":15,"L":-0.2384,"M":9.6008,"S":0.12299,"sd3n":6.7,"sd2n":7.6,"sd1n":8.5,"sd0":9.6,"sd1":10.9,"sd2":12.4,"sd3":14.1},{"m":16,"L":-0.2478,"M":9.8124,"S":0.12303,"sd3n":6.9,"sd2n":7.7,"sd1n":8.7,"sd0":9.8,"sd1":11.1,"sd2":12.6,"sd3":14.5},{"m":17,"L":-0.2562,"M":10.0226,"S":0.12306,"sd3n":7.0,"sd2n":7.9,"sd1n":8.9,"sd0":10.0,"sd1":11.4,"sd2":12.9,"sd3":14.8},{"m":18,"L":-0.2637,"M":10.2315,"S":0.12309,"sd3n":7.2,"sd2n":8.1,"sd1n":9.1,"sd0":10.2,"sd1":11.6,"sd2":13.2,"sd3":15.1},{"m":19,"L":-0.2703,"M":10.4393,"S":0.12315,"sd3n":7.3,"sd2n":8.2,"sd1n":9.2,"sd0":10.4,"sd1":11.8,"sd2":13.5,"sd3":15.4},{"m":20,"L":-0.2762,"M":10.6464,"S":0.12323,"sd3n":7.5,"sd2n":8.4,"sd1n":9.4,"sd0":10.6,"sd1":12.1,"sd2":13.7,"sd3":15.7},{"m":21,"L":-0.2815,"M":10.8534,"S":0.12335,"sd3n":7.6,"sd2n":8.6,"sd1n":9.6,"sd0":10.9,"sd1":12.3,"sd2":14.0,"sd3":16.0},{"m":22,"L":-0.2862,"M":11.0608,"S":0.1235,"sd3n":7.8,"sd2n":8.7,"sd1n":9.8,"sd0":11.1,"sd1":12.5,"sd2":14.3,"sd3":16.4},{"m":23,"L":-0.2903,"M":11.2688,"S":0.12369,"sd3n":7.9,"sd2n":8.9,"sd1n":10.0,"sd0":11.3,"sd1":12.8,"sd2":14.6,"sd3":16.7},{"m":24,"L":-0.2941,"M":11.4775,"S":0.1239,"sd3n":8.1,"sd2n":9.0,"sd1n":10.2,"sd0":11.5,"sd1":13.0,"sd2":14.8,"sd3":17.0}]};
+
+/* Tabelas LMS adicionais (Fase 2): estatura/idade, PC/idade, IMC/idade, peso/comprimento */
+const BYAGE_LMS = {"lhfa":{"M":[{"m":0,"L":1.0,"M":49.8842,"S":0.03795,"sd3n":44.2,"sd2n":46.1,"sd1n":48.0,"sd0":49.9,"sd1":51.8,"sd2":53.7,"sd3":55.6},{"m":1,"L":1.0,"M":54.7244,"S":0.03557,"sd3n":48.9,"sd2n":50.8,"sd1n":52.8,"sd0":54.7,"sd1":56.7,"sd2":58.6,"sd3":60.6},{"m":2,"L":1.0,"M":58.4249,"S":0.03424,"sd3n":52.4,"sd2n":54.4,"sd1n":56.4,"sd0":58.4,"sd1":60.4,"sd2":62.4,"sd3":64.4},{"m":3,"L":1.0,"M":61.4292,"S":0.03328,"sd3n":55.3,"sd2n":57.3,"sd1n":59.4,"sd0":61.4,"sd1":63.5,"sd2":65.5,"sd3":67.6},{"m":4,"L":1.0,"M":63.886,"S":0.03257,"sd3n":57.6,"sd2n":59.7,"sd1n":61.8,"sd0":63.9,"sd1":66.0,"sd2":68.0,"sd3":70.1},{"m":5,"L":1.0,"M":65.9026,"S":0.03204,"sd3n":59.6,"sd2n":61.7,"sd1n":63.8,"sd0":65.9,"sd1":68.0,"sd2":70.1,"sd3":72.2},{"m":6,"L":1.0,"M":67.6236,"S":0.03165,"sd3n":61.2,"sd2n":63.3,"sd1n":65.5,"sd0":67.6,"sd1":69.8,"sd2":71.9,"sd3":74.0},{"m":7,"L":1.0,"M":69.1645,"S":0.03139,"sd3n":62.7,"sd2n":64.8,"sd1n":67.0,"sd0":69.2,"sd1":71.3,"sd2":73.5,"sd3":75.7},{"m":8,"L":1.0,"M":70.5994,"S":0.03124,"sd3n":64.0,"sd2n":66.2,"sd1n":68.4,"sd0":70.6,"sd1":72.8,"sd2":75.0,"sd3":77.2},{"m":9,"L":1.0,"M":71.9687,"S":0.03117,"sd3n":65.2,"sd2n":67.5,"sd1n":69.7,"sd0":72.0,"sd1":74.2,"sd2":76.5,"sd3":78.7},{"m":10,"L":1.0,"M":73.2812,"S":0.03118,"sd3n":66.4,"sd2n":68.7,"sd1n":71.0,"sd0":73.3,"sd1":75.6,"sd2":77.9,"sd3":80.1},{"m":11,"L":1.0,"M":74.5388,"S":0.03125,"sd3n":67.6,"sd2n":69.9,"sd1n":72.2,"sd0":74.5,"sd1":76.9,"sd2":79.2,"sd3":81.5},{"m":12,"L":1.0,"M":75.7488,"S":0.03137,"sd3n":68.6,"sd2n":71.0,"sd1n":73.4,"sd0":75.7,"sd1":78.1,"sd2":80.5,"sd3":82.9},{"m":13,"L":1.0,"M":76.9186,"S":0.03154,"sd3n":69.6,"sd2n":72.1,"sd1n":74.5,"sd0":76.9,"sd1":79.3,"sd2":81.8,"sd3":84.2},{"m":14,"L":1.0,"M":78.0497,"S":0.03174,"sd3n":70.6,"sd2n":73.1,"sd1n":75.6,"sd0":78.0,"sd1":80.5,"sd2":83.0,"sd3":85.5},{"m":15,"L":1.0,"M":79.1458,"S":0.03197,"sd3n":71.6,"sd2n":74.1,"sd1n":76.6,"sd0":79.1,"sd1":81.7,"sd2":84.2,"sd3":86.7},{"m":16,"L":1.0,"M":80.2113,"S":0.03222,"sd3n":72.5,"sd2n":75.0,"sd1n":77.6,"sd0":80.2,"sd1":82.8,"sd2":85.4,"sd3":88.0},{"m":17,"L":1.0,"M":81.2487,"S":0.0325,"sd3n":73.3,"sd2n":76.0,"sd1n":78.6,"sd0":81.2,"sd1":83.9,"sd2":86.5,"sd3":89.2},{"m":18,"L":1.0,"M":82.2587,"S":0.03279,"sd3n":74.2,"sd2n":76.9,"sd1n":79.6,"sd0":82.3,"sd1":85.0,"sd2":87.7,"sd3":90.4},{"m":19,"L":1.0,"M":83.2418,"S":0.0331,"sd3n":75.0,"sd2n":77.7,"sd1n":80.5,"sd0":83.2,"sd1":86.0,"sd2":88.8,"sd3":91.5},{"m":20,"L":1.0,"M":84.1996,"S":0.03342,"sd3n":75.8,"sd2n":78.6,"sd1n":81.4,"sd0":84.2,"sd1":87.0,"sd2":89.8,"sd3":92.6},{"m":21,"L":1.0,"M":85.1348,"S":0.03376,"sd3n":76.5,"sd2n":79.4,"sd1n":82.3,"sd0":85.1,"sd1":88.0,"sd2":90.9,"sd3":93.8},{"m":22,"L":1.0,"M":86.0477,"S":0.0341,"sd3n":77.2,"sd2n":80.2,"sd1n":83.1,"sd0":86.0,"sd1":89.0,"sd2":91.9,"sd3":94.9},{"m":23,"L":1.0,"M":86.941,"S":0.03445,"sd3n":78.0,"sd2n":81.0,"sd1n":83.9,"sd0":86.9,"sd1":89.9,"sd2":92.9,"sd3":95.9},{"m":24,"L":1.0,"M":87.8161,"S":0.03479,"sd3n":78.7,"sd2n":81.7,"sd1n":84.8,"sd0":87.8,"sd1":90.9,"sd2":93.9,"sd3":97.0}],"F":[{"m":0,"L":1.0,"M":49.1477,"S":0.0379,"sd3n":43.6,"sd2n":45.4,"sd1n":47.3,"sd0":49.1,"sd1":51.0,"sd2":52.9,"sd3":54.7},{"m":1,"L":1.0,"M":53.6872,"S":0.0364,"sd3n":47.8,"sd2n":49.8,"sd1n":51.7,"sd0":53.7,"sd1":55.6,"sd2":57.6,"sd3":59.5},{"m":2,"L":1.0,"M":57.0673,"S":0.03568,"sd3n":51.0,"sd2n":53.0,"sd1n":55.0,"sd0":57.1,"sd1":59.1,"sd2":61.1,"sd3":63.2},{"m":3,"L":1.0,"M":59.8029,"S":0.0352,"sd3n":53.5,"sd2n":55.6,"sd1n":57.7,"sd0":59.8,"sd1":61.9,"sd2":64.0,"sd3":66.1},{"m":4,"L":1.0,"M":62.0899,"S":0.03486,"sd3n":55.6,"sd2n":57.8,"sd1n":59.9,"sd0":62.1,"sd1":64.3,"sd2":66.4,"sd3":68.6},{"m":5,"L":1.0,"M":64.0301,"S":0.03463,"sd3n":57.4,"sd2n":59.6,"sd1n":61.8,"sd0":64.0,"sd1":66.2,"sd2":68.5,"sd3":70.7},{"m":6,"L":1.0,"M":65.7311,"S":0.03448,"sd3n":58.9,"sd2n":61.2,"sd1n":63.5,"sd0":65.7,"sd1":68.0,"sd2":70.3,"sd3":72.5},{"m":7,"L":1.0,"M":67.2873,"S":0.03441,"sd3n":60.3,"sd2n":62.7,"sd1n":65.0,"sd0":67.3,"sd1":69.6,"sd2":71.9,"sd3":74.2},{"m":8,"L":1.0,"M":68.7498,"S":0.0344,"sd3n":61.7,"sd2n":64.0,"sd1n":66.4,"sd0":68.7,"sd1":71.1,"sd2":73.5,"sd3":75.8},{"m":9,"L":1.0,"M":70.1435,"S":0.03444,"sd3n":62.9,"sd2n":65.3,"sd1n":67.7,"sd0":70.1,"sd1":72.6,"sd2":75.0,"sd3":77.4},{"m":10,"L":1.0,"M":71.4818,"S":0.03452,"sd3n":64.1,"sd2n":66.5,"sd1n":69.0,"sd0":71.5,"sd1":73.9,"sd2":76.4,"sd3":78.9},{"m":11,"L":1.0,"M":72.771,"S":0.03464,"sd3n":65.2,"sd2n":67.7,"sd1n":70.3,"sd0":72.8,"sd1":75.3,"sd2":77.8,"sd3":80.3},{"m":12,"L":1.0,"M":74.015,"S":0.03479,"sd3n":66.3,"sd2n":68.9,"sd1n":71.4,"sd0":74.0,"sd1":76.6,"sd2":79.2,"sd3":81.7},{"m":13,"L":1.0,"M":75.2176,"S":0.03496,"sd3n":67.3,"sd2n":70.0,"sd1n":72.6,"sd0":75.2,"sd1":77.8,"sd2":80.5,"sd3":83.1},{"m":14,"L":1.0,"M":76.3817,"S":0.03514,"sd3n":68.3,"sd2n":71.0,"sd1n":73.7,"sd0":76.4,"sd1":79.1,"sd2":81.7,"sd3":84.4},{"m":15,"L":1.0,"M":77.5099,"S":0.03534,"sd3n":69.3,"sd2n":72.0,"sd1n":74.8,"sd0":77.5,"sd1":80.2,"sd2":83.0,"sd3":85.7},{"m":16,"L":1.0,"M":78.6055,"S":0.03555,"sd3n":70.2,"sd2n":73.0,"sd1n":75.8,"sd0":78.6,"sd1":81.4,"sd2":84.2,"sd3":87.0},{"m":17,"L":1.0,"M":79.671,"S":0.03576,"sd3n":71.1,"sd2n":74.0,"sd1n":76.8,"sd0":79.7,"sd1":82.5,"sd2":85.4,"sd3":88.2},{"m":18,"L":1.0,"M":80.7079,"S":0.03598,"sd3n":72.0,"sd2n":74.9,"sd1n":77.8,"sd0":80.7,"sd1":83.6,"sd2":86.5,"sd3":89.4},{"m":19,"L":1.0,"M":81.7182,"S":0.0362,"sd3n":72.8,"sd2n":75.8,"sd1n":78.8,"sd0":81.7,"sd1":84.7,"sd2":87.6,"sd3":90.6},{"m":20,"L":1.0,"M":82.7036,"S":0.03643,"sd3n":73.7,"sd2n":76.7,"sd1n":79.7,"sd0":82.7,"sd1":85.7,"sd2":88.7,"sd3":91.7},{"m":21,"L":1.0,"M":83.6654,"S":0.03666,"sd3n":74.5,"sd2n":77.5,"sd1n":80.6,"sd0":83.7,"sd1":86.7,"sd2":89.8,"sd3":92.9},{"m":22,"L":1.0,"M":84.604,"S":0.03688,"sd3n":75.2,"sd2n":78.4,"sd1n":81.5,"sd0":84.6,"sd1":87.7,"sd2":90.8,"sd3":94.0},{"m":23,"L":1.0,"M":85.5202,"S":0.03711,"sd3n":76.0,"sd2n":79.2,"sd1n":82.3,"sd0":85.5,"sd1":88.7,"sd2":91.9,"sd3":95.0},{"m":24,"L":1.0,"M":86.4153,"S":0.03734,"sd3n":76.7,"sd2n":80.0,"sd1n":83.2,"sd0":86.4,"sd1":89.6,"sd2":92.9,"sd3":96.1}]},"hcfa":{"M":[{"m":0,"L":1.0,"M":34.4618,"S":0.03686,"sd3n":30.7,"sd2n":31.9,"sd1n":33.2,"sd0":34.5,"sd1":35.7,"sd2":37.0,"sd3":38.3},{"m":1,"L":1.0,"M":37.2759,"S":0.03133,"sd3n":33.8,"sd2n":34.9,"sd1n":36.1,"sd0":37.3,"sd1":38.4,"sd2":39.6,"sd3":40.8},{"m":2,"L":1.0,"M":39.1285,"S":0.02997,"sd3n":35.6,"sd2n":36.8,"sd1n":38.0,"sd0":39.1,"sd1":40.3,"sd2":41.5,"sd3":42.6},{"m":3,"L":1.0,"M":40.5135,"S":0.02918,"sd3n":37.0,"sd2n":38.1,"sd1n":39.3,"sd0":40.5,"sd1":41.7,"sd2":42.9,"sd3":44.1},{"m":4,"L":1.0,"M":41.6317,"S":0.02868,"sd3n":38.0,"sd2n":39.2,"sd1n":40.4,"sd0":41.6,"sd1":42.8,"sd2":44.0,"sd3":45.2},{"m":5,"L":1.0,"M":42.5576,"S":0.02837,"sd3n":38.9,"sd2n":40.1,"sd1n":41.4,"sd0":42.6,"sd1":43.8,"sd2":45.0,"sd3":46.2},{"m":6,"L":1.0,"M":43.3306,"S":0.02817,"sd3n":39.7,"sd2n":40.9,"sd1n":42.1,"sd0":43.3,"sd1":44.6,"sd2":45.8,"sd3":47.0},{"m":7,"L":1.0,"M":43.9803,"S":0.02804,"sd3n":40.3,"sd2n":41.5,"sd1n":42.7,"sd0":44.0,"sd1":45.2,"sd2":46.4,"sd3":47.7},{"m":8,"L":1.0,"M":44.53,"S":0.02796,"sd3n":40.8,"sd2n":42.0,"sd1n":43.3,"sd0":44.5,"sd1":45.8,"sd2":47.0,"sd3":48.3},{"m":9,"L":1.0,"M":44.9998,"S":0.02792,"sd3n":41.2,"sd2n":42.5,"sd1n":43.7,"sd0":45.0,"sd1":46.3,"sd2":47.5,"sd3":48.8},{"m":10,"L":1.0,"M":45.4051,"S":0.0279,"sd3n":41.6,"sd2n":42.9,"sd1n":44.1,"sd0":45.4,"sd1":46.7,"sd2":47.9,"sd3":49.2},{"m":11,"L":1.0,"M":45.7573,"S":0.02789,"sd3n":41.9,"sd2n":43.2,"sd1n":44.5,"sd0":45.8,"sd1":47.0,"sd2":48.3,"sd3":49.6},{"m":12,"L":1.0,"M":46.0661,"S":0.02789,"sd3n":42.2,"sd2n":43.5,"sd1n":44.8,"sd0":46.1,"sd1":47.4,"sd2":48.6,"sd3":49.9},{"m":13,"L":1.0,"M":46.3395,"S":0.02789,"sd3n":42.5,"sd2n":43.8,"sd1n":45.0,"sd0":46.3,"sd1":47.6,"sd2":48.9,"sd3":50.2},{"m":14,"L":1.0,"M":46.5844,"S":0.02791,"sd3n":42.7,"sd2n":44.0,"sd1n":45.3,"sd0":46.6,"sd1":47.9,"sd2":49.2,"sd3":50.5},{"m":15,"L":1.0,"M":46.806,"S":0.02792,"sd3n":42.9,"sd2n":44.2,"sd1n":45.5,"sd0":46.8,"sd1":48.1,"sd2":49.4,"sd3":50.7},{"m":16,"L":1.0,"M":47.0088,"S":0.02795,"sd3n":43.1,"sd2n":44.4,"sd1n":45.7,"sd0":47.0,"sd1":48.3,"sd2":49.6,"sd3":51.0},{"m":17,"L":1.0,"M":47.1962,"S":0.02797,"sd3n":43.2,"sd2n":44.6,"sd1n":45.9,"sd0":47.2,"sd1":48.5,"sd2":49.8,"sd3":51.2},{"m":18,"L":1.0,"M":47.3711,"S":0.028,"sd3n":43.4,"sd2n":44.7,"sd1n":46.0,"sd0":47.4,"sd1":48.7,"sd2":50.0,"sd3":51.4},{"m":19,"L":1.0,"M":47.5357,"S":0.02803,"sd3n":43.5,"sd2n":44.9,"sd1n":46.2,"sd0":47.5,"sd1":48.9,"sd2":50.2,"sd3":51.5},{"m":20,"L":1.0,"M":47.6919,"S":0.02806,"sd3n":43.7,"sd2n":45.0,"sd1n":46.4,"sd0":47.7,"sd1":49.0,"sd2":50.4,"sd3":51.7},{"m":21,"L":1.0,"M":47.8408,"S":0.0281,"sd3n":43.8,"sd2n":45.2,"sd1n":46.5,"sd0":47.8,"sd1":49.2,"sd2":50.5,"sd3":51.9},{"m":22,"L":1.0,"M":47.9833,"S":0.02813,"sd3n":43.9,"sd2n":45.3,"sd1n":46.6,"sd0":48.0,"sd1":49.3,"sd2":50.7,"sd3":52.0},{"m":23,"L":1.0,"M":48.1201,"S":0.02817,"sd3n":44.1,"sd2n":45.4,"sd1n":46.8,"sd0":48.1,"sd1":49.5,"sd2":50.8,"sd3":52.2},{"m":24,"L":1.0,"M":48.2515,"S":0.02821,"sd3n":44.2,"sd2n":45.5,"sd1n":46.9,"sd0":48.3,"sd1":49.6,"sd2":51.0,"sd3":52.3}],"F":[{"m":0,"L":1.0,"M":33.8787,"S":0.03496,"sd3n":30.3,"sd2n":31.5,"sd1n":32.7,"sd0":33.9,"sd1":35.1,"sd2":36.2,"sd3":37.4},{"m":1,"L":1.0,"M":36.5463,"S":0.0321,"sd3n":33.0,"sd2n":34.2,"sd1n":35.4,"sd0":36.5,"sd1":37.7,"sd2":38.9,"sd3":40.1},{"m":2,"L":1.0,"M":38.2521,"S":0.03168,"sd3n":34.6,"sd2n":35.8,"sd1n":37.0,"sd0":38.3,"sd1":39.5,"sd2":40.7,"sd3":41.9},{"m":3,"L":1.0,"M":39.5328,"S":0.0314,"sd3n":35.8,"sd2n":37.1,"sd1n":38.3,"sd0":39.5,"sd1":40.8,"sd2":42.0,"sd3":43.3},{"m":4,"L":1.0,"M":40.5817,"S":0.03119,"sd3n":36.8,"sd2n":38.1,"sd1n":39.3,"sd0":40.6,"sd1":41.8,"sd2":43.1,"sd3":44.4},{"m":5,"L":1.0,"M":41.459,"S":0.03102,"sd3n":37.6,"sd2n":38.9,"sd1n":40.2,"sd0":41.5,"sd1":42.7,"sd2":44.0,"sd3":45.3},{"m":6,"L":1.0,"M":42.1995,"S":0.03087,"sd3n":38.3,"sd2n":39.6,"sd1n":40.9,"sd0":42.2,"sd1":43.5,"sd2":44.8,"sd3":46.1},{"m":7,"L":1.0,"M":42.829,"S":0.03075,"sd3n":38.9,"sd2n":40.2,"sd1n":41.5,"sd0":42.8,"sd1":44.1,"sd2":45.5,"sd3":46.8},{"m":8,"L":1.0,"M":43.3671,"S":0.03063,"sd3n":39.4,"sd2n":40.7,"sd1n":42.0,"sd0":43.4,"sd1":44.7,"sd2":46.0,"sd3":47.4},{"m":9,"L":1.0,"M":43.83,"S":0.03053,"sd3n":39.8,"sd2n":41.2,"sd1n":42.5,"sd0":43.8,"sd1":45.2,"sd2":46.5,"sd3":47.8},{"m":10,"L":1.0,"M":44.2319,"S":0.03044,"sd3n":40.2,"sd2n":41.5,"sd1n":42.9,"sd0":44.2,"sd1":45.6,"sd2":46.9,"sd3":48.3},{"m":11,"L":1.0,"M":44.5844,"S":0.03035,"sd3n":40.5,"sd2n":41.9,"sd1n":43.2,"sd0":44.6,"sd1":45.9,"sd2":47.3,"sd3":48.6},{"m":12,"L":1.0,"M":44.8965,"S":0.03027,"sd3n":40.8,"sd2n":42.2,"sd1n":43.5,"sd0":44.9,"sd1":46.3,"sd2":47.6,"sd3":49.0},{"m":13,"L":1.0,"M":45.1752,"S":0.03019,"sd3n":41.1,"sd2n":42.4,"sd1n":43.8,"sd0":45.2,"sd1":46.5,"sd2":47.9,"sd3":49.3},{"m":14,"L":1.0,"M":45.4265,"S":0.03012,"sd3n":41.3,"sd2n":42.7,"sd1n":44.1,"sd0":45.4,"sd1":46.8,"sd2":48.2,"sd3":49.5},{"m":15,"L":1.0,"M":45.6551,"S":0.03006,"sd3n":41.5,"sd2n":42.9,"sd1n":44.3,"sd0":45.7,"sd1":47.0,"sd2":48.4,"sd3":49.8},{"m":16,"L":1.0,"M":45.865,"S":0.02999,"sd3n":41.7,"sd2n":43.1,"sd1n":44.5,"sd0":45.9,"sd1":47.2,"sd2":48.6,"sd3":50.0},{"m":17,"L":1.0,"M":46.0598,"S":0.02993,"sd3n":41.9,"sd2n":43.3,"sd1n":44.7,"sd0":46.1,"sd1":47.4,"sd2":48.8,"sd3":50.2},{"m":18,"L":1.0,"M":46.2424,"S":0.02987,"sd3n":42.1,"sd2n":43.5,"sd1n":44.9,"sd0":46.2,"sd1":47.6,"sd2":49.0,"sd3":50.4},{"m":19,"L":1.0,"M":46.4152,"S":0.02982,"sd3n":42.3,"sd2n":43.6,"sd1n":45.0,"sd0":46.4,"sd1":47.8,"sd2":49.2,"sd3":50.6},{"m":20,"L":1.0,"M":46.5801,"S":0.02977,"sd3n":42.4,"sd2n":43.8,"sd1n":45.2,"sd0":46.6,"sd1":48.0,"sd2":49.4,"sd3":50.7},{"m":21,"L":1.0,"M":46.7384,"S":0.02972,"sd3n":42.6,"sd2n":44.0,"sd1n":45.3,"sd0":46.7,"sd1":48.1,"sd2":49.5,"sd3":50.9},{"m":22,"L":1.0,"M":46.8913,"S":0.02967,"sd3n":42.7,"sd2n":44.1,"sd1n":45.5,"sd0":46.9,"sd1":48.3,"sd2":49.7,"sd3":51.1},{"m":23,"L":1.0,"M":47.0391,"S":0.02962,"sd3n":42.9,"sd2n":44.3,"sd1n":45.6,"sd0":47.0,"sd1":48.4,"sd2":49.8,"sd3":51.2},{"m":24,"L":1.0,"M":47.1822,"S":0.02957,"sd3n":43.0,"sd2n":44.4,"sd1n":45.8,"sd0":47.2,"sd1":48.6,"sd2":50.0,"sd3":51.4}]},"bmifa":{"M":[{"m":0,"L":-0.3053,"M":13.4069,"S":0.0956,"sd3n":10.2,"sd2n":11.1,"sd1n":12.2,"sd0":13.4,"sd1":14.8,"sd2":16.3,"sd3":18.1},{"m":1,"L":0.2708,"M":14.9441,"S":0.09027,"sd3n":11.3,"sd2n":12.4,"sd1n":13.6,"sd0":14.9,"sd1":16.3,"sd2":17.8,"sd3":19.4},{"m":2,"L":0.1118,"M":16.3195,"S":0.08677,"sd3n":12.5,"sd2n":13.7,"sd1n":15.0,"sd0":16.3,"sd1":17.8,"sd2":19.4,"sd3":21.1},{"m":3,"L":0.0068,"M":16.8987,"S":0.08495,"sd3n":13.1,"sd2n":14.3,"sd1n":15.5,"sd0":16.9,"sd1":18.4,"sd2":20.0,"sd3":21.8},{"m":4,"L":-0.0727,"M":17.1579,"S":0.08378,"sd3n":13.4,"sd2n":14.5,"sd1n":15.8,"sd0":17.2,"sd1":18.7,"sd2":20.3,"sd3":22.1},{"m":5,"L":-0.137,"M":17.2919,"S":0.08296,"sd3n":13.5,"sd2n":14.7,"sd1n":15.9,"sd0":17.3,"sd1":18.8,"sd2":20.5,"sd3":22.3},{"m":6,"L":-0.1913,"M":17.3422,"S":0.08234,"sd3n":13.6,"sd2n":14.7,"sd1n":16.0,"sd0":17.3,"sd1":18.8,"sd2":20.5,"sd3":22.3},{"m":7,"L":-0.2385,"M":17.3288,"S":0.08183,"sd3n":13.7,"sd2n":14.8,"sd1n":16.0,"sd0":17.3,"sd1":18.8,"sd2":20.5,"sd3":22.3},{"m":8,"L":-0.2802,"M":17.2647,"S":0.0814,"sd3n":13.6,"sd2n":14.7,"sd1n":15.9,"sd0":17.3,"sd1":18.7,"sd2":20.4,"sd3":22.2},{"m":9,"L":-0.3176,"M":17.1662,"S":0.08102,"sd3n":13.6,"sd2n":14.7,"sd1n":15.8,"sd0":17.2,"sd1":18.6,"sd2":20.3,"sd3":22.1},{"m":10,"L":-0.3516,"M":17.0488,"S":0.08068,"sd3n":13.5,"sd2n":14.6,"sd1n":15.7,"sd0":17.0,"sd1":18.5,"sd2":20.1,"sd3":22.0},{"m":11,"L":-0.3828,"M":16.9239,"S":0.08037,"sd3n":13.4,"sd2n":14.5,"sd1n":15.6,"sd0":16.9,"sd1":18.4,"sd2":20.0,"sd3":21.8},{"m":12,"L":-0.4115,"M":16.7981,"S":0.08009,"sd3n":13.4,"sd2n":14.4,"sd1n":15.5,"sd0":16.8,"sd1":18.2,"sd2":19.8,"sd3":21.6},{"m":13,"L":-0.4382,"M":16.6743,"S":0.07982,"sd3n":13.3,"sd2n":14.3,"sd1n":15.4,"sd0":16.7,"sd1":18.1,"sd2":19.7,"sd3":21.5},{"m":14,"L":-0.463,"M":16.5548,"S":0.07958,"sd3n":13.2,"sd2n":14.2,"sd1n":15.3,"sd0":16.6,"sd1":18.0,"sd2":19.5,"sd3":21.3},{"m":15,"L":-0.4863,"M":16.4409,"S":0.07935,"sd3n":13.1,"sd2n":14.1,"sd1n":15.2,"sd0":16.4,"sd1":17.8,"sd2":19.4,"sd3":21.2},{"m":16,"L":-0.5082,"M":16.3335,"S":0.07913,"sd3n":13.1,"sd2n":14.0,"sd1n":15.1,"sd0":16.3,"sd1":17.7,"sd2":19.3,"sd3":21.0},{"m":17,"L":-0.5289,"M":16.2329,"S":0.07892,"sd3n":13.0,"sd2n":13.9,"sd1n":15.0,"sd0":16.2,"sd1":17.6,"sd2":19.1,"sd3":20.9},{"m":18,"L":-0.5484,"M":16.1392,"S":0.07873,"sd3n":12.9,"sd2n":13.9,"sd1n":14.9,"sd0":16.1,"sd1":17.5,"sd2":19.0,"sd3":20.8},{"m":19,"L":-0.5669,"M":16.0528,"S":0.07854,"sd3n":12.9,"sd2n":13.8,"sd1n":14.9,"sd0":16.1,"sd1":17.4,"sd2":18.9,"sd3":20.7},{"m":20,"L":-0.5846,"M":15.9743,"S":0.07836,"sd3n":12.8,"sd2n":13.7,"sd1n":14.8,"sd0":16.0,"sd1":17.3,"sd2":18.8,"sd3":20.6},{"m":21,"L":-0.6014,"M":15.9039,"S":0.07818,"sd3n":12.8,"sd2n":13.7,"sd1n":14.7,"sd0":15.9,"sd1":17.2,"sd2":18.7,"sd3":20.5},{"m":22,"L":-0.6174,"M":15.8412,"S":0.07802,"sd3n":12.7,"sd2n":13.6,"sd1n":14.7,"sd0":15.8,"sd1":17.2,"sd2":18.7,"sd3":20.4},{"m":23,"L":-0.6328,"M":15.7852,"S":0.07786,"sd3n":12.7,"sd2n":13.6,"sd1n":14.6,"sd0":15.8,"sd1":17.1,"sd2":18.6,"sd3":20.3},{"m":24,"L":-0.6473,"M":15.7356,"S":0.07771,"sd3n":12.7,"sd2n":13.6,"sd1n":14.6,"sd0":15.7,"sd1":17.0,"sd2":18.5,"sd3":20.3}],"F":[{"m":0,"L":-0.0631,"M":13.3363,"S":0.09272,"sd3n":10.1,"sd2n":11.1,"sd1n":12.2,"sd0":13.3,"sd1":14.6,"sd2":16.1,"sd3":17.7},{"m":1,"L":0.3448,"M":14.5679,"S":0.09556,"sd3n":10.8,"sd2n":12.0,"sd1n":13.2,"sd0":14.6,"sd1":16.0,"sd2":17.5,"sd3":19.1},{"m":2,"L":0.1749,"M":15.7679,"S":0.09371,"sd3n":11.8,"sd2n":13.0,"sd1n":14.3,"sd0":15.8,"sd1":17.3,"sd2":19.0,"sd3":20.7},{"m":3,"L":0.0643,"M":16.3574,"S":0.09254,"sd3n":12.4,"sd2n":13.6,"sd1n":14.9,"sd0":16.4,"sd1":17.9,"sd2":19.7,"sd3":21.5},{"m":4,"L":-0.0191,"M":16.6703,"S":0.09166,"sd3n":12.7,"sd2n":13.9,"sd1n":15.2,"sd0":16.7,"sd1":18.3,"sd2":20.0,"sd3":22.0},{"m":5,"L":-0.0864,"M":16.8386,"S":0.09096,"sd3n":12.9,"sd2n":14.1,"sd1n":15.4,"sd0":16.8,"sd1":18.4,"sd2":20.2,"sd3":22.2},{"m":6,"L":-0.1429,"M":16.9083,"S":0.09036,"sd3n":13.0,"sd2n":14.1,"sd1n":15.5,"sd0":16.9,"sd1":18.5,"sd2":20.3,"sd3":22.3},{"m":7,"L":-0.1916,"M":16.902,"S":0.08984,"sd3n":13.0,"sd2n":14.2,"sd1n":15.5,"sd0":16.9,"sd1":18.5,"sd2":20.3,"sd3":22.3},{"m":8,"L":-0.2344,"M":16.8404,"S":0.08939,"sd3n":13.0,"sd2n":14.1,"sd1n":15.4,"sd0":16.8,"sd1":18.4,"sd2":20.2,"sd3":22.2},{"m":9,"L":-0.2725,"M":16.7406,"S":0.08898,"sd3n":12.9,"sd2n":14.1,"sd1n":15.3,"sd0":16.7,"sd1":18.3,"sd2":20.1,"sd3":22.1},{"m":10,"L":-0.3068,"M":16.6184,"S":0.08861,"sd3n":12.9,"sd2n":14.0,"sd1n":15.2,"sd0":16.6,"sd1":18.2,"sd2":19.9,"sd3":21.9},{"m":11,"L":-0.3381,"M":16.4875,"S":0.08828,"sd3n":12.8,"sd2n":13.9,"sd1n":15.1,"sd0":16.5,"sd1":18.0,"sd2":19.8,"sd3":21.8},{"m":12,"L":-0.3667,"M":16.3568,"S":0.08797,"sd3n":12.7,"sd2n":13.8,"sd1n":15.0,"sd0":16.4,"sd1":17.9,"sd2":19.6,"sd3":21.6},{"m":13,"L":-0.3932,"M":16.2311,"S":0.08768,"sd3n":12.6,"sd2n":13.7,"sd1n":14.9,"sd0":16.2,"sd1":17.7,"sd2":19.5,"sd3":21.4},{"m":14,"L":-0.4177,"M":16.1128,"S":0.08741,"sd3n":12.6,"sd2n":13.6,"sd1n":14.8,"sd0":16.1,"sd1":17.6,"sd2":19.3,"sd3":21.3},{"m":15,"L":-0.4407,"M":16.0028,"S":0.08716,"sd3n":12.5,"sd2n":13.5,"sd1n":14.7,"sd0":16.0,"sd1":17.5,"sd2":19.2,"sd3":21.1},{"m":16,"L":-0.4623,"M":15.9017,"S":0.08693,"sd3n":12.4,"sd2n":13.5,"sd1n":14.6,"sd0":15.9,"sd1":17.4,"sd2":19.1,"sd3":21.0},{"m":17,"L":-0.4825,"M":15.8096,"S":0.08671,"sd3n":12.4,"sd2n":13.4,"sd1n":14.5,"sd0":15.8,"sd1":17.3,"sd2":18.9,"sd3":20.9},{"m":18,"L":-0.5017,"M":15.7263,"S":0.0865,"sd3n":12.3,"sd2n":13.3,"sd1n":14.4,"sd0":15.7,"sd1":17.2,"sd2":18.8,"sd3":20.8},{"m":19,"L":-0.5199,"M":15.6517,"S":0.0863,"sd3n":12.3,"sd2n":13.3,"sd1n":14.4,"sd0":15.7,"sd1":17.1,"sd2":18.8,"sd3":20.7},{"m":20,"L":-0.5372,"M":15.5855,"S":0.08612,"sd3n":12.2,"sd2n":13.2,"sd1n":14.3,"sd0":15.6,"sd1":17.0,"sd2":18.7,"sd3":20.6},{"m":21,"L":-0.5537,"M":15.5278,"S":0.08594,"sd3n":12.2,"sd2n":13.2,"sd1n":14.3,"sd0":15.5,"sd1":17.0,"sd2":18.6,"sd3":20.5},{"m":22,"L":-0.5695,"M":15.4787,"S":0.08577,"sd3n":12.2,"sd2n":13.1,"sd1n":14.2,"sd0":15.5,"sd1":16.9,"sd2":18.5,"sd3":20.4},{"m":23,"L":-0.5846,"M":15.438,"S":0.0856,"sd3n":12.2,"sd2n":13.1,"sd1n":14.2,"sd0":15.4,"sd1":16.9,"sd2":18.5,"sd3":20.4},{"m":24,"L":-0.5989,"M":15.4052,"S":0.08545,"sd3n":12.1,"sd2n":13.1,"sd1n":14.2,"sd0":15.4,"sd1":16.8,"sd2":18.4,"sd3":20.3}]}};
+const WFL_LMS = {"M":[{"len":45.0,"L":-0.3521,"M":2.441,"S":0.09182,"sd3n":1.9,"sd2n":2.0,"sd1n":2.2,"sd0":2.4,"sd1":2.7,"sd2":3.0,"sd3":3.3},{"len":45.5,"L":-0.3521,"M":2.5244,"S":0.09153,"sd3n":1.9,"sd2n":2.1,"sd1n":2.3,"sd0":2.5,"sd1":2.8,"sd2":3.1,"sd3":3.4},{"len":46.0,"L":-0.3521,"M":2.6077,"S":0.09124,"sd3n":2.0,"sd2n":2.2,"sd1n":2.4,"sd0":2.6,"sd1":2.9,"sd2":3.1,"sd3":3.5},{"len":46.5,"L":-0.3521,"M":2.6913,"S":0.09094,"sd3n":2.1,"sd2n":2.3,"sd1n":2.5,"sd0":2.7,"sd1":3.0,"sd2":3.2,"sd3":3.6},{"len":47.0,"L":-0.3521,"M":2.7755,"S":0.09065,"sd3n":2.1,"sd2n":2.3,"sd1n":2.5,"sd0":2.8,"sd1":3.0,"sd2":3.3,"sd3":3.7},{"len":47.5,"L":-0.3521,"M":2.8609,"S":0.09036,"sd3n":2.2,"sd2n":2.4,"sd1n":2.6,"sd0":2.9,"sd1":3.1,"sd2":3.4,"sd3":3.8},{"len":48.0,"L":-0.3521,"M":2.948,"S":0.09007,"sd3n":2.3,"sd2n":2.5,"sd1n":2.7,"sd0":2.9,"sd1":3.2,"sd2":3.6,"sd3":3.9},{"len":48.5,"L":-0.3521,"M":3.0377,"S":0.08977,"sd3n":2.3,"sd2n":2.6,"sd1n":2.8,"sd0":3.0,"sd1":3.3,"sd2":3.7,"sd3":4.0},{"len":49.0,"L":-0.3521,"M":3.1308,"S":0.08948,"sd3n":2.4,"sd2n":2.6,"sd1n":2.9,"sd0":3.1,"sd1":3.4,"sd2":3.8,"sd3":4.2},{"len":49.5,"L":-0.3521,"M":3.2276,"S":0.08919,"sd3n":2.5,"sd2n":2.7,"sd1n":3.0,"sd0":3.2,"sd1":3.5,"sd2":3.9,"sd3":4.3},{"len":50.0,"L":-0.3521,"M":3.3278,"S":0.0889,"sd3n":2.6,"sd2n":2.8,"sd1n":3.0,"sd0":3.3,"sd1":3.6,"sd2":4.0,"sd3":4.4},{"len":50.5,"L":-0.3521,"M":3.4311,"S":0.08861,"sd3n":2.7,"sd2n":2.9,"sd1n":3.1,"sd0":3.4,"sd1":3.8,"sd2":4.1,"sd3":4.5},{"len":51.0,"L":-0.3521,"M":3.5376,"S":0.08831,"sd3n":2.7,"sd2n":3.0,"sd1n":3.2,"sd0":3.5,"sd1":3.9,"sd2":4.2,"sd3":4.7},{"len":51.5,"L":-0.3521,"M":3.6477,"S":0.08801,"sd3n":2.8,"sd2n":3.1,"sd1n":3.3,"sd0":3.6,"sd1":4.0,"sd2":4.4,"sd3":4.8},{"len":52.0,"L":-0.3521,"M":3.762,"S":0.08771,"sd3n":2.9,"sd2n":3.2,"sd1n":3.5,"sd0":3.8,"sd1":4.1,"sd2":4.5,"sd3":5.0},{"len":52.5,"L":-0.3521,"M":3.8814,"S":0.08741,"sd3n":3.0,"sd2n":3.3,"sd1n":3.6,"sd0":3.9,"sd1":4.2,"sd2":4.6,"sd3":5.1},{"len":53.0,"L":-0.3521,"M":4.006,"S":0.08711,"sd3n":3.1,"sd2n":3.4,"sd1n":3.7,"sd0":4.0,"sd1":4.4,"sd2":4.8,"sd3":5.3},{"len":53.5,"L":-0.3521,"M":4.1354,"S":0.08681,"sd3n":3.2,"sd2n":3.5,"sd1n":3.8,"sd0":4.1,"sd1":4.5,"sd2":4.9,"sd3":5.4},{"len":54.0,"L":-0.3521,"M":4.2693,"S":0.08651,"sd3n":3.3,"sd2n":3.6,"sd1n":3.9,"sd0":4.3,"sd1":4.7,"sd2":5.1,"sd3":5.6},{"len":54.5,"L":-0.3521,"M":4.4066,"S":0.08621,"sd3n":3.4,"sd2n":3.7,"sd1n":4.0,"sd0":4.4,"sd1":4.8,"sd2":5.3,"sd3":5.8},{"len":55.0,"L":-0.3521,"M":4.5467,"S":0.08592,"sd3n":3.6,"sd2n":3.8,"sd1n":4.2,"sd0":4.5,"sd1":5.0,"sd2":5.4,"sd3":6.0},{"len":55.5,"L":-0.3521,"M":4.6892,"S":0.08563,"sd3n":3.7,"sd2n":4.0,"sd1n":4.3,"sd0":4.7,"sd1":5.1,"sd2":5.6,"sd3":6.1},{"len":56.0,"L":-0.3521,"M":4.8338,"S":0.08535,"sd3n":3.8,"sd2n":4.1,"sd1n":4.4,"sd0":4.8,"sd1":5.3,"sd2":5.8,"sd3":6.3},{"len":56.5,"L":-0.3521,"M":4.9796,"S":0.08507,"sd3n":3.9,"sd2n":4.2,"sd1n":4.6,"sd0":5.0,"sd1":5.4,"sd2":5.9,"sd3":6.5},{"len":57.0,"L":-0.3521,"M":5.1259,"S":0.08481,"sd3n":4.0,"sd2n":4.3,"sd1n":4.7,"sd0":5.1,"sd1":5.6,"sd2":6.1,"sd3":6.7},{"len":57.5,"L":-0.3521,"M":5.2721,"S":0.08455,"sd3n":4.1,"sd2n":4.5,"sd1n":4.9,"sd0":5.3,"sd1":5.7,"sd2":6.3,"sd3":6.9},{"len":58.0,"L":-0.3521,"M":5.418,"S":0.0843,"sd3n":4.3,"sd2n":4.6,"sd1n":5.0,"sd0":5.4,"sd1":5.9,"sd2":6.4,"sd3":7.1},{"len":58.5,"L":-0.3521,"M":5.5632,"S":0.08406,"sd3n":4.4,"sd2n":4.7,"sd1n":5.1,"sd0":5.6,"sd1":6.1,"sd2":6.6,"sd3":7.2},{"len":59.0,"L":-0.3521,"M":5.7074,"S":0.08383,"sd3n":4.5,"sd2n":4.8,"sd1n":5.3,"sd0":5.7,"sd1":6.2,"sd2":6.8,"sd3":7.4},{"len":59.5,"L":-0.3521,"M":5.8501,"S":0.08362,"sd3n":4.6,"sd2n":5.0,"sd1n":5.4,"sd0":5.9,"sd1":6.4,"sd2":7.0,"sd3":7.6},{"len":60.0,"L":-0.3521,"M":5.9907,"S":0.08342,"sd3n":4.7,"sd2n":5.1,"sd1n":5.5,"sd0":6.0,"sd1":6.5,"sd2":7.1,"sd3":7.8},{"len":60.5,"L":-0.3521,"M":6.1284,"S":0.08324,"sd3n":4.8,"sd2n":5.2,"sd1n":5.6,"sd0":6.1,"sd1":6.7,"sd2":7.3,"sd3":8.0},{"len":61.0,"L":-0.3521,"M":6.2632,"S":0.08308,"sd3n":4.9,"sd2n":5.3,"sd1n":5.8,"sd0":6.3,"sd1":6.8,"sd2":7.4,"sd3":8.1},{"len":61.5,"L":-0.3521,"M":6.3954,"S":0.08292,"sd3n":5.0,"sd2n":5.4,"sd1n":5.9,"sd0":6.4,"sd1":7.0,"sd2":7.6,"sd3":8.3},{"len":62.0,"L":-0.3521,"M":6.5251,"S":0.08279,"sd3n":5.1,"sd2n":5.6,"sd1n":6.0,"sd0":6.5,"sd1":7.1,"sd2":7.7,"sd3":8.5},{"len":62.5,"L":-0.3521,"M":6.6527,"S":0.08266,"sd3n":5.2,"sd2n":5.7,"sd1n":6.1,"sd0":6.7,"sd1":7.2,"sd2":7.9,"sd3":8.6},{"len":63.0,"L":-0.3521,"M":6.7786,"S":0.08255,"sd3n":5.3,"sd2n":5.8,"sd1n":6.2,"sd0":6.8,"sd1":7.4,"sd2":8.0,"sd3":8.8},{"len":63.5,"L":-0.3521,"M":6.9028,"S":0.08245,"sd3n":5.4,"sd2n":5.9,"sd1n":6.4,"sd0":6.9,"sd1":7.5,"sd2":8.2,"sd3":8.9},{"len":64.0,"L":-0.3521,"M":7.0255,"S":0.08236,"sd3n":5.5,"sd2n":6.0,"sd1n":6.5,"sd0":7.0,"sd1":7.6,"sd2":8.3,"sd3":9.1},{"len":64.5,"L":-0.3521,"M":7.1467,"S":0.08229,"sd3n":5.6,"sd2n":6.1,"sd1n":6.6,"sd0":7.1,"sd1":7.8,"sd2":8.5,"sd3":9.3},{"len":65.0,"L":-0.3521,"M":7.2666,"S":0.08223,"sd3n":5.7,"sd2n":6.2,"sd1n":6.7,"sd0":7.3,"sd1":7.9,"sd2":8.6,"sd3":9.4},{"len":65.5,"L":-0.3521,"M":7.3854,"S":0.08218,"sd3n":5.8,"sd2n":6.3,"sd1n":6.8,"sd0":7.4,"sd1":8.0,"sd2":8.7,"sd3":9.6},{"len":66.0,"L":-0.3521,"M":7.5034,"S":0.08215,"sd3n":5.9,"sd2n":6.4,"sd1n":6.9,"sd0":7.5,"sd1":8.2,"sd2":8.9,"sd3":9.7},{"len":66.5,"L":-0.3521,"M":7.6206,"S":0.08213,"sd3n":6.0,"sd2n":6.5,"sd1n":7.0,"sd0":7.6,"sd1":8.3,"sd2":9.0,"sd3":9.9},{"len":67.0,"L":-0.3521,"M":7.737,"S":0.08212,"sd3n":6.1,"sd2n":6.6,"sd1n":7.1,"sd0":7.7,"sd1":8.4,"sd2":9.2,"sd3":10.0},{"len":67.5,"L":-0.3521,"M":7.8526,"S":0.08212,"sd3n":6.2,"sd2n":6.7,"sd1n":7.2,"sd0":7.9,"sd1":8.5,"sd2":9.3,"sd3":10.2},{"len":68.0,"L":-0.3521,"M":7.9674,"S":0.08214,"sd3n":6.3,"sd2n":6.8,"sd1n":7.3,"sd0":8.0,"sd1":8.7,"sd2":9.4,"sd3":10.3},{"len":68.5,"L":-0.3521,"M":8.0816,"S":0.08216,"sd3n":6.4,"sd2n":6.9,"sd1n":7.5,"sd0":8.1,"sd1":8.8,"sd2":9.6,"sd3":10.5},{"len":69.0,"L":-0.3521,"M":8.1955,"S":0.08219,"sd3n":6.5,"sd2n":7.0,"sd1n":7.6,"sd0":8.2,"sd1":8.9,"sd2":9.7,"sd3":10.6},{"len":69.5,"L":-0.3521,"M":8.3092,"S":0.08224,"sd3n":6.6,"sd2n":7.1,"sd1n":7.7,"sd0":8.3,"sd1":9.0,"sd2":9.8,"sd3":10.8},{"len":70.0,"L":-0.3521,"M":8.4227,"S":0.08229,"sd3n":6.6,"sd2n":7.2,"sd1n":7.8,"sd0":8.4,"sd1":9.2,"sd2":10.0,"sd3":10.9},{"len":70.5,"L":-0.3521,"M":8.5358,"S":0.08235,"sd3n":6.7,"sd2n":7.3,"sd1n":7.9,"sd0":8.5,"sd1":9.3,"sd2":10.1,"sd3":11.1},{"len":71.0,"L":-0.3521,"M":8.648,"S":0.08241,"sd3n":6.8,"sd2n":7.4,"sd1n":8.0,"sd0":8.6,"sd1":9.4,"sd2":10.2,"sd3":11.2},{"len":71.5,"L":-0.3521,"M":8.7594,"S":0.08248,"sd3n":6.9,"sd2n":7.5,"sd1n":8.1,"sd0":8.8,"sd1":9.5,"sd2":10.4,"sd3":11.3},{"len":72.0,"L":-0.3521,"M":8.8697,"S":0.08254,"sd3n":7.0,"sd2n":7.6,"sd1n":8.2,"sd0":8.9,"sd1":9.6,"sd2":10.5,"sd3":11.5},{"len":72.5,"L":-0.3521,"M":8.9788,"S":0.08262,"sd3n":7.1,"sd2n":7.6,"sd1n":8.3,"sd0":9.0,"sd1":9.8,"sd2":10.6,"sd3":11.6},{"len":73.0,"L":-0.3521,"M":9.0865,"S":0.08269,"sd3n":7.2,"sd2n":7.7,"sd1n":8.4,"sd0":9.1,"sd1":9.9,"sd2":10.8,"sd3":11.8},{"len":73.5,"L":-0.3521,"M":9.1927,"S":0.08276,"sd3n":7.2,"sd2n":7.8,"sd1n":8.5,"sd0":9.2,"sd1":10.0,"sd2":10.9,"sd3":11.9},{"len":74.0,"L":-0.3521,"M":9.2974,"S":0.08283,"sd3n":7.3,"sd2n":7.9,"sd1n":8.6,"sd0":9.3,"sd1":10.1,"sd2":11.0,"sd3":12.1},{"len":74.5,"L":-0.3521,"M":9.401,"S":0.08289,"sd3n":7.4,"sd2n":8.0,"sd1n":8.7,"sd0":9.4,"sd1":10.2,"sd2":11.2,"sd3":12.2},{"len":75.0,"L":-0.3521,"M":9.5032,"S":0.08295,"sd3n":7.5,"sd2n":8.1,"sd1n":8.8,"sd0":9.5,"sd1":10.3,"sd2":11.3,"sd3":12.3},{"len":75.5,"L":-0.3521,"M":9.6041,"S":0.08301,"sd3n":7.6,"sd2n":8.2,"sd1n":8.8,"sd0":9.6,"sd1":10.4,"sd2":11.4,"sd3":12.5},{"len":76.0,"L":-0.3521,"M":9.7033,"S":0.08307,"sd3n":7.6,"sd2n":8.3,"sd1n":8.9,"sd0":9.7,"sd1":10.6,"sd2":11.5,"sd3":12.6},{"len":76.5,"L":-0.3521,"M":9.8007,"S":0.08311,"sd3n":7.7,"sd2n":8.3,"sd1n":9.0,"sd0":9.8,"sd1":10.7,"sd2":11.6,"sd3":12.7},{"len":77.0,"L":-0.3521,"M":9.8963,"S":0.08314,"sd3n":7.8,"sd2n":8.4,"sd1n":9.1,"sd0":9.9,"sd1":10.8,"sd2":11.7,"sd3":12.8},{"len":77.5,"L":-0.3521,"M":9.9902,"S":0.08317,"sd3n":7.9,"sd2n":8.5,"sd1n":9.2,"sd0":10.0,"sd1":10.9,"sd2":11.9,"sd3":13.0},{"len":78.0,"L":-0.3521,"M":10.0827,"S":0.08318,"sd3n":7.9,"sd2n":8.6,"sd1n":9.3,"sd0":10.1,"sd1":11.0,"sd2":12.0,"sd3":13.1},{"len":78.5,"L":-0.3521,"M":10.1741,"S":0.08318,"sd3n":8.0,"sd2n":8.7,"sd1n":9.4,"sd0":10.2,"sd1":11.1,"sd2":12.1,"sd3":13.2},{"len":79.0,"L":-0.3521,"M":10.2649,"S":0.08316,"sd3n":8.1,"sd2n":8.7,"sd1n":9.5,"sd0":10.3,"sd1":11.2,"sd2":12.2,"sd3":13.3},{"len":79.5,"L":-0.3521,"M":10.3558,"S":0.08313,"sd3n":8.2,"sd2n":8.8,"sd1n":9.5,"sd0":10.4,"sd1":11.3,"sd2":12.3,"sd3":13.4},{"len":80.0,"L":-0.3521,"M":10.4475,"S":0.08308,"sd3n":8.2,"sd2n":8.9,"sd1n":9.6,"sd0":10.4,"sd1":11.4,"sd2":12.4,"sd3":13.6},{"len":80.5,"L":-0.3521,"M":10.5405,"S":0.08301,"sd3n":8.3,"sd2n":9.0,"sd1n":9.7,"sd0":10.5,"sd1":11.5,"sd2":12.5,"sd3":13.7},{"len":81.0,"L":-0.3521,"M":10.6352,"S":0.08293,"sd3n":8.4,"sd2n":9.1,"sd1n":9.8,"sd0":10.6,"sd1":11.6,"sd2":12.6,"sd3":13.8},{"len":81.5,"L":-0.3521,"M":10.7322,"S":0.08284,"sd3n":8.5,"sd2n":9.1,"sd1n":9.9,"sd0":10.7,"sd1":11.7,"sd2":12.7,"sd3":13.9},{"len":82.0,"L":-0.3521,"M":10.8321,"S":0.08273,"sd3n":8.5,"sd2n":9.2,"sd1n":10.0,"sd0":10.8,"sd1":11.8,"sd2":12.8,"sd3":14.0},{"len":82.5,"L":-0.3521,"M":10.935,"S":0.0826,"sd3n":8.6,"sd2n":9.3,"sd1n":10.1,"sd0":10.9,"sd1":11.9,"sd2":13.0,"sd3":14.2},{"len":83.0,"L":-0.3521,"M":11.0415,"S":0.08246,"sd3n":8.7,"sd2n":9.4,"sd1n":10.2,"sd0":11.0,"sd1":12.0,"sd2":13.1,"sd3":14.3},{"len":83.5,"L":-0.3521,"M":11.1516,"S":0.08231,"sd3n":8.8,"sd2n":9.5,"sd1n":10.3,"sd0":11.2,"sd1":12.1,"sd2":13.2,"sd3":14.4},{"len":84.0,"L":-0.3521,"M":11.2651,"S":0.08215,"sd3n":8.9,"sd2n":9.6,"sd1n":10.4,"sd0":11.3,"sd1":12.2,"sd2":13.3,"sd3":14.6},{"len":84.5,"L":-0.3521,"M":11.3817,"S":0.08198,"sd3n":9.0,"sd2n":9.7,"sd1n":10.5,"sd0":11.4,"sd1":12.4,"sd2":13.5,"sd3":14.7},{"len":85.0,"L":-0.3521,"M":11.5007,"S":0.08181,"sd3n":9.1,"sd2n":9.8,"sd1n":10.6,"sd0":11.5,"sd1":12.5,"sd2":13.6,"sd3":14.9},{"len":85.5,"L":-0.3521,"M":11.6218,"S":0.08163,"sd3n":9.2,"sd2n":9.9,"sd1n":10.7,"sd0":11.6,"sd1":12.6,"sd2":13.7,"sd3":15.0},{"len":86.0,"L":-0.3521,"M":11.7444,"S":0.08145,"sd3n":9.3,"sd2n":10.0,"sd1n":10.8,"sd0":11.7,"sd1":12.8,"sd2":13.9,"sd3":15.2},{"len":86.5,"L":-0.3521,"M":11.8678,"S":0.08128,"sd3n":9.4,"sd2n":10.1,"sd1n":11.0,"sd0":11.9,"sd1":12.9,"sd2":14.0,"sd3":15.3},{"len":87.0,"L":-0.3521,"M":11.9916,"S":0.08111,"sd3n":9.5,"sd2n":10.2,"sd1n":11.1,"sd0":12.0,"sd1":13.0,"sd2":14.2,"sd3":15.5},{"len":87.5,"L":-0.3521,"M":12.1152,"S":0.08096,"sd3n":9.6,"sd2n":10.4,"sd1n":11.2,"sd0":12.1,"sd1":13.2,"sd2":14.3,"sd3":15.6},{"len":88.0,"L":-0.3521,"M":12.2382,"S":0.08082,"sd3n":9.7,"sd2n":10.5,"sd1n":11.3,"sd0":12.2,"sd1":13.3,"sd2":14.5,"sd3":15.8},{"len":88.5,"L":-0.3521,"M":12.3603,"S":0.08069,"sd3n":9.8,"sd2n":10.6,"sd1n":11.4,"sd0":12.4,"sd1":13.4,"sd2":14.6,"sd3":15.9},{"len":89.0,"L":-0.3521,"M":12.4815,"S":0.08058,"sd3n":9.9,"sd2n":10.7,"sd1n":11.5,"sd0":12.5,"sd1":13.5,"sd2":14.7,"sd3":16.1},{"len":89.5,"L":-0.3521,"M":12.6017,"S":0.08048,"sd3n":10.0,"sd2n":10.8,"sd1n":11.6,"sd0":12.6,"sd1":13.7,"sd2":14.9,"sd3":16.2},{"len":90.0,"L":-0.3521,"M":12.7209,"S":0.08041,"sd3n":10.1,"sd2n":10.9,"sd1n":11.8,"sd0":12.7,"sd1":13.8,"sd2":15.0,"sd3":16.4},{"len":90.5,"L":-0.3521,"M":12.8392,"S":0.08034,"sd3n":10.2,"sd2n":11.0,"sd1n":11.9,"sd0":12.8,"sd1":13.9,"sd2":15.1,"sd3":16.5},{"len":91.0,"L":-0.3521,"M":12.9569,"S":0.0803,"sd3n":10.3,"sd2n":11.1,"sd1n":12.0,"sd0":13.0,"sd1":14.1,"sd2":15.3,"sd3":16.7},{"len":91.5,"L":-0.3521,"M":13.0742,"S":0.08026,"sd3n":10.4,"sd2n":11.2,"sd1n":12.1,"sd0":13.1,"sd1":14.2,"sd2":15.4,"sd3":16.8},{"len":92.0,"L":-0.3521,"M":13.191,"S":0.08025,"sd3n":10.5,"sd2n":11.3,"sd1n":12.2,"sd0":13.2,"sd1":14.3,"sd2":15.6,"sd3":17.0},{"len":92.5,"L":-0.3521,"M":13.3075,"S":0.08025,"sd3n":10.6,"sd2n":11.4,"sd1n":12.3,"sd0":13.3,"sd1":14.4,"sd2":15.7,"sd3":17.1},{"len":93.0,"L":-0.3521,"M":13.4239,"S":0.08026,"sd3n":10.7,"sd2n":11.5,"sd1n":12.4,"sd0":13.4,"sd1":14.6,"sd2":15.8,"sd3":17.3},{"len":93.5,"L":-0.3521,"M":13.5404,"S":0.08029,"sd3n":10.7,"sd2n":11.6,"sd1n":12.5,"sd0":13.5,"sd1":14.7,"sd2":16.0,"sd3":17.4},{"len":94.0,"L":-0.3521,"M":13.6572,"S":0.08034,"sd3n":10.8,"sd2n":11.7,"sd1n":12.6,"sd0":13.7,"sd1":14.8,"sd2":16.1,"sd3":17.6},{"len":94.5,"L":-0.3521,"M":13.7746,"S":0.0804,"sd3n":10.9,"sd2n":11.8,"sd1n":12.7,"sd0":13.8,"sd1":14.9,"sd2":16.3,"sd3":17.7},{"len":95.0,"L":-0.3521,"M":13.8928,"S":0.08047,"sd3n":11.0,"sd2n":11.9,"sd1n":12.8,"sd0":13.9,"sd1":15.1,"sd2":16.4,"sd3":17.9},{"len":95.5,"L":-0.3521,"M":14.012,"S":0.08056,"sd3n":11.1,"sd2n":12.0,"sd1n":12.9,"sd0":14.0,"sd1":15.2,"sd2":16.5,"sd3":18.0},{"len":96.0,"L":-0.3521,"M":14.1325,"S":0.08067,"sd3n":11.2,"sd2n":12.1,"sd1n":13.1,"sd0":14.1,"sd1":15.3,"sd2":16.7,"sd3":18.2},{"len":96.5,"L":-0.3521,"M":14.2544,"S":0.08078,"sd3n":11.3,"sd2n":12.2,"sd1n":13.2,"sd0":14.3,"sd1":15.5,"sd2":16.8,"sd3":18.4},{"len":97.0,"L":-0.3521,"M":14.3782,"S":0.08092,"sd3n":11.4,"sd2n":12.3,"sd1n":13.3,"sd0":14.4,"sd1":15.6,"sd2":17.0,"sd3":18.5},{"len":97.5,"L":-0.3521,"M":14.5038,"S":0.08106,"sd3n":11.5,"sd2n":12.4,"sd1n":13.4,"sd0":14.5,"sd1":15.7,"sd2":17.1,"sd3":18.7},{"len":98.0,"L":-0.3521,"M":14.6316,"S":0.08122,"sd3n":11.6,"sd2n":12.5,"sd1n":13.5,"sd0":14.6,"sd1":15.9,"sd2":17.3,"sd3":18.9},{"len":98.5,"L":-0.3521,"M":14.7614,"S":0.08139,"sd3n":11.7,"sd2n":12.6,"sd1n":13.6,"sd0":14.8,"sd1":16.0,"sd2":17.5,"sd3":19.1},{"len":99.0,"L":-0.3521,"M":14.8934,"S":0.08157,"sd3n":11.8,"sd2n":12.7,"sd1n":13.7,"sd0":14.9,"sd1":16.2,"sd2":17.6,"sd3":19.2},{"len":99.5,"L":-0.3521,"M":15.0275,"S":0.08177,"sd3n":11.9,"sd2n":12.8,"sd1n":13.9,"sd0":15.0,"sd1":16.3,"sd2":17.8,"sd3":19.4},{"len":100.0,"L":-0.3521,"M":15.1637,"S":0.08198,"sd3n":12.0,"sd2n":12.9,"sd1n":14.0,"sd0":15.2,"sd1":16.5,"sd2":18.0,"sd3":19.6}],"F":[{"len":45.0,"L":-0.3833,"M":2.4607,"S":0.09029,"sd3n":1.9,"sd2n":2.1,"sd1n":2.3,"sd0":2.5,"sd1":2.7,"sd2":3.0,"sd3":3.3},{"len":45.5,"L":-0.3833,"M":2.5457,"S":0.09033,"sd3n":2.0,"sd2n":2.1,"sd1n":2.3,"sd0":2.5,"sd1":2.8,"sd2":3.1,"sd3":3.4},{"len":46.0,"L":-0.3833,"M":2.6306,"S":0.09037,"sd3n":2.0,"sd2n":2.2,"sd1n":2.4,"sd0":2.6,"sd1":2.9,"sd2":3.2,"sd3":3.5},{"len":46.5,"L":-0.3833,"M":2.7155,"S":0.0904,"sd3n":2.1,"sd2n":2.3,"sd1n":2.5,"sd0":2.7,"sd1":3.0,"sd2":3.3,"sd3":3.6},{"len":47.0,"L":-0.3833,"M":2.8007,"S":0.09044,"sd3n":2.2,"sd2n":2.4,"sd1n":2.6,"sd0":2.8,"sd1":3.1,"sd2":3.4,"sd3":3.7},{"len":47.5,"L":-0.3833,"M":2.8867,"S":0.09048,"sd3n":2.2,"sd2n":2.4,"sd1n":2.6,"sd0":2.9,"sd1":3.2,"sd2":3.5,"sd3":3.8},{"len":48.0,"L":-0.3833,"M":2.9741,"S":0.09052,"sd3n":2.3,"sd2n":2.5,"sd1n":2.7,"sd0":3.0,"sd1":3.3,"sd2":3.6,"sd3":4.0},{"len":48.5,"L":-0.3833,"M":3.0636,"S":0.09056,"sd3n":2.4,"sd2n":2.6,"sd1n":2.8,"sd0":3.1,"sd1":3.4,"sd2":3.7,"sd3":4.1},{"len":49.0,"L":-0.3833,"M":3.156,"S":0.0906,"sd3n":2.4,"sd2n":2.6,"sd1n":2.9,"sd0":3.2,"sd1":3.5,"sd2":3.8,"sd3":4.2},{"len":49.5,"L":-0.3833,"M":3.252,"S":0.09064,"sd3n":2.5,"sd2n":2.7,"sd1n":3.0,"sd0":3.3,"sd1":3.6,"sd2":3.9,"sd3":4.3},{"len":50.0,"L":-0.3833,"M":3.3518,"S":0.09068,"sd3n":2.6,"sd2n":2.8,"sd1n":3.1,"sd0":3.4,"sd1":3.7,"sd2":4.0,"sd3":4.5},{"len":50.5,"L":-0.3833,"M":3.4557,"S":0.09072,"sd3n":2.7,"sd2n":2.9,"sd1n":3.2,"sd0":3.5,"sd1":3.8,"sd2":4.2,"sd3":4.6},{"len":51.0,"L":-0.3833,"M":3.5636,"S":0.09076,"sd3n":2.8,"sd2n":3.0,"sd1n":3.3,"sd0":3.6,"sd1":3.9,"sd2":4.3,"sd3":4.8},{"len":51.5,"L":-0.3833,"M":3.6754,"S":0.0908,"sd3n":2.8,"sd2n":3.1,"sd1n":3.4,"sd0":3.7,"sd1":4.0,"sd2":4.4,"sd3":4.9},{"len":52.0,"L":-0.3833,"M":3.7911,"S":0.09085,"sd3n":2.9,"sd2n":3.2,"sd1n":3.5,"sd0":3.8,"sd1":4.2,"sd2":4.6,"sd3":5.1},{"len":52.5,"L":-0.3833,"M":3.9105,"S":0.09089,"sd3n":3.0,"sd2n":3.3,"sd1n":3.6,"sd0":3.9,"sd1":4.3,"sd2":4.7,"sd3":5.2},{"len":53.0,"L":-0.3833,"M":4.0332,"S":0.09093,"sd3n":3.1,"sd2n":3.4,"sd1n":3.7,"sd0":4.0,"sd1":4.4,"sd2":4.9,"sd3":5.4},{"len":53.5,"L":-0.3833,"M":4.1591,"S":0.09098,"sd3n":3.2,"sd2n":3.5,"sd1n":3.8,"sd0":4.2,"sd1":4.6,"sd2":5.0,"sd3":5.5},{"len":54.0,"L":-0.3833,"M":4.2875,"S":0.09102,"sd3n":3.3,"sd2n":3.6,"sd1n":3.9,"sd0":4.3,"sd1":4.7,"sd2":5.2,"sd3":5.7},{"len":54.5,"L":-0.3833,"M":4.4179,"S":0.09106,"sd3n":3.4,"sd2n":3.7,"sd1n":4.0,"sd0":4.4,"sd1":4.8,"sd2":5.3,"sd3":5.9},{"len":55.0,"L":-0.3833,"M":4.5498,"S":0.0911,"sd3n":3.5,"sd2n":3.8,"sd1n":4.2,"sd0":4.5,"sd1":5.0,"sd2":5.5,"sd3":6.1},{"len":55.5,"L":-0.3833,"M":4.6827,"S":0.09114,"sd3n":3.6,"sd2n":3.9,"sd1n":4.3,"sd0":4.7,"sd1":5.1,"sd2":5.7,"sd3":6.3},{"len":56.0,"L":-0.3833,"M":4.8162,"S":0.09118,"sd3n":3.7,"sd2n":4.0,"sd1n":4.4,"sd0":4.8,"sd1":5.3,"sd2":5.8,"sd3":6.4},{"len":56.5,"L":-0.3833,"M":4.95,"S":0.09121,"sd3n":3.8,"sd2n":4.1,"sd1n":4.5,"sd0":5.0,"sd1":5.4,"sd2":6.0,"sd3":6.6},{"len":57.0,"L":-0.3833,"M":5.0837,"S":0.09125,"sd3n":3.9,"sd2n":4.3,"sd1n":4.6,"sd0":5.1,"sd1":5.6,"sd2":6.1,"sd3":6.8},{"len":57.5,"L":-0.3833,"M":5.2173,"S":0.09128,"sd3n":4.0,"sd2n":4.4,"sd1n":4.8,"sd0":5.2,"sd1":5.7,"sd2":6.3,"sd3":7.0},{"len":58.0,"L":-0.3833,"M":5.3507,"S":0.0913,"sd3n":4.1,"sd2n":4.5,"sd1n":4.9,"sd0":5.4,"sd1":5.9,"sd2":6.5,"sd3":7.1},{"len":58.5,"L":-0.3833,"M":5.4834,"S":0.09132,"sd3n":4.2,"sd2n":4.6,"sd1n":5.0,"sd0":5.5,"sd1":6.0,"sd2":6.6,"sd3":7.3},{"len":59.0,"L":-0.3833,"M":5.6151,"S":0.09134,"sd3n":4.3,"sd2n":4.7,"sd1n":5.1,"sd0":5.6,"sd1":6.2,"sd2":6.8,"sd3":7.5},{"len":59.5,"L":-0.3833,"M":5.7454,"S":0.09135,"sd3n":4.4,"sd2n":4.8,"sd1n":5.3,"sd0":5.7,"sd1":6.3,"sd2":6.9,"sd3":7.7},{"len":60.0,"L":-0.3833,"M":5.8742,"S":0.09136,"sd3n":4.5,"sd2n":4.9,"sd1n":5.4,"sd0":5.9,"sd1":6.4,"sd2":7.1,"sd3":7.8},{"len":60.5,"L":-0.3833,"M":6.0014,"S":0.09137,"sd3n":4.6,"sd2n":5.0,"sd1n":5.5,"sd0":6.0,"sd1":6.6,"sd2":7.3,"sd3":8.0},{"len":61.0,"L":-0.3833,"M":6.127,"S":0.09137,"sd3n":4.7,"sd2n":5.1,"sd1n":5.6,"sd0":6.1,"sd1":6.7,"sd2":7.4,"sd3":8.2},{"len":61.5,"L":-0.3833,"M":6.2511,"S":0.09136,"sd3n":4.8,"sd2n":5.2,"sd1n":5.7,"sd0":6.3,"sd1":6.9,"sd2":7.6,"sd3":8.4},{"len":62.0,"L":-0.3833,"M":6.3738,"S":0.09135,"sd3n":4.9,"sd2n":5.3,"sd1n":5.8,"sd0":6.4,"sd1":7.0,"sd2":7.7,"sd3":8.5},{"len":62.5,"L":-0.3833,"M":6.4948,"S":0.09133,"sd3n":5.0,"sd2n":5.4,"sd1n":5.9,"sd0":6.5,"sd1":7.1,"sd2":7.8,"sd3":8.7},{"len":63.0,"L":-0.3833,"M":6.6144,"S":0.09131,"sd3n":5.1,"sd2n":5.5,"sd1n":6.0,"sd0":6.6,"sd1":7.3,"sd2":8.0,"sd3":8.8},{"len":63.5,"L":-0.3833,"M":6.7328,"S":0.09129,"sd3n":5.2,"sd2n":5.6,"sd1n":6.2,"sd0":6.7,"sd1":7.4,"sd2":8.1,"sd3":9.0},{"len":64.0,"L":-0.3833,"M":6.8501,"S":0.09126,"sd3n":5.3,"sd2n":5.7,"sd1n":6.3,"sd0":6.9,"sd1":7.5,"sd2":8.3,"sd3":9.1},{"len":64.5,"L":-0.3833,"M":6.9662,"S":0.09123,"sd3n":5.4,"sd2n":5.8,"sd1n":6.4,"sd0":7.0,"sd1":7.6,"sd2":8.4,"sd3":9.3},{"len":65.0,"L":-0.3833,"M":7.0812,"S":0.09119,"sd3n":5.5,"sd2n":5.9,"sd1n":6.5,"sd0":7.1,"sd1":7.8,"sd2":8.6,"sd3":9.5},{"len":65.5,"L":-0.3833,"M":7.195,"S":0.09115,"sd3n":5.5,"sd2n":6.0,"sd1n":6.6,"sd0":7.2,"sd1":7.9,"sd2":8.7,"sd3":9.6},{"len":66.0,"L":-0.3833,"M":7.3076,"S":0.0911,"sd3n":5.6,"sd2n":6.1,"sd1n":6.7,"sd0":7.3,"sd1":8.0,"sd2":8.8,"sd3":9.8},{"len":66.5,"L":-0.3833,"M":7.4189,"S":0.09106,"sd3n":5.7,"sd2n":6.2,"sd1n":6.8,"sd0":7.4,"sd1":8.1,"sd2":9.0,"sd3":9.9},{"len":67.0,"L":-0.3833,"M":7.5288,"S":0.09101,"sd3n":5.8,"sd2n":6.3,"sd1n":6.9,"sd0":7.5,"sd1":8.3,"sd2":9.1,"sd3":10.0},{"len":67.5,"L":-0.3833,"M":7.6375,"S":0.09096,"sd3n":5.9,"sd2n":6.4,"sd1n":7.0,"sd0":7.6,"sd1":8.4,"sd2":9.2,"sd3":10.2},{"len":68.0,"L":-0.3833,"M":7.7448,"S":0.0909,"sd3n":6.0,"sd2n":6.5,"sd1n":7.1,"sd0":7.7,"sd1":8.5,"sd2":9.4,"sd3":10.3},{"len":68.5,"L":-0.3833,"M":7.8509,"S":0.09085,"sd3n":6.1,"sd2n":6.6,"sd1n":7.2,"sd0":7.9,"sd1":8.6,"sd2":9.5,"sd3":10.5},{"len":69.0,"L":-0.3833,"M":7.9559,"S":0.09079,"sd3n":6.1,"sd2n":6.7,"sd1n":7.3,"sd0":8.0,"sd1":8.7,"sd2":9.6,"sd3":10.6},{"len":69.5,"L":-0.3833,"M":8.0599,"S":0.09074,"sd3n":6.2,"sd2n":6.8,"sd1n":7.4,"sd0":8.1,"sd1":8.8,"sd2":9.7,"sd3":10.7},{"len":70.0,"L":-0.3833,"M":8.163,"S":0.09068,"sd3n":6.3,"sd2n":6.9,"sd1n":7.5,"sd0":8.2,"sd1":9.0,"sd2":9.9,"sd3":10.9},{"len":70.5,"L":-0.3833,"M":8.2651,"S":0.09062,"sd3n":6.4,"sd2n":6.9,"sd1n":7.6,"sd0":8.3,"sd1":9.1,"sd2":10.0,"sd3":11.0},{"len":71.0,"L":-0.3833,"M":8.3666,"S":0.09056,"sd3n":6.5,"sd2n":7.0,"sd1n":7.7,"sd0":8.4,"sd1":9.2,"sd2":10.1,"sd3":11.1},{"len":71.5,"L":-0.3833,"M":8.4676,"S":0.0905,"sd3n":6.5,"sd2n":7.1,"sd1n":7.7,"sd0":8.5,"sd1":9.3,"sd2":10.2,"sd3":11.3},{"len":72.0,"L":-0.3833,"M":8.5679,"S":0.09043,"sd3n":6.6,"sd2n":7.2,"sd1n":7.8,"sd0":8.6,"sd1":9.4,"sd2":10.3,"sd3":11.4},{"len":72.5,"L":-0.3833,"M":8.6674,"S":0.09037,"sd3n":6.7,"sd2n":7.3,"sd1n":7.9,"sd0":8.7,"sd1":9.5,"sd2":10.5,"sd3":11.5},{"len":73.0,"L":-0.3833,"M":8.7661,"S":0.09031,"sd3n":6.8,"sd2n":7.4,"sd1n":8.0,"sd0":8.8,"sd1":9.6,"sd2":10.6,"sd3":11.7},{"len":73.5,"L":-0.3833,"M":8.8638,"S":0.09025,"sd3n":6.9,"sd2n":7.4,"sd1n":8.1,"sd0":8.9,"sd1":9.7,"sd2":10.7,"sd3":11.8},{"len":74.0,"L":-0.3833,"M":8.9601,"S":0.09018,"sd3n":6.9,"sd2n":7.5,"sd1n":8.2,"sd0":9.0,"sd1":9.8,"sd2":10.8,"sd3":11.9},{"len":74.5,"L":-0.3833,"M":9.0552,"S":0.09012,"sd3n":7.0,"sd2n":7.6,"sd1n":8.3,"sd0":9.1,"sd1":9.9,"sd2":10.9,"sd3":12.0},{"len":75.0,"L":-0.3833,"M":9.149,"S":0.09005,"sd3n":7.1,"sd2n":7.7,"sd1n":8.4,"sd0":9.1,"sd1":10.0,"sd2":11.0,"sd3":12.2},{"len":75.5,"L":-0.3833,"M":9.2418,"S":0.08999,"sd3n":7.1,"sd2n":7.8,"sd1n":8.5,"sd0":9.2,"sd1":10.1,"sd2":11.1,"sd3":12.3},{"len":76.0,"L":-0.3833,"M":9.3337,"S":0.08992,"sd3n":7.2,"sd2n":7.8,"sd1n":8.5,"sd0":9.3,"sd1":10.2,"sd2":11.2,"sd3":12.4},{"len":76.5,"L":-0.3833,"M":9.4252,"S":0.08985,"sd3n":7.3,"sd2n":7.9,"sd1n":8.6,"sd0":9.4,"sd1":10.3,"sd2":11.4,"sd3":12.5},{"len":77.0,"L":-0.3833,"M":9.5166,"S":0.08979,"sd3n":7.4,"sd2n":8.0,"sd1n":8.7,"sd0":9.5,"sd1":10.4,"sd2":11.5,"sd3":12.6},{"len":77.5,"L":-0.3833,"M":9.6086,"S":0.08972,"sd3n":7.4,"sd2n":8.1,"sd1n":8.8,"sd0":9.6,"sd1":10.5,"sd2":11.6,"sd3":12.8},{"len":78.0,"L":-0.3833,"M":9.7015,"S":0.08965,"sd3n":7.5,"sd2n":8.2,"sd1n":8.9,"sd0":9.7,"sd1":10.6,"sd2":11.7,"sd3":12.9},{"len":78.5,"L":-0.3833,"M":9.7957,"S":0.08959,"sd3n":7.6,"sd2n":8.2,"sd1n":9.0,"sd0":9.8,"sd1":10.7,"sd2":11.8,"sd3":13.0},{"len":79.0,"L":-0.3833,"M":9.8915,"S":0.08952,"sd3n":7.7,"sd2n":8.3,"sd1n":9.1,"sd0":9.9,"sd1":10.8,"sd2":11.9,"sd3":13.1},{"len":79.5,"L":-0.3833,"M":9.9892,"S":0.08946,"sd3n":7.7,"sd2n":8.4,"sd1n":9.1,"sd0":10.0,"sd1":10.9,"sd2":12.0,"sd3":13.3},{"len":80.0,"L":-0.3833,"M":10.0891,"S":0.0894,"sd3n":7.8,"sd2n":8.5,"sd1n":9.2,"sd0":10.1,"sd1":11.0,"sd2":12.1,"sd3":13.4},{"len":80.5,"L":-0.3833,"M":10.1916,"S":0.08934,"sd3n":7.9,"sd2n":8.6,"sd1n":9.3,"sd0":10.2,"sd1":11.2,"sd2":12.3,"sd3":13.5},{"len":81.0,"L":-0.3833,"M":10.2965,"S":0.08928,"sd3n":8.0,"sd2n":8.7,"sd1n":9.4,"sd0":10.3,"sd1":11.3,"sd2":12.4,"sd3":13.7},{"len":81.5,"L":-0.3833,"M":10.4041,"S":0.08923,"sd3n":8.1,"sd2n":8.8,"sd1n":9.5,"sd0":10.4,"sd1":11.4,"sd2":12.5,"sd3":13.8},{"len":82.0,"L":-0.3833,"M":10.514,"S":0.08918,"sd3n":8.1,"sd2n":8.8,"sd1n":9.6,"sd0":10.5,"sd1":11.5,"sd2":12.6,"sd3":13.9},{"len":82.5,"L":-0.3833,"M":10.6263,"S":0.08914,"sd3n":8.2,"sd2n":8.9,"sd1n":9.7,"sd0":10.6,"sd1":11.6,"sd2":12.8,"sd3":14.1},{"len":83.0,"L":-0.3833,"M":10.741,"S":0.0891,"sd3n":8.3,"sd2n":9.0,"sd1n":9.8,"sd0":10.7,"sd1":11.8,"sd2":12.9,"sd3":14.2},{"len":83.5,"L":-0.3833,"M":10.8578,"S":0.08906,"sd3n":8.4,"sd2n":9.1,"sd1n":9.9,"sd0":10.9,"sd1":11.9,"sd2":13.1,"sd3":14.4},{"len":84.0,"L":-0.3833,"M":10.9767,"S":0.08903,"sd3n":8.5,"sd2n":9.2,"sd1n":10.1,"sd0":11.0,"sd1":12.0,"sd2":13.2,"sd3":14.5},{"len":84.5,"L":-0.3833,"M":11.0974,"S":0.089,"sd3n":8.6,"sd2n":9.3,"sd1n":10.2,"sd0":11.1,"sd1":12.1,"sd2":13.3,"sd3":14.7},{"len":85.0,"L":-0.3833,"M":11.2198,"S":0.08898,"sd3n":8.7,"sd2n":9.4,"sd1n":10.3,"sd0":11.2,"sd1":12.3,"sd2":13.5,"sd3":14.9},{"len":85.5,"L":-0.3833,"M":11.3435,"S":0.08897,"sd3n":8.8,"sd2n":9.5,"sd1n":10.4,"sd0":11.3,"sd1":12.4,"sd2":13.6,"sd3":15.0},{"len":86.0,"L":-0.3833,"M":11.4684,"S":0.08895,"sd3n":8.9,"sd2n":9.7,"sd1n":10.5,"sd0":11.5,"sd1":12.6,"sd2":13.8,"sd3":15.2},{"len":86.5,"L":-0.3833,"M":11.594,"S":0.08895,"sd3n":9.0,"sd2n":9.8,"sd1n":10.6,"sd0":11.6,"sd1":12.7,"sd2":13.9,"sd3":15.4},{"len":87.0,"L":-0.3833,"M":11.7201,"S":0.08895,"sd3n":9.1,"sd2n":9.9,"sd1n":10.7,"sd0":11.7,"sd1":12.8,"sd2":14.1,"sd3":15.5},{"len":87.5,"L":-0.3833,"M":11.8461,"S":0.08895,"sd3n":9.2,"sd2n":10.0,"sd1n":10.9,"sd0":11.8,"sd1":13.0,"sd2":14.2,"sd3":15.7},{"len":88.0,"L":-0.3833,"M":11.972,"S":0.08896,"sd3n":9.3,"sd2n":10.1,"sd1n":11.0,"sd0":12.0,"sd1":13.1,"sd2":14.4,"sd3":15.9},{"len":88.5,"L":-0.3833,"M":12.0976,"S":0.08898,"sd3n":9.4,"sd2n":10.2,"sd1n":11.1,"sd0":12.1,"sd1":13.2,"sd2":14.5,"sd3":16.0},{"len":89.0,"L":-0.3833,"M":12.2229,"S":0.089,"sd3n":9.5,"sd2n":10.3,"sd1n":11.2,"sd0":12.2,"sd1":13.4,"sd2":14.7,"sd3":16.2},{"len":89.5,"L":-0.3833,"M":12.3477,"S":0.08903,"sd3n":9.6,"sd2n":10.4,"sd1n":11.3,"sd0":12.3,"sd1":13.5,"sd2":14.8,"sd3":16.4},{"len":90.0,"L":-0.3833,"M":12.4723,"S":0.08906,"sd3n":9.7,"sd2n":10.5,"sd1n":11.4,"sd0":12.5,"sd1":13.7,"sd2":15.0,"sd3":16.5},{"len":90.5,"L":-0.3833,"M":12.5965,"S":0.08909,"sd3n":9.8,"sd2n":10.6,"sd1n":11.5,"sd0":12.6,"sd1":13.8,"sd2":15.1,"sd3":16.7},{"len":91.0,"L":-0.3833,"M":12.7205,"S":0.08913,"sd3n":9.9,"sd2n":10.7,"sd1n":11.7,"sd0":12.7,"sd1":13.9,"sd2":15.3,"sd3":16.9},{"len":91.5,"L":-0.3833,"M":12.8443,"S":0.08918,"sd3n":10.0,"sd2n":10.8,"sd1n":11.8,"sd0":12.8,"sd1":14.1,"sd2":15.5,"sd3":17.0},{"len":92.0,"L":-0.3833,"M":12.9681,"S":0.08923,"sd3n":10.1,"sd2n":10.9,"sd1n":11.9,"sd0":13.0,"sd1":14.2,"sd2":15.6,"sd3":17.2},{"len":92.5,"L":-0.3833,"M":13.092,"S":0.08928,"sd3n":10.1,"sd2n":11.0,"sd1n":12.0,"sd0":13.1,"sd1":14.3,"sd2":15.8,"sd3":17.4},{"len":93.0,"L":-0.3833,"M":13.2158,"S":0.08934,"sd3n":10.2,"sd2n":11.1,"sd1n":12.1,"sd0":13.2,"sd1":14.5,"sd2":15.9,"sd3":17.5},{"len":93.5,"L":-0.3833,"M":13.3399,"S":0.08941,"sd3n":10.3,"sd2n":11.2,"sd1n":12.2,"sd0":13.3,"sd1":14.6,"sd2":16.1,"sd3":17.7},{"len":94.0,"L":-0.3833,"M":13.4643,"S":0.08948,"sd3n":10.4,"sd2n":11.3,"sd1n":12.3,"sd0":13.5,"sd1":14.7,"sd2":16.2,"sd3":17.9},{"len":94.5,"L":-0.3833,"M":13.5892,"S":0.08955,"sd3n":10.5,"sd2n":11.4,"sd1n":12.4,"sd0":13.6,"sd1":14.9,"sd2":16.4,"sd3":18.0},{"len":95.0,"L":-0.3833,"M":13.7146,"S":0.08963,"sd3n":10.6,"sd2n":11.5,"sd1n":12.6,"sd0":13.7,"sd1":15.0,"sd2":16.5,"sd3":18.2},{"len":95.5,"L":-0.3833,"M":13.8408,"S":0.08972,"sd3n":10.7,"sd2n":11.6,"sd1n":12.7,"sd0":13.8,"sd1":15.2,"sd2":16.7,"sd3":18.4},{"len":96.0,"L":-0.3833,"M":13.9676,"S":0.08981,"sd3n":10.8,"sd2n":11.7,"sd1n":12.8,"sd0":14.0,"sd1":15.3,"sd2":16.8,"sd3":18.6},{"len":96.5,"L":-0.3833,"M":14.0953,"S":0.0899,"sd3n":10.9,"sd2n":11.8,"sd1n":12.9,"sd0":14.1,"sd1":15.4,"sd2":17.0,"sd3":18.7},{"len":97.0,"L":-0.3833,"M":14.2239,"S":0.09,"sd3n":11.0,"sd2n":12.0,"sd1n":13.0,"sd0":14.2,"sd1":15.6,"sd2":17.1,"sd3":18.9},{"len":97.5,"L":-0.3833,"M":14.3537,"S":0.0901,"sd3n":11.1,"sd2n":12.1,"sd1n":13.1,"sd0":14.4,"sd1":15.7,"sd2":17.3,"sd3":19.1},{"len":98.0,"L":-0.3833,"M":14.4848,"S":0.09021,"sd3n":11.2,"sd2n":12.2,"sd1n":13.3,"sd0":14.5,"sd1":15.9,"sd2":17.5,"sd3":19.3},{"len":98.5,"L":-0.3833,"M":14.6174,"S":0.09033,"sd3n":11.3,"sd2n":12.3,"sd1n":13.4,"sd0":14.6,"sd1":16.0,"sd2":17.6,"sd3":19.5},{"len":99.0,"L":-0.3833,"M":14.7519,"S":0.09044,"sd3n":11.4,"sd2n":12.4,"sd1n":13.5,"sd0":14.8,"sd1":16.2,"sd2":17.8,"sd3":19.6},{"len":99.5,"L":-0.3833,"M":14.8882,"S":0.09057,"sd3n":11.5,"sd2n":12.5,"sd1n":13.6,"sd0":14.9,"sd1":16.3,"sd2":18.0,"sd3":19.8},{"len":100.0,"L":-0.3833,"M":15.0267,"S":0.09069,"sd3n":11.6,"sd2n":12.6,"sd1n":13.7,"sd0":15.0,"sd1":16.5,"sd2":18.1,"sd3":20.0}]};
 
 /* ============================================================
    PROTOCOLOS · estruturados por idade
@@ -1170,6 +1595,36 @@ const NUTRICAO = {
   24: "Qualidade da dieta da família + LM (se em curso). Atenção ao IMC. Evitar telas durante refeições."
 };
 
+/* M-CHAT-R · 20 itens, versão brasileira oficial.
+   © 2009 Robins, Fein, & Barton. Tradução: Losapio, Siquara, Lampreia, Lázaro, & Pondé.
+   Algoritmo: NÃO indica risco em todos os itens, EXCETO 2, 5 e 12, onde SIM indica risco. */
+const MCHAT = {
+  ref: "© 2009 Robins, Fein & Barton. Tradução: Losapio, Siquara, Lampreia, Lázaro & Pondé.",
+  simPontua: [2, 5, 12],
+  itens: [
+    {n:1,  q:"Se você apontar para algum objeto no quarto, o seu filho olha para este objeto?", ex:"Se você aponta para um brinquedo ou animal, ele olha para ele?"},
+    {n:2,  q:"Alguma vez você se perguntou se o seu filho pode ser surdo?", ex:""},
+    {n:3,  q:"O seu filho brinca de faz de contas?", ex:"Faz de conta que bebe em copo vazio, fala ao telefone, dá comida a uma boneca?"},
+    {n:4,  q:"O seu filho gosta de subir nas coisas?", ex:"Móveis, brinquedos de parque ou escadas."},
+    {n:5,  q:"O seu filho faz movimentos estranhos com os dedos perto dos olhos?", ex:"Mexe os dedos em frente aos olhos e fica olhando para eles?"},
+    {n:6,  q:"O seu filho aponta com o dedo para pedir algo ou conseguir ajuda?", ex:"Aponta para um biscoito ou brinquedo fora do alcance dele?"},
+    {n:7,  q:"O seu filho aponta com o dedo para mostrar algo interessante para você?", ex:"Aponta para um avião no céu ou um caminhão grande na rua."},
+    {n:8,  q:"O seu filho se interessa por outras crianças?", ex:"Olha para outras crianças, sorri para elas ou se aproxima delas?"},
+    {n:9,  q:"O seu filho traz coisas para mostrar a você ou as segura para que você veja, só para compartilhar?", ex:"Uma flor, um bichinho de pelúcia, um caminhão de brinquedo."},
+    {n:10, q:"O seu filho responde quando você o chama pelo nome?", ex:"Olha, fala, emite som ou para o que está fazendo quando chamado?"},
+    {n:11, q:"Quando você sorri para o seu filho, ele sorri de volta para você?", ex:""},
+    {n:12, q:"O seu filho fica muito incomodado com barulhos do dia a dia?", ex:"Grita ou chora ao ouvir liquidificador ou música alta?"},
+    {n:13, q:"O seu filho anda?", ex:"Anda sem se segurar ou apoiar em algo."},
+    {n:14, q:"O seu filho olha nos seus olhos quando você fala, brinca ou veste a roupa dele?", ex:""},
+    {n:15, q:"O seu filho tenta imitar o que você faz?", ex:"Dá tchau, bate palmas ou manda um beijo quando você faz?"},
+    {n:16, q:"Quando você vira a cabeça para olhar algo, o seu filho olha ao redor para ver o que você olha?", ex:""},
+    {n:17, q:"O seu filho tenta fazer você olhar para ele?", ex:"Olha para ser elogiado, ou diz \u201colha mãe!\u201d?"},
+    {n:18, q:"O seu filho compreende quando você pede para ele fazer alguma coisa?", ex:"Sem apontar: entende \u201ccoloca o copo na mesa\u201d ou \u201cliga a TV\u201d?"},
+    {n:19, q:"Quando acontece algo novo, o seu filho olha para o seu rosto para ver como você se sente?", ex:"Ouve um barulho estranho ou vê um brinquedo novo e olha para você?"},
+    {n:20, q:"O seu filho gosta de atividades de movimento?", ex:"Ser balançado ou pular no seu colo."}
+  ]
+};
+
 /* ============================================================
    FUNÇÕES DE CÁLCULO
    ============================================================ */
@@ -1213,56 +1668,139 @@ function correctedAge(dob, refDate, igWeeks, igDays) {
   return { ...corr, corrected: true, correctionDays };
 }
 
-function zScorePeso(weight, ageMonthsTotal, sex) {
-  /* Calcula z-score peso por idade pelo método LMS oficial.
-     ageMonthsTotal pode ser fracionário (mês.fração). Interpola entre os dois meses mais próximos. */
-  if (!weight || ageMonthsTotal == null || !sex) return null;
-  const table = WFA_LMS[sex];
-  if (!table) return null;
-
-  const mFloor = Math.max(0, Math.min(24, Math.floor(ageMonthsTotal)));
-  const mCeil  = Math.max(0, Math.min(24, Math.ceil(ageMonthsTotal)));
-  const r1 = table[mFloor];
-  const r2 = table[mCeil];
-  if (!r1 || !r2) return null;
-
-  let L, M, S;
-  if (mFloor === mCeil) {
-    L = r1.L; M = r1.M; S = r1.S;
-  } else {
-    const t = ageMonthsTotal - mFloor;
-    L = r1.L + (r2.L - r1.L) * t;
-    M = r1.M + (r2.M - r1.M) * t;
-    S = r1.S + (r2.S - r1.S) * t;
-  }
+function zFromLMS(X, L, M, S) {
+  /* Núcleo do cálculo z-score pelo método LMS, com ajuste OMS para |z|>3. */
   let z;
   if (Math.abs(L) < 1e-7) {
-    z = Math.log(weight / M) / S;
+    z = Math.log(X / M) / S;
   } else {
-    z = (Math.pow(weight / M, L) - 1) / (L * S);
+    z = (Math.pow(X / M, L) - 1) / (L * S);
   }
-  /* Ajuste OMS para |z| > 3 */
   if (z > 3) {
     const SD3 = M * Math.pow(1 + L*S*3, 1/L);
     const SD23 = SD3 - M * Math.pow(1 + L*S*2, 1/L);
-    z = 3 + (weight - SD3) / SD23;
+    z = 3 + (X - SD3) / SD23;
   } else if (z < -3) {
     const SD3n = M * Math.pow(1 + L*S*(-3), 1/L);
     const SD23n = M * Math.pow(1 + L*S*(-2), 1/L) - SD3n;
-    z = -3 + (weight - SD3n) / SD23n;
+    z = -3 + (X - SD3n) / SD23n;
   }
   return z;
 }
 
+function lmsByAge(table, ageMonthsTotal) {
+  /* Interpola L, M, S por idade mensal (0-24). */
+  if (!table) return null;
+  const mFloor = Math.max(0, Math.min(24, Math.floor(ageMonthsTotal)));
+  const mCeil  = Math.max(0, Math.min(24, Math.ceil(ageMonthsTotal)));
+  const r1 = table[mFloor], r2 = table[mCeil];
+  if (!r1 || !r2) return null;
+  if (mFloor === mCeil) return { L: r1.L, M: r1.M, S: r1.S };
+  const t = ageMonthsTotal - mFloor;
+  return {
+    L: r1.L + (r2.L - r1.L) * t,
+    M: r1.M + (r2.M - r1.M) * t,
+    S: r1.S + (r2.S - r1.S) * t
+  };
+}
+
+function lmsByLength(table, lengthCm) {
+  /* Interpola L, M, S por comprimento (passos de 0.5 cm). Tabela ordenada por len. */
+  if (!table || !table.length) return null;
+  if (lengthCm <= table[0].len) { const r = table[0]; return { L: r.L, M: r.M, S: r.S }; }
+  if (lengthCm >= table[table.length-1].len) { const r = table[table.length-1]; return { L: r.L, M: r.M, S: r.S }; }
+  let below = table[0], above = table[table.length-1];
+  for (let i = 0; i < table.length; i++) {
+    if (table[i].len <= lengthCm) below = table[i];
+    if (table[i].len >= lengthCm) { above = table[i]; break; }
+  }
+  if (below.len === above.len) return { L: below.L, M: below.M, S: below.S };
+  const t = (lengthCm - below.len) / (above.len - below.len);
+  return {
+    L: below.L + (above.L - below.L) * t,
+    M: below.M + (above.M - below.M) * t,
+    S: below.S + (above.S - below.S) * t
+  };
+}
+
+/* Calcula todos os z-scores disponíveis para o estado atual.
+   Retorna { wfa, lhfa, hcfa, bmifa, wfl } (cada um número ou null). */
+function computeAllZ(sex, ageMonthsTotal, weight, height, hc) {
+  const out = { wfa: null, lhfa: null, hcfa: null, bmifa: null, wfl: null };
+  if (!sex) return out;
+  /* por idade */
+  if (ageMonthsTotal != null && ageMonthsTotal >= 0 && ageMonthsTotal <= 24) {
+    if (weight) {
+      const l = lmsByAge(WFA_LMS[sex], ageMonthsTotal);
+      if (l) out.wfa = zFromLMS(weight, l.L, l.M, l.S);
+    }
+    if (height) {
+      const l = lmsByAge(BYAGE_LMS.lhfa[sex], ageMonthsTotal);
+      if (l) out.lhfa = zFromLMS(height, l.L, l.M, l.S);
+    }
+    if (hc) {
+      const l = lmsByAge(BYAGE_LMS.hcfa[sex], ageMonthsTotal);
+      if (l) out.hcfa = zFromLMS(hc, l.L, l.M, l.S);
+    }
+    if (weight && height) {
+      const imc = weight / Math.pow(height/100, 2);
+      const l = lmsByAge(BYAGE_LMS.bmifa[sex], ageMonthsTotal);
+      if (l) out.bmifa = zFromLMS(imc, l.L, l.M, l.S);
+    }
+  }
+  /* peso por comprimento (independe de idade, mas exige estatura na faixa 45-100cm) */
+  if (weight && height && height >= 45 && height <= 100) {
+    const l = lmsByLength(WFL_LMS[sex], height);
+    if (l) out.wfl = zFromLMS(weight, l.L, l.M, l.S);
+  }
+  return out;
+}
+
+/* Mantida por compatibilidade: z-score peso por idade isolado */
+function zScorePeso(weight, ageMonthsTotal, sex) {
+  if (!weight || ageMonthsTotal == null || !sex) return null;
+  if (ageMonthsTotal < 0 || ageMonthsTotal > 24) return null;
+  const l = lmsByAge(WFA_LMS[sex], ageMonthsTotal);
+  if (!l) return null;
+  return zFromLMS(weight, l.L, l.M, l.S);
+}
+
+/* ===== CLASSIFICAÇÕES NUTRICIONAIS (SISVAN/MS, < 5 anos) ===== */
+
 function classifyZ(z) {
-  /* Retorna nível 1-5 e rótulo. Para peso por idade (PI). */
+  /* Peso por idade (P/I) */
   if (z == null || isNaN(z)) return { level: 0, label: "—" };
   if (z < -3) return { level: 5, label: "Muito baixo peso" };
   if (z < -2) return { level: 4, label: "Baixo peso" };
-  if (z < -1) return { level: 2, label: "Peso adequado (limítrofe inferior)" };
   if (z <= 2) return { level: 1, label: "Peso adequado" };
-  if (z <= 3) return { level: 2, label: "Peso elevado" };
-  return { level: 3, label: "Peso muito elevado" };
+  return { level: 2, label: "Peso elevado" };
+}
+
+function classifyEstatura(z) {
+  /* Estatura por idade (E/I) */
+  if (z == null || isNaN(z)) return { level: 0, label: "—" };
+  if (z < -3) return { level: 5, label: "Muito baixa estatura" };
+  if (z < -2) return { level: 3, label: "Baixa estatura" };
+  return { level: 1, label: "Estatura adequada" };
+}
+
+function classifyImcOuPE(z) {
+  /* IMC por idade ou Peso por estatura (P/E), < 5 anos */
+  if (z == null || isNaN(z)) return { level: 0, label: "—" };
+  if (z < -3) return { level: 5, label: "Magreza acentuada" };
+  if (z < -2) return { level: 4, label: "Magreza" };
+  if (z <= 1) return { level: 1, label: "Eutrofia" };
+  if (z <= 2) return { level: 2, label: "Risco de sobrepeso" };
+  if (z <= 3) return { level: 3, label: "Sobrepeso" };
+  return { level: 4, label: "Obesidade" };
+}
+
+function classifyPC(z) {
+  /* Perímetro cefálico por idade */
+  if (z == null || isNaN(z)) return { level: 0, label: "—" };
+  if (z < -2) return { level: 4, label: "Abaixo do esperado" };
+  if (z <= 2) return { level: 1, label: "Adequado" };
+  return { level: 3, label: "Acima do esperado" };
 }
 
 function consultIndex(ageMonths) {
@@ -1322,6 +1860,11 @@ function calcFerro(state, ageMonthsCorr) {
 
   const doseMg = (mgKgDia * w).toFixed(1);
 
+  /* Conversão para apresentação RENAME: solução oral 25 mg/mL, 1 gota = 1 mg Fe, 25 gotas = 1 mL */
+  const doseMgNum = mgKgDia * w;
+  const gotas = Math.round(doseMgNum);          /* 1 gota = 1 mg Fe */
+  const ml = (doseMgNum / 25).toFixed(2);        /* 25 mg/mL */
+
   /* Checa se a criança já está na idade de iniciar */
   let status;
   if (mgKgDia === 1 && !hasRisk && !isPreterm && (!bw || bw >= 2500)) {
@@ -1336,10 +1879,90 @@ function calcFerro(state, ageMonthsCorr) {
     text: `${mgKgDia} mg de ferro elementar/kg/dia\n= ${doseMg} mg/dia para ${w} kg\nInício: ${inicio}\nDuração: ${ate}\nStatus: ${status}`,
     dose: doseMg,
     mgKgDia: mgKgDia,
+    gotas: gotas,
+    ml: ml,
     status: status,
     inicio: inicio,
     ate: ate
   };
+}
+
+/* Vitamina D (Ad-til, 250 UI D + 1250 UI A por gota) por idade.
+   Meta: 400 UI/dia até 12m, 600 UI/dia de 12 a 24m.
+   Dose prática consagrada do Ad-til: 2 gotas/dia. */
+function calcVitD(ageMonths) {
+  const am = ageMonths != null ? ageMonths : 0;
+  const metaUI = am < 12 ? 400 : 600;
+  const UI_D_GOTA = 250, UI_A_GOTA = 1250;
+  const gotas = 2;                              /* dose padrão de manutenção do Ad-til */
+  const dEntregue = gotas * UI_D_GOTA;          /* 500 UI D */
+  const aEntregue = gotas * UI_A_GOTA;          /* 2500 UI A */
+  const abaixoMeta = dEntregue < metaUI;        /* true dos 12 aos 24m (meta 600) */
+  return { metaUI, gotas, dEntregue, aEntregue, abaixoMeta, UI_D_GOTA, UI_A_GOTA };
+}
+
+/* M-CHAT-R · pontua as respostas coletadas. respostas = {n: 'sim'|'nao'} */
+function scoreMchat(respostas) {
+  let score = 0, answered = 0;
+  MCHAT.itens.forEach(it => {
+    const r = respostas[it.n];
+    if (!r) return;
+    answered++;
+    const risco = MCHAT.simPontua.includes(it.n) ? (r === 'sim') : (r === 'nao');
+    if (risco) score++;
+  });
+  let nivel, label, conduta;
+  if (score <= 2) {
+    nivel = 1; label = "Baixo risco";
+    conduta = "Reavaliar após o 2º aniversário se < 24 meses. Nova triagem em visitas futuras.";
+  } else if (score <= 7) {
+    nivel = 3; label = "Risco médio";
+    conduta = "Aplicar a consulta de seguimento (M-CHAT-R/F). Se o escore permanecer ≥ 2, encaminhar para avaliação diagnóstica e intervenção precoce.";
+  } else {
+    nivel = 4; label = "Risco elevado";
+    conduta = "Encaminhar imediatamente para avaliação diagnóstica e intervenção precoce, sem necessidade do seguimento.";
+  }
+  return { score, answered, nivel, label, conduta, complete: answered === 20 };
+}
+
+/* Palivizumabe · elegibilidade pelo PCDT do Ministério da Saúde.
+   1) Prematuro IG <= 28s6d e idade < 12 meses.
+   2) < 24 meses com displasia broncopulmonar (pneumopatia crônica da prematuridade)
+      ou cardiopatia congênita com repercussão hemodinâmica. */
+function calcPalivizumabe(state, ageMonthsReal) {
+  const igTotalDays = (state.igWeeks || 40)*7 + (state.igDays || 0);
+  const isVeryPreterm = igTotalDays <= (28*7 + 6);  /* <= 28 semanas e 6 dias */
+  const elegPrematuro = isVeryPreterm && ageMonthsReal != null && ageMonthsReal < 12;
+  const elegComorbidade = !!state.pneumoCardio && ageMonthsReal != null && ageMonthsReal < 24;
+  const elegivel = elegPrematuro || elegComorbidade;
+  const dose = state.weight ? Math.round(15 * state.weight) : null;
+  /* Sazonalidade (região Sul): abril a agosto. Conferir calendário regional vigente. */
+  const mes = (state.cDate ? state.cDate.getMonth() : new Date().getMonth()) + 1;
+  const naSazonalidade = mes >= 4 && mes <= 8;
+  return { elegivel, elegPrematuro, elegComorbidade, isVeryPreterm, dose, naSazonalidade, mes };
+}
+
+/* Gatilhos de encaminhamento · deriva sugestões dos achados.
+   Retorna lista de {area, motivo, urgencia} */
+function encaminhamentos(state, allZ, consultIdx, mchat, pvz, dpmRatio) {
+  const out = [];
+  const z = allZ || {};
+  if (z.wfa != null && z.wfa < -2) out.push({ area: "Pediatria / investigação de baixo peso", motivo: `Peso para idade z ${z.wfa.toFixed(2)} (${classifyZ(z.wfa).label.toLowerCase()})`, urg: z.wfa < -3 });
+  if (z.lhfa != null && z.lhfa < -2) out.push({ area: "Investigação de baixa estatura", motivo: `Estatura para idade z ${z.lhfa.toFixed(2)} (${classifyEstatura(z.lhfa).label.toLowerCase()})`, urg: z.lhfa < -3 });
+  const imcZ = z.bmifa != null ? z.bmifa : z.wfl;
+  if (imcZ != null && imcZ > 2) out.push({ area: imcZ > 3 ? "Endocrinologia / nutrição (obesidade)" : "Orientação nutricional reforçada", motivo: `${z.bmifa != null ? 'IMC/idade' : 'Peso/estatura'} z +${imcZ.toFixed(2)} (${classifyImcOuPE(imcZ).label.toLowerCase()})`, urg: false });
+  if (imcZ != null && imcZ < -2) out.push({ area: "Investigação de magreza / desnutrição", motivo: `${z.bmifa != null ? 'IMC/idade' : 'Peso/estatura'} z ${imcZ.toFixed(2)} (${classifyImcOuPE(imcZ).label.toLowerCase()})`, urg: imcZ < -3 });
+  if (z.hcfa != null && (z.hcfa < -2 || z.hcfa > 2)) out.push({ area: "Neuropediatria", motivo: `Perímetro cefálico z ${z.hcfa >= 0 ? '+' : ''}${z.hcfa.toFixed(2)} (${classifyPC(z.hcfa).label.toLowerCase()})`, urg: Math.abs(z.hcfa) > 3 });
+  if (dpmRatio != null && dpmRatio < 0.5 && consultIdx > 0) out.push({ area: "Estimulação precoce / NASF / neuropediatria", motivo: "Marcos do desenvolvimento abaixo do esperado para a idade", urg: dpmRatio < 0.25 });
+  if (mchat && mchat.answered >= 20) {
+    if (mchat.nivel === 4) out.push({ area: "Avaliação diagnóstica de TEA (neuropediatria)", motivo: `M-CHAT-R risco elevado (${mchat.score} pontos)`, urg: true });
+    else if (mchat.nivel === 3) out.push({ area: "Consulta de seguimento M-CHAT-R/F", motivo: `M-CHAT-R risco médio (${mchat.score} pontos)`, urg: false });
+  }
+  if (pvz && pvz.elegivel) out.push({ area: "Polo de aplicação de palivizumabe", motivo: pvz.elegPrematuro ? "Prematuro ≤ 28 semanas, < 12 meses" : "< 24 meses com pneumopatia/cardiopatia elegível", urg: pvz.naSazonalidade });
+  if (state.hiv) out.push({ area: "Infectopediatria (exposição HIV)", motivo: "Seguimento de criança exposta ao HIV", urg: false });
+  if (state.syph) out.push({ area: "Seguimento de sífilis congênita", motivo: "VDRL seriado conforme protocolo", urg: false });
+  if (state.torsch) out.push({ area: "Seguimento especializado (TORSCHZ)", motivo: "Acompanhar DPM e sequelas das infecções congênitas", urg: false });
+  return out;
 }
 
 /* ============================================================
@@ -1347,6 +1970,156 @@ function calcFerro(state, ageMonthsCorr) {
    ============================================================ */
 
 const state = {};
+
+/* ============================================================
+   BANCO DE CRIANÇAS (Fase 3) · em memória, persistido via JSON
+   ============================================================ */
+const db = { version: "0.3", exported_at: null, children: [] };
+let activeChildId = null;
+
+function uid() {
+  return 'c' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+}
+
+function getActiveChild() {
+  return db.children.find(c => c.id === activeChildId) || null;
+}
+
+function childIdentityFromForm() {
+  readForm();
+  return {
+    name: state.name || 'Sem nome',
+    dob: state.dob ? state.dob.toISOString().slice(0,10) : null,
+    sex: state.sex,
+    igWeeks: state.igWeeks, igDays: state.igDays,
+    bwGrams: state.bwGrams, risk: state.risk,
+    anemiaRisk: state.anemiaRisk, torsch: state.torsch,
+    hiv: state.hiv, syph: state.syph, pneumoCardio: state.pneumoCardio,
+    triagens: state.triagens, comorb: state.comorb,
+    alergias: state.alergias, periodoNeo: state.periodoNeo
+  };
+}
+
+function newChildFromForm() {
+  const ident = childIdentityFromForm();
+  const child = Object.assign({ id: uid(), consults: [] }, ident);
+  db.children.push(child);
+  activeChildId = child.id;
+  return child;
+}
+
+function updateChildIdentity(child) {
+  Object.assign(child, childIdentityFromForm());
+}
+
+function loadChildIntoForm(c) {
+  document.getElementById('fName').value = c.name && c.name !== 'Sem nome' ? c.name : '';
+  document.getElementById('fDob').value = c.dob || '';
+  document.querySelectorAll('input[name="sex"]').forEach(el => { el.checked = (el.value === c.sex); });
+  document.getElementById('fIgWeeks').value = c.igWeeks || '';
+  document.getElementById('fIgDays').value = c.igDays || '';
+  document.getElementById('fBw').value = c.bwGrams || '';
+  document.getElementById('fRisk').value = c.risk || 'habitual';
+  document.getElementById('fAnemiaRisk').checked = !!c.anemiaRisk;
+  document.getElementById('fTorsch').checked = !!c.torsch;
+  document.getElementById('fHiv').checked = !!c.hiv;
+  document.getElementById('fSyph').checked = !!c.syph;
+  document.getElementById('fPneumoCardio').checked = !!c.pneumoCardio;
+  document.getElementById('fTriagens').value = c.triagens || '';
+  document.getElementById('fComorb').value = c.comorb || '';
+  document.getElementById('fAlergias').value = c.alergias || '';
+  document.getElementById('fPeriodoNeo').value = c.periodoNeo || '';
+}
+
+function clearConsultFields() {
+  document.getElementById('cWeight').value = '';
+  document.getElementById('cHeight').value = '';
+  document.getElementById('cHc').value = '';
+  document.getElementById('cInter').value = '';
+  document.getElementById('cDate').value = new Date().toISOString().slice(0,10);
+}
+
+function selectChild(id) {
+  activeChildId = id;
+  const c = getActiveChild();
+  if (c) {
+    loadChildIntoForm(c);
+    /* Se há consultas, pré-carrega a última para referência; senão limpa campos */
+    clearConsultFields();
+  }
+  renderBank();
+  render();
+}
+
+function deleteChild(id) {
+  const i = db.children.findIndex(c => c.id === id);
+  if (i < 0) return;
+  db.children.splice(i, 1);
+  if (activeChildId === id) activeChildId = null;
+  renderBank();
+  render();
+}
+
+function saveConsultToBank() {
+  readForm();
+  if (!state.dob || !state.sex) {
+    showToast('Preencha data de nascimento e sexo antes de salvar');
+    return;
+  }
+  let c = getActiveChild();
+  if (!c) {
+    c = newChildFromForm();
+  } else {
+    updateChildIdentity(c);
+  }
+  const consultDate = state.cDate ? state.cDate.toISOString().slice(0,10) : new Date().toISOString().slice(0,10);
+  const consultData = {
+    date: consultDate,
+    ageMonths: state._ageMTotal,
+    weight: state.weight, height: state.height, hc: state.hc,
+    intercurrences: state.intercurrences, feeding: state.feeding,
+    dpmDone: state.dpmDone || [], vacGiven: state.vacGiven || [], vacExtra: state.vacExtra || '',
+    z: state._allZ || {},
+    mchat: state._mchat && state._mchat.complete ? { score: state._mchat.score, label: state._mchat.label } : null,
+    acompanhante: state.acompanhante || ''
+  };
+  const existingIdx = c.consults.findIndex(x => x.date === consultDate);
+  if (existingIdx >= 0) {
+    if (!confirm('Já existe uma consulta nesta data para esta criança. Substituir?')) return;
+    c.consults[existingIdx] = consultData;
+  } else {
+    c.consults.push(consultData);
+  }
+  c.consults.sort((a,b) => (a.date || '').localeCompare(b.date || ''));
+  renderBank();
+  render();
+  showToast('Consulta salva no banco · lembre de salvar o arquivo');
+}
+
+function loadDbFromObject(obj) {
+  if (!obj || !Array.isArray(obj.children)) {
+    showToast('Arquivo não parece ser um banco válido');
+    return false;
+  }
+  db.version = obj.version || "0.3";
+  db.children = obj.children;
+  activeChildId = null;
+  renderBank();
+  render();
+  return true;
+}
+
+function exportDb() {
+  db.exported_at = new Date().toISOString();
+  const blob = new Blob([JSON.stringify(db, null, 2)], {type: 'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const dt = new Date().toISOString().slice(0,10);
+  a.href = url; a.download = `banco_puericultura_${dt}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
 
 function readForm() {
   const dob = document.getElementById('fDob').value;
@@ -1365,6 +2138,13 @@ function readForm() {
   state.hiv = document.getElementById('fHiv').checked;
   state.syph = document.getElementById('fSyph').checked;
   state.pneumoCardio = document.getElementById('fPneumoCardio').checked;
+  /* Antecedentes pessoais */
+  state.triagens = document.getElementById('fTriagens').value.trim();
+  state.comorb = document.getElementById('fComorb').value.trim();
+  state.alergias = document.getElementById('fAlergias').value.trim();
+  state.periodoNeo = document.getElementById('fPeriodoNeo').value.trim();
+  /* Acompanhante */
+  state.acompanhante = document.getElementById('cAcomp').value.trim();
   state.weight = parseFloat(document.getElementById('cWeight').value) || null;
   state.height = parseFloat(document.getElementById('cHeight').value) || null;
   state.hc = parseFloat(document.getElementById('cHc').value) || null;
@@ -1376,6 +2156,13 @@ function readForm() {
   /* Vacinas marcadas */
   state.vacGiven = Array.from(document.querySelectorAll('#vacBody input[type="checkbox"]:checked')).map(e => e.dataset.vac);
   state.vacExtra = document.getElementById('vacExtra') ? document.getElementById('vacExtra').value : "";
+
+  /* Respostas do M-CHAT-R (radios nativos) */
+  state.mchatResp = {};
+  MCHAT.itens.forEach(it => {
+    const el = document.querySelector(`input[name="mchat-${it.n}"]:checked`);
+    if (el) state.mchatResp[it.n] = el.value;
+  });
 }
 
 /* ============================================================
@@ -1417,6 +2204,7 @@ function render() {
       ageMTotal = ageMTotalRaw;
     }
   }
+  state._ageMTotal = ageMTotal;
 
   const consultIdx = realAge ? consultIndex(corrAge ? corrAge.months : realAge.months) : null;
   const nextIdx = consultIdx != null ? nextConsult(consultIdx) : null;
@@ -1435,28 +2223,40 @@ function render() {
   document.getElementById('sidePeso').textContent = state.weight ? `${state.weight.toFixed(2)} kg` : "—";
   document.getElementById('sideEst').textContent = state.height ? `${state.height.toFixed(1)} cm` : "—";
   document.getElementById('sidePc').textContent = state.hc ? `${state.hc.toFixed(1)} cm` : "—";
+  const imcVal = (state.weight && state.height) ? state.weight / Math.pow(state.height/100, 2) : null;
+  document.getElementById('sideImc').textContent = imcVal ? `${imcVal.toFixed(1)} kg/m²` : "—";
 
-  /* Z-score */
-  let z = null;
-  if (state.weight && ageMTotal != null && state.sex) {
-    z = zScorePeso(state.weight, ageMTotal, state.sex);
+  /* Z-scores de todas as medidas */
+  const allZ = computeAllZ(state.sex, ageMTotal, state.weight, state.height, state.hc);
+  state._allZ = allZ;
+  const z = allZ.wfa; /* peso/idade, usado como referência principal */
+
+  function paintZ(elId, zval, classifier) {
+    const el = document.getElementById(elId);
+    if (zval == null || isNaN(zval)) { el.textContent = "—"; return; }
+    const c = classifier(zval);
+    el.innerHTML = `<span class="z-mini"><span class="z-val" data-level="${c.level}">${zval >= 0 ? '+' : ''}${zval.toFixed(2)}</span><span class="z-lab">${c.label}</span></span>`;
   }
-  const sideZ = document.getElementById('sideZ');
+  paintZ('sideZwfa', allZ.wfa, classifyZ);
+  paintZ('sideZlhfa', allZ.lhfa, classifyEstatura);
+  paintZ('sideZhcfa', allZ.hcfa, classifyPC);
+  paintZ('sideZbmifa', allZ.bmifa, classifyImcOuPE);
+  paintZ('sideZwfl', allZ.wfl, classifyImcOuPE);
+
+  /* cor da barra superior pelo peso/idade */
   const sidePanelBar = document.querySelector('.side-panel-bar');
   if (z != null) {
     const c = classifyZ(z);
-    sideZ.innerHTML = `<span class="z-badge" data-level="${c.level}">${z >= 0 ? '+' : ''}${z.toFixed(2)} · ${c.label}</span>`;
-    /* cor da barra superior */
     const colors = ["var(--ink-soft)", "var(--level-1)", "var(--level-2)", "var(--level-3)", "var(--level-4)", "var(--level-5)"];
     if (sidePanelBar) sidePanelBar.style.background = colors[c.level] || "var(--line)";
   } else {
-    sideZ.textContent = "—";
     if (sidePanelBar) sidePanelBar.style.background = "var(--line)";
   }
 
   /* Próxima consulta */
-  if (nextIdx != null && state.dob) {
-    const nextDate = new Date(state.dob.getTime() + nextIdx * 30.4375 * 86400000);
+  if (nextIdx != null && state.dob && consultIdx != null) {
+    const intervalo = nextIdx - consultIdx;
+    const nextDate = new Date(state.cDate.getTime() + intervalo * 30.4375 * 86400000);
     document.getElementById('sideQuando').textContent = `${nextIdx}m · ${fmtDateBR(nextDate)}`;
     const quemMap = (state.risk === 'habitual') ? QUEM_HABITUAL : QUEM_RISCO;
     document.getElementById('sideQuem').textContent = quemMap[nextIdx] || "—";
@@ -1465,106 +2265,163 @@ function render() {
     document.getElementById('sideQuem').textContent = "—";
   }
 
-  /* Ferro */
+  /* Ferro + Vitamina D */
   if (state.weight && state.dob) {
-    const ferro = calcFerro(state, corrAge ? corrAge.months + corrAge.days/30.4375 : realAge.months + realAge.days/30.4375);
-    document.getElementById('sideFerro').innerHTML = `<div style="white-space: pre-wrap; font-size: 12.5px; line-height: 1.5;">${ferro.text}</div>`;
+    const ageForDose = corrAge ? corrAge.months + corrAge.days/30.4375 : realAge.months + realAge.days/30.4375;
+    const ferro = calcFerro(state, ageForDose);
     state._ferro = ferro;
+    const vitd = calcVitD(ageForDose);
+    state._vitd = vitd;
+
+    let html = `<div style="font-size:12.5px; line-height:1.5;">`;
+    html += `<div style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.08em; color:var(--ink-faint); text-transform:uppercase; margin-bottom:2px;">Sulfato ferroso</div>`;
+    html += `<strong>${ferro.gotas} gota${ferro.gotas === 1 ? '' : 's'}/dia</strong> (${ferro.ml} mL · ${ferro.dose} mg Fe)<br>`;
+    html += `<span style="color:var(--ink-soft); font-size:11.5px;">${ferro.mgKgDia} mg/kg/dia · ${ferro.status}</span>`;
+    html += `</div>`;
+
+    html += `<div style="font-size:12.5px; line-height:1.5; margin-top:10px; padding-top:8px; border-top:1px dotted var(--line);">`;
+    html += `<div style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.08em; color:var(--ink-faint); text-transform:uppercase; margin-bottom:2px;">Vitamina D (Ad-til)</div>`;
+    html += `<strong>${vitd.gotas} gotas/dia</strong> (meta ${vitd.metaUI} UI)<br>`;
+    html += `<span style="color:var(--ink-soft); font-size:11.5px;">entrega ${vitd.dEntregue} UI D + ${vitd.aEntregue} UI A</span>`;
+    if (vitd.abaixoMeta) {
+      html += `<br><span style="color:var(--level-2); font-size:11.5px;">2 gotas = ${vitd.dEntregue} UI, abaixo da meta de ${vitd.metaUI}; ver orientações</span>`;
+    } else {
+      html += `<br><span style="color:var(--ink-faint); font-size:11px;">contém vitamina A</span>`;
+    }
+    html += `</div>`;
+
+    document.getElementById('sideFerro').innerHTML = html;
   } else {
     document.getElementById('sideFerro').textContent = "Aguardando peso.";
     state._ferro = null;
+    state._vitd = null;
   }
 
   /* ============ VERIFICAR E AVALIAR ============ */
   const verifyBody = document.getElementById('verifyBody');
   const verifyAge = document.getElementById('verifyAge');
+  const verifyKey = `${consultIdx}|${activeChildId || ''}|${state.torsch?1:0}${state.hiv?1:0}${state.syph?1:0}${state.pneumoCardio?1:0}${isPreterm?1:0}`;
   if (consultIdx != null) {
     verifyAge.textContent = `Consulta de ${consultIdx === 0 ? "1º mês (recém-nascido)" : consultIdx + " meses"}`;
-    const items = VERIFICAR[consultIdx] || [];
-    let html = '<div class="check-group">';
-    items.forEach((it, i) => {
-      html += `<label class="check-item"><input type="checkbox" data-verify="${i}"><span class="check-label">${it}</span></label>`;
-    });
-    html += '</div>';
-
-    /* Alertas condicionais */
-    const condBlocks = [];
-    if (isPreterm) condBlocks.push("<strong>Prematuro.</strong> Considerar idade corrigida (PC até 18m, peso até 24m, estatura até 42m).");
-    if (state.torsch) condBlocks.push("<strong>TORSCHZ.</strong> Atenção redobrada ao DPM nos 2 primeiros anos. Checar seguimento na Infectopediatria.");
-    if (state.hiv) condBlocks.push("<strong>Exposição HIV.</strong> Conferir CV-HIV (14d, 6 e 12 semanas), profilaxia ARV, uso adequado da fórmula infantil. LM contraindicado.");
-    if (state.syph) condBlocks.push("<strong>Sífilis congênita/exposição.</strong> VDRL com 1, 3, 6, 12 e 18 meses. Interromper se dois Não Reagentes consecutivos.");
-    if (state.pneumoCardio) condBlocks.push("<strong>Pneumopatia/cardiopatia.</strong> Verificar elegibilidade para palivizumabe na sazonalidade do VSR (abril a agosto).");
-    if (condBlocks.length) {
-      html += '<div style="margin-top: 14px; display: flex; flex-direction: column; gap: 8px;">';
-      condBlocks.forEach(b => { html += `<div class="warn-box">${b}</div>`; });
+    if (verifyBuiltFor !== verifyKey) {
+      const items = VERIFICAR[consultIdx] || [];
+      let html = '<div class="check-group">';
+      items.forEach((it, i) => {
+        html += `<label class="check-item"><input type="checkbox" data-verify="${i}"><span class="check-label">${it}</span></label>`;
+      });
       html += '</div>';
+      const condBlocks = [];
+      if (isPreterm) condBlocks.push("<strong>Prematuro.</strong> Considerar idade corrigida (PC até 18m, peso até 24m, estatura até 42m).");
+      if (state.torsch) condBlocks.push("<strong>TORSCHZ.</strong> Atenção redobrada ao DPM nos 2 primeiros anos. Checar seguimento na Infectopediatria.");
+      if (state.hiv) condBlocks.push("<strong>Exposição HIV.</strong> Conferir CV-HIV (14d, 6 e 12 semanas), profilaxia ARV, uso adequado da fórmula infantil. LM contraindicado.");
+      if (state.syph) condBlocks.push("<strong>Sífilis congênita/exposição.</strong> VDRL com 1, 3, 6, 12 e 18 meses. Interromper se dois Não Reagentes consecutivos.");
+      if (state.pneumoCardio) condBlocks.push("<strong>Pneumopatia/cardiopatia.</strong> Verificar elegibilidade para palivizumabe na sazonalidade do VSR (abril a agosto).");
+      if (condBlocks.length) {
+        html += '<div style="margin-top: 14px; display: flex; flex-direction: column; gap: 8px;">';
+        condBlocks.forEach(b => { html += `<div class="warn-box">${b}</div>`; });
+        html += '</div>';
+      }
+      verifyBody.innerHTML = html;
+      verifyBuiltFor = verifyKey;
     }
-    verifyBody.innerHTML = html;
   } else {
     verifyAge.textContent = "Defina a data de nascimento e a data da consulta para ver o roteiro.";
-    verifyBody.innerHTML = '<div class="info-box"><strong>Aguardando idade.</strong> O roteiro de verificação aparece quando a data de nascimento estiver preenchida.</div>';
+    if (verifyBuiltFor !== 'empty') {
+      verifyBody.innerHTML = '<div class="info-box"><strong>Aguardando idade.</strong> O roteiro de verificação aparece quando a data de nascimento estiver preenchida.</div>';
+      verifyBuiltFor = 'empty';
+    }
   }
 
   /* ============ DPM ============ */
   const dpmBody = document.getElementById('dpmBody');
+  const dpmKey = `${consultIdx}|${activeChildId || ''}`;
   if (consultIdx != null && DPM[consultIdx]) {
-    const m = DPM[consultIdx];
-    const areas = [
-      {key: 'mg', label: 'Motor grosso'},
-      {key: 'mf', label: 'Motor fino'},
-      {key: 'al', label: 'Audição e linguagem'},
-      {key: 'sc', label: 'Social e cognitivo'}
-    ];
-    let html = '';
-    areas.forEach(a => {
-      if (!m[a.key] || m[a.key].length === 0) return;
-      html += `<div class="dpm-area"><div class="dpm-area-title">${a.label}</div><div class="check-group">`;
-      m[a.key].forEach((marco, i) => {
-        html += `<label class="check-item"><input type="checkbox" data-marco="${a.key}:${marco}"><span class="check-label">${marco}</span></label>`;
+    if (dpmBuiltFor !== dpmKey) {
+      const m = DPM[consultIdx];
+      const areas = [
+        {key: 'mg', label: 'Motor grosso'},
+        {key: 'mf', label: 'Motor fino'},
+        {key: 'al', label: 'Audição e linguagem'},
+        {key: 'sc', label: 'Social e cognitivo'}
+      ];
+      let html = '';
+      areas.forEach(a => {
+        if (!m[a.key] || m[a.key].length === 0) return;
+        html += `<div class="dpm-area"><div class="dpm-area-title">${a.label}</div><div class="check-group">`;
+        m[a.key].forEach((marco, i) => {
+          html += `<label class="check-item"><input type="checkbox" data-marco="${a.key}:${marco}"><span class="check-label">${marco}</span></label>`;
+        });
+        html += `</div></div>`;
       });
-      html += `</div></div>`;
-    });
-    if (consultIdx === 18 || consultIdx === 24) {
-      html += `<div class="warn-box" style="margin-top: 8px;"><strong>M-CHAT-R.</strong> Aplicar questionário de triagem para TEA. Se positivo, encaminhar à avaliação Neuro/TEA.</div>`;
+      if (consultIdx === 18 || consultIdx === 24) {
+        html += `<div class="warn-box" style="margin-top: 8px;"><strong>M-CHAT-R.</strong> Aplicar questionário de triagem para TEA. Se positivo, encaminhar à avaliação Neuro/TEA.</div>`;
+      }
+      dpmBody.innerHTML = html;
+      dpmBuiltFor = dpmKey;
     }
-    dpmBody.innerHTML = html;
   } else if (consultIdx != null) {
-    dpmBody.innerHTML = '<div class="info-box">Faixa etária sem marcos pré-definidos nesta versão.</div>';
+    if (dpmBuiltFor !== 'no-dpm') {
+      dpmBody.innerHTML = '<div class="info-box">Faixa etária sem marcos pré-definidos nesta versão.</div>';
+      dpmBuiltFor = 'no-dpm';
+    }
   }
 
   /* ============ VACINAS ============ */
   const vacBody = document.getElementById('vacBody');
+  const vacKey = `${consultIdx}|${activeChildId || ''}`;
   if (consultIdx != null) {
-    /* Junta vacinas DEVIDAS para idades até a atual (acumulado) */
-    const dueNow = VACINAS[consultIdx] || [];
-    let html = '';
-    if (dueNow.length) {
-      html += '<div class="dpm-area"><div class="dpm-area-title">Devidas nesta consulta</div><div class="check-group">';
-      dueNow.forEach(v => {
-        html += `<label class="check-item"><input type="checkbox" data-vac="${v.nome} ${v.dose}"><span class="check-label">${v.nome}<small>${v.dose}</small></span></label>`;
-      });
-      html += '</div></div>';
-    } else {
-      html += '<div class="info-box">Nenhuma vacina nova devida pelo calendário 2026 nesta consulta. Conferir esquema anterior em atraso.</div>';
+    if (vacBuiltFor !== vacKey) {
+      const dueNow = VACINAS[consultIdx] || [];
+      let html = '';
+      if (dueNow.length) {
+        html += '<div class="dpm-area"><div class="dpm-area-title">Devidas nesta consulta</div><div class="check-group">';
+        dueNow.forEach(v => {
+          html += `<label class="check-item"><input type="checkbox" data-vac="${v.nome} ${v.dose}"><span class="check-label">${v.nome}<small>${v.dose}</small></span></label>`;
+        });
+        html += '</div></div>';
+      } else {
+        html += '<div class="info-box">Nenhuma vacina nova devida pelo calendário 2026 nesta consulta. Conferir esquema anterior em atraso.</div>';
+      }
+      html += `<div class="field" style="margin-top: 12px;"><label class="field-label" for="vacExtra">Outras vacinas aplicadas ou observações</label><input type="text" id="vacExtra" placeholder="Ex: catch-up de doses em atraso"></div>`;
+      if (consultIdx <= 4) {
+        html += `<div class="info-box" style="margin-top: 10px;"><strong>Atenção, rotavírus.</strong> 1ª dose até 3m 15d, 2ª dose até 7m 29d. Perdida a janela, não há recuperação.</div>`;
+      }
+      if (consultIdx >= 6) {
+        html += `<div class="info-box" style="margin-top: 6px;"><strong>Influenza.</strong> Anual de 6m a &lt;6a. Na 1ª vez são 2 doses com 30 dias de intervalo. Nos anos seguintes, 1 dose por ano.</div>`;
+      }
+      vacBody.innerHTML = html;
+      vacBuiltFor = vacKey;
     }
-    /* Anotação livre */
-    html += `<div class="field" style="margin-top: 12px;"><label class="field-label" for="vacExtra">Outras vacinas aplicadas ou observações</label><input type="text" id="vacExtra" placeholder="Ex: catch-up de doses em atraso"></div>`;
-    /* Alerta de janela do rotavírus */
-    if (consultIdx <= 4) {
-      html += `<div class="info-box" style="margin-top: 10px;"><strong>Atenção, rotavírus.</strong> 1ª dose até 3m 15d, 2ª dose até 7m 29d. Perdida a janela, não há recuperação.</div>`;
-    }
-    /* Influenza fora do calendário fixo */
-    if (consultIdx >= 6) {
-      html += `<div class="info-box" style="margin-top: 6px;"><strong>Influenza.</strong> Anual de 6m a &lt;6a. Na 1ª vez são 2 doses com 30 dias de intervalo. Nos anos seguintes, 1 dose por ano.</div>`;
-    }
-    vacBody.innerHTML = html;
   }
 
   /* ============ ORIENTAR ============ */
   const orientBody = document.getElementById('orientBody');
   if (consultIdx != null) {
     const nut = NUTRICAO[consultIdx] || "";
-    const ferroTxt = state._ferro ? state._ferro.text : "Aguardando peso.";
+    const f = state._ferro;
+    const vd = state._vitd;
+
+    let ferroHtml;
+    if (f) {
+      ferroHtml = `<strong>Sulfato ferroso (25 mg/mL): ${f.gotas} gota${f.gotas === 1 ? '' : 's'} por dia</strong> (${f.ml} mL), via oral, 1x/dia.<br>`
+        + `Equivale a ${f.dose} mg de ferro elementar (${f.mgKgDia} mg/kg/dia). Início: ${f.inicio}. Duração: ${f.ate}. Status: ${f.status}.`;
+    } else {
+      ferroHtml = "Aguardando peso e dados.";
+    }
+
+    let vitdHtml;
+    if (vd) {
+      vitdHtml = `<strong>Ad-til: ${vd.gotas} gotas por dia</strong>, via oral, 1x/dia (meta ${vd.metaUI} UI de vitamina D para a idade).<br>`
+        + `${vd.gotas} gotas entregam ${vd.dEntregue} UI de vitamina D e ${vd.aEntregue} UI de vitamina A.`;
+      if (vd.abaixoMeta) {
+        vitdHtml += `<br><span style="color:var(--level-2);">Atenção: aos 12-24 meses a meta sobe para ${vd.metaUI} UI. Duas gotas entregam ${vd.dEntregue} UI; chegar a ${vd.metaUI} exigiria 3 gotas, o que elevaria a vitamina A para 3750 UI (acima do limite seguro). Para atingir a meta sem excesso de vitamina A, considere vitamina D isolada.</span>`;
+      } else {
+        vitdHtml += `<br><span style="color:var(--ink-soft);">O Ad-til carrega vitamina A. Para uso prolongado, a vitamina D isolada é uma alternativa que evita o acúmulo de vitamina A.</span>`;
+      }
+    } else {
+      vitdHtml = "400 UI/dia até 12 meses, 600 UI/dia de 12 a 24 meses (SBP/MS).";
+    }
+
     let html = `
       <div class="dpm-area">
         <div class="dpm-area-title">Nutrição</div>
@@ -1572,11 +2429,11 @@ function render() {
       </div>
       <div class="dpm-area">
         <div class="dpm-area-title">Suplementação de ferro</div>
-        <div style="font-size: 13.5px; line-height: 1.6; white-space: pre-wrap;">${ferroTxt}</div>
+        <div style="font-size: 13.5px; line-height: 1.6;">${ferroHtml}</div>
       </div>
       <div class="dpm-area">
         <div class="dpm-area-title">Vitamina D</div>
-        <div style="font-size: 13.5px; line-height: 1.6;">400 UI/dia do nascimento aos 24 meses (SBP/MS).</div>
+        <div style="font-size: 13.5px; line-height: 1.6;">${vitdHtml}</div>
       </div>
     `;
     if (consultIdx <= 6) {
@@ -1585,11 +2442,242 @@ function render() {
     orientBody.innerHTML = html;
   }
 
+  /* ============ M-CHAT-R ============ */
+  const secMchat = document.getElementById('secMchat');
+  const realMonths = realAge ? realAge.months : null;
+  if (realMonths != null && realMonths >= 16 && realMonths <= 30) {
+    secMchat.style.display = '';
+    ensureMchatBuilt();
+    updateMchatResult();
+  } else {
+    secMchat.style.display = 'none';
+    state._mchat = null;
+  }
+
+  /* ============ PALIVIZUMABE ============ */
+  if (state.dob && realMonths != null) {
+    renderPvz(realAge.months + (realAge.days || 0)/30.4375);
+  } else {
+    document.getElementById('secPvz').style.display = 'none';
+    state._pvz = null;
+  }
+
+  /* ============ ENCAMINHAMENTOS ============ */
+  const dpmRatio = (consultIdx != null && countDpm(consultIdx) > 0)
+    ? (state.dpmDone ? state.dpmDone.length : 0) / countDpm(consultIdx)
+    : null;
+  renderEnc(consultIdx, dpmRatio);
+
   /* ============ PRONTUÁRIO ============ */
   renderProntuario(consultIdx, realAge, corrAge, z);
 
   /* ============ GRÁFICO ============ */
-  renderChart(state.sex, ageMTotal, state.weight);
+  renderChart(currentChart);
+}
+
+/* ============================================================
+   BANCO · renderização da lista e histórico
+   ============================================================ */
+
+function renderBank() {
+  const list = document.getElementById('bankList');
+  const count = document.getElementById('bankCount');
+  const search = (document.getElementById('bankSearch').value || '').toLowerCase().trim();
+
+  count.textContent = db.children.length === 0 ? 'Banco vazio'
+    : `${db.children.length} ${db.children.length === 1 ? 'criança' : 'crianças'}`;
+
+  const active = getActiveChild();
+  let html = '';
+
+  if (active) {
+    html += `<div class="child-active-banner no-print"><span>Criança ativa:</span> <strong>${escapeHtml(active.name || 'Sem nome')}</strong> · ${active.consults.length} ${active.consults.length === 1 ? 'consulta' : 'consultas'} <button class="deselect" id="btnDeselect">Desvincular</button></div>`;
+  }
+
+  const filtered = db.children.filter(c => !search || (c.name || '').toLowerCase().includes(search));
+
+  if (db.children.length === 0) {
+    html += '<div class="info-box">Nenhuma criança no banco. Carregue um arquivo ou crie uma nova. Ao preencher a identificação e salvar a consulta, a criança é adicionada automaticamente.</div>';
+  } else if (filtered.length === 0) {
+    html += '<div class="info-box">Nenhuma criança corresponde à busca.</div>';
+  } else {
+    html += '<div class="bank-list-inner" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px;">';
+    filtered.forEach(c => {
+      const last = c.consults.length ? c.consults[c.consults.length - 1] : null;
+      const lastZ = last && last.z && last.z.wfa != null ? `z P/I ${last.z.wfa >= 0 ? '+' : ''}${last.z.wfa.toFixed(2)}` : 'sem medidas';
+      const dobTxt = c.dob ? new Date(c.dob + 'T12:00:00').toLocaleDateString('pt-BR') : 'DN não informada';
+      const sexTxt = c.sex === 'M' ? 'M' : c.sex === 'F' ? 'F' : '?';
+      html += `<div class="child-card ${c.id === activeChildId ? 'active' : ''}" data-child="${c.id}">
+        <button class="child-card-del" data-del="${c.id}" title="Remover do banco">×</button>
+        <div class="child-card-name">${escapeHtml(c.name || 'Sem nome')}</div>
+        <div class="child-card-meta"><span class="mono">${sexTxt} · ${dobTxt}</span><br>${c.consults.length} consulta${c.consults.length === 1 ? '' : 's'} · ${lastZ}</div>
+      </div>`;
+    });
+    html += '</div>';
+  }
+  list.innerHTML = html;
+
+  /* Atualiza barra de salvar consulta */
+  const scb = document.getElementById('scbText');
+  if (scb) {
+    if (active) {
+      scb.innerHTML = `Salvar a consulta de hoje no histórico de <strong>${escapeHtml(active.name || 'Sem nome')}</strong>.`;
+    } else {
+      scb.innerHTML = 'Nenhuma criança ativa. Ao salvar, uma nova criança é criada com os dados de identificação.';
+    }
+  }
+
+  renderHistory();
+}
+
+function renderHistory() {
+  const body = document.getElementById('historyBody');
+  const c = getActiveChild();
+  if (!c || !c.consults.length) {
+    body.innerHTML = '<div class="info-box">Sem consultas salvas para a criança ativa. As consultas salvas aparecem aqui e como trajetória nas curvas de crescimento.</div>';
+    return;
+  }
+  const zf = (z) => (z == null || isNaN(z)) ? '—' : (z >= 0 ? '+' : '') + z.toFixed(2);
+  let html = '<div style="overflow-x:auto;"><table class="history-table"><thead><tr>'
+    + '<th>Data</th><th>Idade</th><th>Peso</th><th>Est.</th><th>PC</th>'
+    + '<th>z P/I</th><th>z E/I</th><th>z IMC/I</th><th>z P/E</th></tr></thead><tbody>';
+  c.consults.forEach(cons => {
+    const ageTxt = cons.ageMonths != null ? cons.ageMonths.toFixed(1) + 'm' : '—';
+    const z = cons.z || {};
+    html += `<tr>
+      <td>${cons.date ? new Date(cons.date + 'T12:00:00').toLocaleDateString('pt-BR') : '—'}</td>
+      <td>${ageTxt}</td>
+      <td>${cons.weight != null ? cons.weight.toFixed(2) : '—'}</td>
+      <td>${cons.height != null ? cons.height.toFixed(1) : '—'}</td>
+      <td>${cons.hc != null ? cons.hc.toFixed(1) : '—'}</td>
+      <td class="z-cell">${zf(z.wfa)}</td>
+      <td class="z-cell">${zf(z.lhfa)}</td>
+      <td class="z-cell">${zf(z.bmifa)}</td>
+      <td class="z-cell">${zf(z.wfl)}</td>
+    </tr>`;
+  });
+  html += '</tbody></table></div>';
+  html += '<div class="info-box" style="margin-top:10px;">A trajetória destas consultas aparece conectada por linha nas curvas de crescimento acima. O ponto maior em terracota é a consulta sendo editada agora.</div>';
+  body.innerHTML = html;
+}
+
+function escapeHtml(s) {
+  return (s || '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+/* ============================================================
+   M-CHAT-R · construção e placar
+   ============================================================ */
+let mchatBuiltFor = null;
+let verifyBuiltFor = null;
+let dpmBuiltFor = null;
+let vacBuiltFor = null;
+
+function resetBuiltFlags() {
+  mchatBuiltFor = null;
+  verifyBuiltFor = null;
+  dpmBuiltFor = null;
+  vacBuiltFor = null;
+}
+
+function ensureMchatBuilt() {
+  const body = document.getElementById('mchatBody');
+  const key = activeChildId || 'novo';
+  if (mchatBuiltFor === key && body.querySelector('.mchat-item')) return;
+  let html = '';
+  MCHAT.itens.forEach(it => {
+    html += `<div class="mchat-item">
+      <div class="mchat-q"><span class="mchat-n">${it.n}</span>${it.q}${it.ex ? `<small>${it.ex}</small>` : ''}</div>
+      <div class="mchat-opts">
+        <label><input type="radio" name="mchat-${it.n}" value="sim">Sim</label>
+        <label><input type="radio" name="mchat-${it.n}" value="nao">Não</label>
+      </div>
+    </div>`;
+  });
+  html += '<div class="mchat-result" id="mchatResult"></div>';
+  html += `<div class="mchat-ref">${MCHAT.ref} Uso clínico autorizado; para distribuir a terceiros, contatar a autora.</div>`;
+  body.innerHTML = html;
+  mchatBuiltFor = key;
+}
+
+function updateMchatResult() {
+  const el = document.getElementById('mchatResult');
+  if (!el) return;
+  const mc = scoreMchat(state.mchatResp || {});
+  const colors = ["var(--ink-soft)","var(--level-1)","var(--level-2)","var(--level-3)","var(--level-4)","var(--level-5)"];
+  let statusTxt;
+  if (!mc.answered) statusTxt = "Responda as 20 questões para obter o resultado.";
+  else if (!mc.complete) statusTxt = `${mc.answered} de 20 respondidas. Complete para o resultado final.`;
+  else statusTxt = mc.conduta;
+  el.innerHTML = `
+    <div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;">
+      <span class="mchat-score-num" style="color:${colors[mc.nivel] || 'var(--ink)'};">${mc.score}</span>
+      <span style="font-size:13px; color:var(--ink-soft);">de 20 pontos</span>
+      ${mc.complete ? `<span class="z-badge" data-level="${mc.nivel}" style="margin-left:auto;">${mc.label}</span>` : ''}
+    </div>
+    <div style="font-size:12.5px; line-height:1.5; margin-top:8px; color:var(--ink);">${statusTxt}</div>`;
+  state._mchat = mc;
+}
+
+/* ============================================================
+   PALIVIZUMABE · render
+   ============================================================ */
+function renderPvz(ageMonthsReal) {
+  const sec = document.getElementById('secPvz');
+  const body = document.getElementById('pvzBody');
+  const pvz = calcPalivizumabe(state, ageMonthsReal);
+  state._pvz = pvz;
+
+  /* Mostra o bloco se há qualquer indício de elegibilidade (prematuro extremo ou comorbidade) */
+  const mostrar = pvz.isVeryPreterm || state.pneumoCardio;
+  if (!mostrar) { sec.style.display = 'none'; return; }
+  sec.style.display = '';
+
+  const meses = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+  let html = `<div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+    <span class="elig-badge ${pvz.elegivel ? 'yes' : 'no'}">${pvz.elegivel ? 'ELEGÍVEL' : 'NÃO ELEGÍVEL'}</span>
+    <span style="font-size:12.5px; color:var(--ink-soft);">pelos critérios do Protocolo Nacional</span>
+  </div>`;
+
+  html += '<div style="font-size:13px; line-height:1.6;">';
+  if (pvz.elegPrematuro) html += `Prematuro com IG ≤ 28 semanas e idade &lt; 12 meses. Critério atendido.<br>`;
+  if (pvz.elegComorbidade) html += `Menor de 24 meses com pneumopatia/cardiopatia. Critério atendido.<br>`;
+  if (!pvz.elegivel) {
+    if (pvz.isVeryPreterm && ageMonthsReal >= 12) html += `Prematuro ≤ 28 semanas, mas já com 12 meses ou mais (fora da janela de prematuridade isolada).<br>`;
+    if (state.pneumoCardio && ageMonthsReal >= 24) html += `Comorbidade presente, mas criança com 24 meses ou mais.<br>`;
+    if (!pvz.isVeryPreterm && !state.pneumoCardio) html += `Sem critério de prematuridade extrema nem comorbidade elegível.<br>`;
+  }
+  html += '</div>';
+
+  if (pvz.elegivel) {
+    html += `<div class="dpm-area" style="margin-top:12px;"><div class="dpm-area-title">Posologia</div>
+      <div style="font-size:13.5px; line-height:1.6;"><strong>${pvz.dose ? pvz.dose + ' mg' : '15 mg/kg'}</strong> (15 mg/kg), via intramuscular, 1x/mês, máximo de 5 doses, durante a sazonalidade do VSR.</div></div>`;
+    html += `<div class="${pvz.naSazonalidade ? 'warn-box' : 'info-box'}" style="margin-top:10px;">
+      <strong>Sazonalidade (região Sul): abril a agosto.</strong> Mês atual: ${meses[pvz.mes-1]}. ${pvz.naSazonalidade ? 'Dentro da janela: encaminhar ao polo de aplicação.' : 'Fora da janela atual; programar para a próxima sazonalidade.'} Conferir o calendário regional vigente.</div>`;
+  }
+  body.innerHTML = html;
+}
+
+/* ============================================================
+   ENCAMINHAMENTOS · render
+   ============================================================ */
+function renderEnc(consultIdx, dpmRatio) {
+  const body = document.getElementById('encBody');
+  const lista = encaminhamentos(state, state._allZ, consultIdx, state._mchat, state._pvz, dpmRatio);
+  state._enc = lista;
+  if (!lista.length) {
+    body.innerHTML = '<div class="info-box">Sem gatilhos de encaminhamento até o momento. As sugestões aparecem conforme os achados (z-scores alterados, DPM, M-CHAT-R, comorbidades).</div>';
+    return;
+  }
+  let html = '';
+  lista.forEach(e => {
+    html += `<div class="enc-item ${e.urg ? 'urgent' : ''}">
+      <div style="flex:1;"><div class="enc-area">${e.area}</div><div class="enc-motivo">${e.motivo}</div></div>
+      <span class="enc-tag ${e.urg ? 'urgent' : 'routine'}">${e.urg ? 'prioridade' : 'rotina'}</span>
+    </div>`;
+  });
+  html += '<div class="info-box" style="margin-top:6px;">Sugestões automáticas. A indicação final e a via de regulação seguem o protocolo de encaminhamento da SMS.</div>';
+  body.innerHTML = html;
 }
 
 /* ============================================================
@@ -1602,115 +2690,217 @@ function renderProntuario(consultIdx, realAge, corrAge, z) {
     out.textContent = "Aguardando dados.";
     return;
   }
-  const lines = [];
 
-  /* CTX · contexto */
-  lines.push("#CTX");
-  const ctx = [];
-  ctx.push(`Consulta de puericultura de ${consultIdx === 0 ? "RN (1º mês)" : consultIdx + " meses"}.`);
-  if (state.name) ctx.push(`Nome: ${state.name}.`);
-  ctx.push(`Idade: ${fmtMonths(realAge)}${corrAge && corrAge.corrected ? ` (corrigida: ${fmtMonths(corrAge)}, IG ${state.igWeeks}s${state.igDays}d)` : ""}.`);
-  if (state.bwGrams) ctx.push(`PN ${state.bwGrams}g.`);
-  if (state.risk !== 'habitual') ctx.push(`Risco: ${state.risk}.`);
-  if (state.torsch) ctx.push("Exposição TORSCHZ.");
-  if (state.hiv) ctx.push("Exposição HIV.");
-  if (state.syph) ctx.push("Exposição sífilis/sífilis congênita.");
-  lines.push(ctx.join(" "));
+  const az = state._allZ || {};
+  const zBetween = (zz) => {
+    if (zz == null || isNaN(zz)) return "—";
+    const fl = Math.floor(zz), ce = fl + 1;
+    const f = (n) => n === 0 ? "0" : (n > 0 ? "+" + n : String(n));
+    return `entre ${f(fl)} e ${f(ce)}`;
+  };
+
+  /* Cabeçalho · identificação */
+  const lines = [];
+  lines.push("CONSULTA DE PUERICULTURA");
+
+  /* Identificação */
+  const idParts = [];
+  if (state.name) idParts.push(state.name);
+  idParts.push(fmtMonths(realAge));
+  if (corrAge && corrAge.corrected) idParts.push(`corrigida ${fmtMonths(corrAge)}`);
+  idParts.push(state.sex === 'M' ? "sexo masculino" : state.sex === 'F' ? "sexo feminino" : "");
+  lines.push(`Identificação: ${idParts.filter(Boolean).join(", ")}.`);
+
+  /* Acompanhante */
+  lines.push(`Acompanhado por: ${state.acompanhante || "responsável"}.`);
+
+  /* Período neonatal */
+  const neoParts = [];
+  if (state.igWeeks) neoParts.push(`IG ${state.igWeeks}s${state.igDays || 0}d`);
+  if (state.bwGrams) neoParts.push(`PN ${state.bwGrams}g`);
+  if (state.periodoNeo) neoParts.push(state.periodoNeo);
+  lines.push(`Período neonatal: ${neoParts.length ? neoParts.join(", ") + "." : "sem dados adicionais."}`);
+
+  /* Triagens neonatais */
+  lines.push(`Triagens neonatais: ${state.triagens || "realizadas na maternidade, sem alterações relatadas."}`);
+
+  /* Comorbidades */
+  const comorbBits = [];
+  if (state.comorb) comorbBits.push(state.comorb);
+  if (state.torsch) comorbBits.push("exposição TORSCHZ");
+  if (state.hiv) comorbBits.push("exposição HIV");
+  if (state.syph) comorbBits.push("exposição/sífilis congênita");
+  if (state.pneumoCardio) comorbBits.push("pneumopatia/cardiopatia");
+  lines.push(`Comorbidades prévias: ${comorbBits.length ? comorbBits.join("; ") + "." : "Nega."}`);
+
+  /* Alergias */
+  lines.push(`Alergias medicamentosas: ${state.alergias || "Nega."}`);
+
+  /* Vacinação */
+  let vacLine = "Em dia";
+  if (state.vacGiven && state.vacGiven.length) vacLine += `; aplicadas hoje: ${state.vacGiven.join(", ")}`;
+  lines.push(`Vacinação: ${vacLine}.`);
+
+  /* Suplementações */
+  const suplBits = [];
+  if (state._vitd) suplBits.push(`Adtil ${state._vitd.gotas} gts/dia`);
+  if (state._ferro && state._ferro.dose && state._ferro.status === "iniciar agora") {
+    suplBits.push(`sulfato ferroso 25 mg/mL ${state._ferro.gotas} gt${state._ferro.gotas === 1 ? '' : 's'}/dia (${state._ferro.mgKgDia} mg/kg/dia)`);
+  }
+  lines.push(`Suplementações: ${suplBits.length ? suplBits.join("; ") + "." : "—"}`);
+
   lines.push("");
 
   /* S · subjetivo */
-  lines.push("#S");
-  const s = [];
-  if (state.intercurrences) s.push(`Intercorrências: ${state.intercurrences}.`);
-  else s.push("Sem intercorrências relatadas pela acompanhante.");
+  const sParts = [];
+  if (state.intercurrences) sParts.push(`Responsável refere: ${state.intercurrences}.`);
+  else sParts.push("Responsável nega queixas na consulta de hoje.");
   const feedingTxt = {
-    lme: "leite materno exclusivo, livre demanda, sem queixas",
-    lm_compl: "leite materno + alimentação complementar conforme idade",
-    formula: "fórmula infantil em diluição apropriada (LM contraindicado/insuficiente)",
+    lme: "AME livre demanda",
+    lm_compl: "LM + alimentação complementar conforme idade",
+    formula: "fórmula infantil em diluição apropriada (LM contraindicado ou insuficiente)",
     familia: "dieta da família + LM ou leite"
   };
-  s.push(`Alimentação: ${feedingTxt[state.feeding] || state.feeding}.`);
-  s.push("Diurese e hábito intestinal sem alterações.");
-  s.push("Sono adequado para a idade.");
-  lines.push(s.join(" "));
+  sParts.push(`Alimentação: ${feedingTxt[state.feeding] || "—"}.`);
+  sParts.push("Sono preservado.");
+  sParts.push("Funções excretoras fisiológicas.");
+  sParts.push("Nega internações e cirurgias.");
+  lines.push(`S: ${sParts.join(" ")}`);
   lines.push("");
 
-  /* O · objetivo */
-  lines.push("#O");
-  const o = [];
-  o.push("BEG, ativo, reativo, hidratado, corado, eupneico em ar ambiente, acianótico, anictérico, afebril.");
-  if (state.weight) o.push(`Peso ${state.weight.toFixed(2)} kg${z != null ? ` (z PI = ${z >= 0 ? '+' : ''}${z.toFixed(2)} · ${classifyZ(z).label})` : ''}.`);
-  if (state.height) o.push(`Estatura ${state.height.toFixed(1)} cm.`);
-  if (state.hc) o.push(`PC ${state.hc.toFixed(1)} cm.`);
-  o.push("ACV: BNF 2T, RCR, sem sopros.");
-  o.push("AP: MV+ bilateralmente, sem RA.");
-  o.push("Abd: plano, RHA+, sem visceromegalias, sem dor à palpação.");
-  if (consultIdx === 0) o.push("Coto umbilical: aspecto preservado, sem sinais flogísticos.");
-  o.push("Fontanela anterior normotensa.");
-  o.push("Reflexos arcaicos compatíveis com a idade.");
+  /* O · objetivo, no padrão do médico */
+  lines.push("O: criança em BEG, hidratada, corada.");
+  lines.push("  - Cardio: BNF2T ISDS");
+  lines.push("  - Pulmonar: MV presente, ARA, eupneica");
+  lines.push("  - Abdome: Plano, sem cicatrizes, RHA+, ausência de visceromegalias, massas palpáveis ou dor, descompressão brusca dolorosa negativa");
+  lines.push("  - Oroscopia: palato sem lesões, orofaringe e tonsilas sem sinais de infecção, adequadas condições de higiene.");
+  lines.push("  - Otoscopia: MT bilateralmente hipotransparentes sem hiperemia ou lesões sugestivas de processo infeccioso.");
 
-  /* DPM marcados */
-  if (state.dpmDone && state.dpmDone.length) {
-    o.push(`DPM: marcos atingidos para a idade (${state.dpmDone.length} de ${countDpm(consultIdx)} avaliados).`);
+  /* DNPM com base nos marcos checados */
+  const dpmInfo = dpmStatus(consultIdx);
+  let dpmLine;
+  if (dpmInfo.total === 0) {
+    dpmLine = "DNPM adequado para a idade.";
+  } else if (dpmInfo.naoRealizados.length === 0 && dpmInfo.realizados.length > 0) {
+    dpmLine = "DNPM adequado para a idade.";
+  } else if (dpmInfo.realizados.length === 0) {
+    dpmLine = "DNPM avaliado conforme Caderneta de Saúde da Criança.";
   } else {
-    o.push(`DPM avaliado conforme Caderneta de Saúde da Criança.`);
+    dpmLine = `DNPM em avaliação. Realiza: ${dpmInfo.realizados.join("; ")}. Ainda não realiza: ${dpmInfo.naoRealizados.join("; ")}.`;
   }
-  lines.push(o.join(" "));
+  lines.push(`  - ${dpmLine}`);
+  lines.push("  - Região genital sem particularidades.");
+
+  /* Antropometria */
+  if (state.weight) lines.push(`  - Peso: ${state.weight.toFixed(2)} kg (Z score ${zBetween(az.wfa)})`);
+  if (state.height) lines.push(`  - Estatura: ${state.height.toFixed(1)} cm (Z score ${zBetween(az.lhfa)})`);
+  if (state.hc) lines.push(`  - PC: ${state.hc.toFixed(1)} cm (Z score ${zBetween(az.hcfa)})`);
+  if (state.weight && state.height) {
+    const imc = state.weight / Math.pow(state.height/100, 2);
+    lines.push(`  - IMC: ${imc.toFixed(1)} kg/m² (Z score ${zBetween(az.bmifa)})`);
+  }
+  if (state.weight && state.height && az.wfl != null) {
+    lines.push(`  - Peso/estatura: Z score ${zBetween(az.wfl)}`);
+  }
+  if (state._mchat && state._mchat.complete) {
+    lines.push(`  - M-CHAT-R: ${state._mchat.score} pontos (${state._mchat.label.toLowerCase()}).`);
+  }
   lines.push("");
 
   /* A · avaliação */
-  lines.push("#A");
-  const a = [];
-  a.push(`Lactente em ${consultIdx === 0 ? "primeira consulta" : "consulta de " + consultIdx + " meses"} de puericultura.`);
-  if (z != null) {
-    const c = classifyZ(z);
-    a.push(`Estado nutricional: ${c.label.toLowerCase()}.`);
+  const aParts = [];
+  /* Avaliação nutricional combinada para complementar "lactente saudável" */
+  const nutBits = [];
+  if (az.wfa != null) {
+    const c = classifyZ(az.wfa);
+    if (c.level > 1) nutBits.push(c.label.toLowerCase() + " (P/I)");
   }
-  if (corrAge && corrAge.corrected) a.push("Prematuridade considerada para idade corrigida.");
-  if (state.risk !== 'habitual') a.push(`Criança em ${state.risk === 'biologico' ? 'risco biológico' : state.risk === 'social' ? 'risco social' : 'risco bio e social'}, em seguimento.`);
-  a.push("Crescimento e desenvolvimento sem alterações clinicamente significativas no momento.");
-  lines.push(a.join(" "));
+  if (az.lhfa != null) {
+    const c = classifyEstatura(az.lhfa);
+    if (c.level > 1) nutBits.push(c.label.toLowerCase() + " (E/I)");
+  }
+  const imcZ = az.bmifa != null ? az.bmifa : az.wfl;
+  if (imcZ != null) {
+    const c = classifyImcOuPE(imcZ);
+    if (c.level > 1) nutBits.push(c.label.toLowerCase() + (az.bmifa != null ? " (IMC/I)" : " (P/E)"));
+  }
+  if (nutBits.length === 0) {
+    aParts.push("Puericultura de lactente saudável.");
+  } else {
+    aParts.push(`Lactente em puericultura, estado nutricional: ${nutBits.join(", ")}.`);
+  }
+  if (az.hcfa != null) {
+    const cpc = classifyPC(az.hcfa);
+    if (cpc.level !== 1) aParts.push(`Perímetro cefálico ${cpc.label.toLowerCase()} (z ${az.hcfa >= 0 ? '+' : ''}${az.hcfa.toFixed(2)}); investigar.`);
+  }
+  if (corrAge && corrAge.corrected) aParts.push("Prematuridade considerada para idade corrigida.");
+  if (state._mchat && state._mchat.complete && state._mchat.nivel >= 3) {
+    aParts.push(`M-CHAT-R ${state._mchat.label.toLowerCase()}.`);
+  }
+  if (state.risk !== 'habitual') {
+    aParts.push(`Criança em ${state.risk === 'biologico' ? 'risco biológico' : state.risk === 'social' ? 'risco social' : 'risco bio e social'}, em seguimento.`);
+  }
+  lines.push(`A: ${aParts.join(" ")}`);
   lines.push("");
 
   /* P · plano */
-  lines.push("#P");
-  const p = [];
-  /* Nutrição */
-  const nut = NUTRICAO[consultIdx];
-  if (nut) p.push(`Orientações nutricionais: ${nut.toLowerCase()}`);
-  /* Ferro */
-  if (state._ferro && state._ferro.dose) {
-    p.push(`Sulfato ferroso ${state._ferro.mgKgDia} mg/kg/dia (= ${state._ferro.dose} mg/dia), iniciar a partir de ${state._ferro.inicio}, manter até ${state._ferro.ate}.`);
+  const pParts = [];
+  pParts.push("Oriento sinais e sintomas de alarme e retorno imediato se apresentá-los.");
+  /* Aleitamento e alimentação */
+  if (state.feeding === 'lme' || state.feeding === 'lm_compl') {
+    pParts.push("Oriento técnicas corretas de pega e posição para amamentação e reforço importância da mesma.");
   }
-  p.push("Vitamina D 400 UI/dia.");
-  /* Vacinas */
-  if (state.vacGiven && state.vacGiven.length) {
-    p.push(`Vacinas aplicadas hoje: ${state.vacGiven.join("; ")}.`);
-  } else if (VACINAS[consultIdx]) {
-    p.push(`Vacinas devidas (verificar caderneta e aplicar): ${VACINAS[consultIdx].map(v => v.nome + " " + v.dose).join("; ")}.`);
+  if (consultIdx >= 6) {
+    const nut = NUTRICAO[consultIdx];
+    if (nut) pParts.push(`Oriento alimentação: ${nut.toLowerCase()}`);
+  }
+  pParts.push("Oriento prevenção de acidentes domésticos.");
+  if (consultIdx <= 4) pParts.push("Oriento sono seguro: decúbito dorsal, sem objetos no berço.");
+
+  /* DPM não atingidos */
+  if (dpmInfo.naoRealizados.length > 0 && dpmInfo.realizados.length > 0) {
+    pParts.push("Acompanhar marcos do DPM não atingidos na próxima consulta; se persistirem, considerar avaliação pelo NASF/estimulação precoce.");
+  }
+  /* M-CHAT-R */
+  if (state._mchat && state._mchat.complete && state._mchat.nivel >= 3) {
+    pParts.push(state._mchat.conduta);
+  }
+  /* Palivizumabe */
+  if (state._pvz && state._pvz.elegivel) {
+    pParts.push(`Encaminho para palivizumabe 15 mg/kg${state._pvz.dose ? ` (${state._pvz.dose} mg)` : ''} IM mensal na sazonalidade do VSR (abril a agosto).`);
+  }
+  /* Encaminhamentos */
+  if (state._enc && state._enc.length) {
+    pParts.push(`Encaminhamentos: ${state._enc.map(e => e.area).join("; ")}.`);
   }
   /* Próxima consulta */
   const ni = nextConsult(consultIdx);
   if (ni && state.dob) {
-    const nd = new Date(state.dob.getTime() + ni * 30.4375 * 86400000);
+    const intervalo = ni - consultIdx;
+    const nd = new Date(state.cDate.getTime() + intervalo * 30.4375 * 86400000);
     const quem = (state.risk === 'habitual') ? QUEM_HABITUAL[ni] : QUEM_RISCO[ni];
-    p.push(`Retorno em ${ni - consultIdx} ${(ni - consultIdx) === 1 ? 'mês' : 'meses'} (${fmtDateBR(nd)}) com ${quem}.`);
+    pParts.push(`Agendo retorno em ${intervalo} ${intervalo === 1 ? 'mês' : 'meses'} (${fmtDateBR(nd)}) com ${quem}.`);
+  } else {
+    pParts.push("Agendo retorno em 30 dias.");
   }
-  p.push("Orientações sobre sinais de alerta e quando retornar antes.");
-  if (state.dpmDone && state.dpmDone.length < countDpm(consultIdx) / 2 && consultIdx > 0) {
-    p.push("Atenção a marcos do DPM não atingidos; revisar na próxima consulta e considerar avaliação pelo NASF se persistir.");
-  }
-  if ((consultIdx === 18 || consultIdx === 24)) p.push("M-CHAT-R aplicado; se positivo, encaminhar Neuro/Avaliação TEA.");
-
-  lines.push(p.join(" "));
-
-  /* Registro do Plano de Cuidado, se houver risco */
-  if (state.risk !== 'habitual') {
-    lines.push("");
-    lines.push("Alerta/Plano de Cuidado: atualizar no eSaúde com a classificação de risco e ações pactuadas.");
-  }
+  lines.push(`P: ${pParts.join(" ")}`);
 
   out.textContent = lines.join("\n");
+}
+
+function dpmStatus(consultIdx) {
+  const m = DPM[consultIdx];
+  if (!m) return { realizados: [], naoRealizados: [], total: 0 };
+  const todos = [];
+  ['mg','mf','al','sc'].forEach(k => (m[k] || []).forEach(t => todos.push(`${k}:${t}`)));
+  const feitos = new Set(state.dpmDone || []);
+  const realizados = [], naoRealizados = [];
+  todos.forEach(t => {
+    const txt = t.split(':').slice(1).join(':');
+    if (feitos.has(t)) realizados.push(txt);
+    else naoRealizados.push(txt);
+  });
+  return { realizados, naoRealizados, total: todos.length };
 }
 
 function countDpm(idx) {
@@ -1723,92 +2913,164 @@ function countDpm(idx) {
    GRÁFICO SVG · peso por idade
    ============================================================ */
 
-function renderChart(sex, ageM, weight) {
+/* Configuração de cada curva */
+const CHART_CONFIG = {
+  wfa:   { table: s => WFA_LMS[s],         xKind: 'age', xMax: 24, yMax: 18, yStep: 2, yTitle: 'Peso (kg)',     xTitle: 'Idade (meses)',     name: 'PESO / IDADE' },
+  lhfa:  { table: s => BYAGE_LMS.lhfa[s],  xKind: 'age', xMax: 24, yMax: 95, yStep: 10, yMin: 40, yTitle: 'Estatura (cm)', xTitle: 'Idade (meses)', name: 'ESTATURA / IDADE' },
+  hcfa:  { table: s => BYAGE_LMS.hcfa[s],  xKind: 'age', xMax: 24, yMax: 54, yStep: 4, yMin: 30, yTitle: 'PC (cm)',        xTitle: 'Idade (meses)', name: 'PERÍMETRO CEFÁLICO / IDADE' },
+  bmifa: { table: s => BYAGE_LMS.bmifa[s], xKind: 'age', xMax: 24, yMax: 22, yStep: 2, yMin: 8, yTitle: 'IMC (kg/m²)',    xTitle: 'Idade (meses)', name: 'IMC / IDADE' },
+  wfl:   { table: s => WFL_LMS[s],         xKind: 'len', xMax: 100, xMin: 45, yMax: 22, yStep: 2, yTitle: 'Peso (kg)', xTitle: 'Comprimento (cm)', name: 'PESO / ESTATURA' }
+};
+
+let currentChart = 'wfa';
+
+function renderChart(metric) {
+  metric = metric || currentChart;
   const svg = document.getElementById('chart');
-  if (!sex) {
+  const cfg = CHART_CONFIG[metric];
+  if (!state.sex) {
     svg.innerHTML = `<text x="360" y="180" text-anchor="middle" fill="#8a8d93" font-family="Geist" font-size="13">Selecione o sexo para ver a curva.</text>`;
     return;
   }
-  const table = WFA_LMS[sex];
-  /* Padding interno do SVG (viewBox 720x360) */
-  const pad = { l: 44, r: 16, t: 14, b: 32 };
+  const table = cfg.table(state.sex);
+  if (!table) { svg.innerHTML = ''; return; }
+
+  const pad = { l: 46, r: 20, t: 16, b: 34 };
   const W = 720, H = 360;
   const plotW = W - pad.l - pad.r;
   const plotH = H - pad.t - pad.b;
 
-  /* Eixo X: 0 a 24 meses */
-  const xMin = 0, xMax = 24;
-  /* Eixo Y: dinâmico de acordo com sexo, ajustado para caber sd3 com folga */
-  const yMax = sex === 'M' ? 18 : 18;
-  const yMin = 0;
+  const xKey = cfg.xKind === 'age' ? 'm' : 'len';
+  const xMin = cfg.xMin || 0;
+  const xMax = cfg.xMax;
+  const yMin = cfg.yMin || 0;
+  const yMax = cfg.yMax;
+  const xStep = cfg.xKind === 'age' ? 2 : 10;
 
-  const xScale = m => pad.l + (m - xMin) / (xMax - xMin) * plotW;
-  const yScale = w => pad.t + plotH - (w - yMin) / (yMax - yMin) * plotH;
+  const xScale = v => pad.l + (v - xMin) / (xMax - xMin) * plotW;
+  const yScale = v => pad.t + plotH - (v - yMin) / (yMax - yMin) * plotH;
 
-  /* Linhas de referência: sd3n, sd2n, sd1n, sd0, sd1, sd2, sd3 */
   const refKeys = [
-    {k: 'sd3n', label: '−3', bold: false},
-    {k: 'sd2n', label: '−2', bold: false},
-    {k: 'sd1n', label: '−1', bold: false},
-    {k: 'sd0',  label: ' 0', bold: true},
-    {k: 'sd1',  label: '+1', bold: false},
-    {k: 'sd2',  label: '+2', bold: false},
-    {k: 'sd3',  label: '+3', bold: false}
+    {k: 'sd3n', label: '−3'}, {k: 'sd2n', label: '−2'}, {k: 'sd1n', label: '−1'},
+    {k: 'sd0', label: ' 0', bold: true},
+    {k: 'sd1', label: '+1'}, {k: 'sd2', label: '+2'}, {k: 'sd3', label: '+3'}
   ];
 
   let lines = '';
 
-  /* Grid de meses */
-  for (let m = 0; m <= 24; m += 2) {
-    const x = xScale(m);
+  /* Grid X */
+  for (let v = xMin; v <= xMax; v += xStep) {
+    const x = xScale(v);
     lines += `<line class="grid" x1="${x}" y1="${pad.t}" x2="${x}" y2="${pad.t + plotH}"/>`;
-    lines += `<text class="axis-label" x="${x}" y="${pad.t + plotH + 14}" text-anchor="middle">${m}</text>`;
+    lines += `<text class="axis-label" x="${x}" y="${pad.t + plotH + 14}" text-anchor="middle">${v}</text>`;
   }
-  /* Grid de kg */
-  for (let w = 0; w <= yMax; w += 2) {
-    const y = yScale(w);
+  /* Grid Y */
+  for (let v = yMin; v <= yMax; v += cfg.yStep) {
+    const y = yScale(v);
     lines += `<line class="grid" x1="${pad.l}" y1="${y}" x2="${pad.l + plotW}" y2="${y}"/>`;
-    lines += `<text class="axis-label" x="${pad.l - 6}" y="${y + 3}" text-anchor="end">${w}</text>`;
+    lines += `<text class="axis-label" x="${pad.l - 6}" y="${y + 3}" text-anchor="end">${v}</text>`;
   }
 
-  /* Linhas de referência sd */
+  /* Linhas de referência (só desenha pontos dentro do range visível) */
   refKeys.forEach(ref => {
     let d = '';
-    table.forEach((row, i) => {
-      const x = xScale(row.m);
-      const y = yScale(row[ref.k]);
-      d += (i === 0 ? 'M' : 'L') + ' ' + x.toFixed(1) + ' ' + y.toFixed(1) + ' ';
+    let started = false;
+    table.forEach(row => {
+      const xv = row[xKey];
+      if (xv < xMin || xv > xMax) return;
+      const x = xScale(xv);
+      const y = yScale(Math.max(yMin, Math.min(yMax, row[ref.k])));
+      d += (started ? 'L' : 'M') + ' ' + x.toFixed(1) + ' ' + y.toFixed(1) + ' ';
+      started = true;
     });
     lines += `<path class="ref-line${ref.bold ? ' bold' : ''}" d="${d}"/>`;
-    /* Rótulo à direita */
-    const lastRow = table[table.length - 1];
-    const lx = xScale(lastRow.m) + 3;
-    const ly = yScale(lastRow[ref.k]) + 3;
-    lines += `<text class="ref-label" x="${lx}" y="${ly}">${ref.label}</text>`;
+    /* Rótulo no último ponto visível */
+    const visible = table.filter(r => r[xKey] >= xMin && r[xKey] <= xMax);
+    if (visible.length) {
+      const lastRow = visible[visible.length - 1];
+      const ly = yScale(Math.max(yMin, Math.min(yMax, lastRow[ref.k])));
+      lines += `<text class="ref-label" x="${xScale(lastRow[xKey]) + 3}" y="${ly + 3}">${ref.label}</text>`;
+    }
   });
 
   /* Eixos */
   lines += `<line class="axis" x1="${pad.l}" y1="${pad.t + plotH}" x2="${pad.l + plotW}" y2="${pad.t + plotH}"/>`;
   lines += `<line class="axis" x1="${pad.l}" y1="${pad.t}" x2="${pad.l}" y2="${pad.t + plotH}"/>`;
+  lines += `<text class="axis-title" x="${pad.l + plotW/2}" y="${H - 6}" text-anchor="middle">${cfg.xTitle}</text>`;
+  lines += `<text class="axis-title" x="14" y="${pad.t + plotH/2}" text-anchor="middle" transform="rotate(-90 14 ${pad.t + plotH/2})">${cfg.yTitle}</text>`;
 
-  /* Títulos dos eixos */
-  lines += `<text class="axis-title" x="${pad.l + plotW/2}" y="${H - 6}" text-anchor="middle">Idade (meses)</text>`;
-  lines += `<text class="axis-title" x="14" y="${pad.t + plotH/2}" text-anchor="middle" transform="rotate(-90 14 ${pad.t + plotH/2})">Peso (kg)</text>`;
-
-  /* Ponto da criança */
-  if (ageM != null && weight != null && ageM >= 0 && ageM <= 24 && weight > 0) {
-    const px = xScale(Math.min(ageM, 24));
-    const py = yScale(Math.min(weight, yMax));
-    lines += `<circle class="point" cx="${px}" cy="${py}" r="6"/>`;
-    /* Linha guia tracejada */
-    lines += `<line x1="${pad.l}" y1="${py}" x2="${px}" y2="${py}" stroke="var(--ink-faint)" stroke-width="0.5" stroke-dasharray="3 3" opacity="0.5"/>`;
-    lines += `<line x1="${px}" y1="${pad.t + plotH}" x2="${px}" y2="${py}" stroke="var(--ink-faint)" stroke-width="0.5" stroke-dasharray="3 3" opacity="0.5"/>`;
-  } else if (ageM != null && ageM > 24) {
-    lines += `<text x="${pad.l + plotW/2}" y="${pad.t + 20}" text-anchor="middle" fill="var(--ink-faint)" font-family="Geist" font-size="11">Idade fora do range desta versão (0 a 24m).</text>`;
+  /* Trajetória das consultas salvas no banco (criança ativa) */
+  function consultXY(cons) {
+    let xv = null, yv = null;
+    if (cfg.xKind === 'age') {
+      if (cons.ageMonths == null || cons.ageMonths < 0 || cons.ageMonths > 24) return null;
+      xv = cons.ageMonths;
+      if (metric === 'wfa') yv = cons.weight;
+      else if (metric === 'lhfa') yv = cons.height;
+      else if (metric === 'hcfa') yv = cons.hc;
+      else if (metric === 'bmifa') yv = (cons.weight && cons.height) ? cons.weight / Math.pow(cons.height/100, 2) : null;
+    } else {
+      if (cons.height && cons.weight && cons.height >= xMin && cons.height <= xMax) { xv = cons.height; yv = cons.weight; }
+    }
+    return (xv != null && yv != null) ? { x: xv, y: yv } : null;
   }
 
-  /* Título sutil do sexo */
-  lines += `<text x="${pad.l + plotW - 4}" y="${pad.t + 12}" text-anchor="end" font-family="Geist Mono" font-size="10" fill="var(--ink-faint)" letter-spacing="0.1em">${sex === 'M' ? 'MENINOS · OMS 2006' : 'MENINAS · OMS 2006'}</text>`;
+  const activeChild = getActiveChild();
+  if (activeChild && activeChild.consults.length) {
+    const pts = activeChild.consults.map(consultXY).filter(p => p);
+    /* ordenar por X para a linha fazer sentido */
+    pts.sort((a, b) => a.x - b.x);
+    if (pts.length) {
+      let d = '';
+      pts.forEach((p, i) => {
+        const x = xScale(Math.max(xMin, Math.min(xMax, p.x)));
+        const y = yScale(Math.max(yMin, Math.min(yMax, p.y)));
+        d += (i === 0 ? 'M' : 'L') + ' ' + x.toFixed(1) + ' ' + y.toFixed(1) + ' ';
+      });
+      lines += `<path d="${d}" fill="none" stroke="var(--level-3)" stroke-width="1.5" opacity="0.7"/>`;
+      pts.forEach(p => {
+        const x = xScale(Math.max(xMin, Math.min(xMax, p.x)));
+        const y = yScale(Math.max(yMin, Math.min(yMax, p.y)));
+        lines += `<circle cx="${x}" cy="${y}" r="3.5" fill="var(--bg-card)" stroke="var(--level-3)" stroke-width="1.5"/>`;
+      });
+    }
+  }
+
+  /* Ponto da criança (consulta sendo editada agora) */
+  let childX = null, childY = null, outOfRange = false;
+  if (state.sex) {
+    if (cfg.xKind === 'age') {
+      const ageM = state._ageMTotal;
+      if (ageM != null && ageM >= 0 && ageM <= 24) {
+        childX = ageM;
+        if (metric === 'wfa' && state.weight) childY = state.weight;
+        else if (metric === 'lhfa' && state.height) childY = state.height;
+        else if (metric === 'hcfa' && state.hc) childY = state.hc;
+        else if (metric === 'bmifa' && state.weight && state.height) childY = state.weight / Math.pow(state.height/100, 2);
+      } else if (ageM != null && ageM > 24) {
+        outOfRange = true;
+      }
+    } else {
+      /* peso/comprimento */
+      if (state.height && state.weight) {
+        if (state.height >= xMin && state.height <= xMax) { childX = state.height; childY = state.weight; }
+        else outOfRange = true;
+      }
+    }
+  }
+
+  if (childX != null && childY != null) {
+    const px = xScale(Math.max(xMin, Math.min(xMax, childX)));
+    const py = yScale(Math.max(yMin, Math.min(yMax, childY)));
+    lines += `<line x1="${pad.l}" y1="${py}" x2="${px}" y2="${py}" stroke="var(--ink-faint)" stroke-width="0.5" stroke-dasharray="3 3" opacity="0.5"/>`;
+    lines += `<line x1="${px}" y1="${pad.t + plotH}" x2="${px}" y2="${py}" stroke="var(--ink-faint)" stroke-width="0.5" stroke-dasharray="3 3" opacity="0.5"/>`;
+    lines += `<circle class="point" cx="${px}" cy="${py}" r="6"/>`;
+  } else if (outOfRange) {
+    lines += `<text x="${pad.l + plotW/2}" y="${pad.t + 20}" text-anchor="middle" fill="var(--ink-faint)" font-family="Geist" font-size="11">Medida fora do range desta curva.</text>`;
+  }
+
+  /* Rótulo do sexo + curva */
+  lines += `<text x="${pad.l + plotW - 4}" y="${pad.t + 12}" text-anchor="end" font-family="Geist Mono" font-size="10" fill="var(--ink-faint)" letter-spacing="0.08em">${state.sex === 'M' ? 'MENINOS' : 'MENINAS'} · ${cfg.name} · OMS</text>`;
 
   svg.innerHTML = lines;
 }
@@ -1879,6 +3141,15 @@ function shouldShowAutosave() {
 }
 
 function showAutosaveBanner() {
+  const msg = document.getElementById('autosaveMsg');
+  const btn = document.getElementById('autosaveDownload');
+  if (db.children.length > 0) {
+    msg.textContent = 'Você tem alterações no banco. Quer salvar o arquivo no seu pendrive?';
+    btn.textContent = '↓ Salvar banco';
+  } else {
+    msg.textContent = 'Você preencheu dados clínicos importantes. Quer salvar um backup desta consulta?';
+    btn.textContent = '↓ Salvar consulta';
+  }
   document.getElementById('autosaveBanner').classList.add('visible');
 }
 function hideAutosaveBanner() {
@@ -1946,6 +3217,9 @@ document.getElementById('btnReset').addEventListener('click', () => {
   document.querySelectorAll('select').forEach(el => { el.selectedIndex = 0; });
   document.querySelectorAll('textarea').forEach(el => { el.value = ''; });
   document.getElementById('cDate').value = new Date().toISOString().slice(0,10);
+  resetBuiltFlags();
+  activeChildId = null;
+  renderBank();
   render();
   showToast("Limpo. Pronto para nova criança.");
 });
@@ -1957,8 +3231,13 @@ document.getElementById('btnDownloadJson').addEventListener('click', () => {
 });
 
 document.getElementById('autosaveDownload').addEventListener('click', () => {
-  downloadJson();
-  showToast("Backup JSON baixado");
+  if (db.children.length > 0) {
+    exportDb();
+    showToast("Banco salvo · guarde no pendrive");
+  } else {
+    downloadJson();
+    showToast("Backup da consulta salvo");
+  }
   hideAutosaveBanner();
   autosaveDismissedAt = Date.now();
 });
@@ -1966,6 +3245,97 @@ document.getElementById('autosaveDownload').addEventListener('click', () => {
 document.getElementById('autosaveDismiss').addEventListener('click', () => {
   hideAutosaveBanner();
   autosaveDismissedAt = Date.now();
+});
+
+document.getElementById('chartTabs').addEventListener('click', (e) => {
+  const btn = e.target.closest('.chart-tab');
+  if (!btn) return;
+  currentChart = btn.dataset.chart;
+  document.querySelectorAll('.chart-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  renderChart(currentChart);
+});
+
+/* ===== Handlers do BANCO ===== */
+document.getElementById('btnLoadDb').addEventListener('click', () => {
+  document.getElementById('fileDb').click();
+});
+
+document.getElementById('fileDb').addEventListener('change', (e) => {
+  const file = e.target.files && e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      const obj = JSON.parse(reader.result);
+      if (loadDbFromObject(obj)) {
+        showToast(`Banco carregado · ${db.children.length} criança(s)`);
+      }
+    } catch (err) {
+      showToast('Erro ao ler o arquivo JSON');
+    }
+    e.target.value = '';
+  };
+  reader.readAsText(file);
+});
+
+document.getElementById('btnSaveDb').addEventListener('click', () => {
+  if (db.children.length === 0) { showToast('Banco vazio. Salve uma consulta primeiro.'); return; }
+  exportDb();
+  showToast('Banco salvo · guarde no seu pendrive');
+  hideAutosaveBanner();
+});
+
+document.getElementById('btnNewChild').addEventListener('click', () => {
+  activeChildId = null;
+  document.querySelectorAll('#secBank ~ section input, #secBank ~ section textarea').forEach(el => {
+    if (el.type === 'checkbox' || el.type === 'radio') el.checked = false;
+    else el.value = '';
+  });
+  document.querySelectorAll('#secBank ~ section select').forEach(el => { el.selectedIndex = 0; });
+  document.getElementById('cDate').value = new Date().toISOString().slice(0,10);
+  resetBuiltFlags();
+  renderBank();
+  render();
+  document.getElementById('fName').focus();
+  showToast('Pronto para cadastrar nova criança');
+});
+
+document.getElementById('btnSaveConsult').addEventListener('click', () => {
+  saveConsultToBank();
+});
+
+document.getElementById('bankSearch').addEventListener('input', () => {
+  renderBank();
+});
+
+document.getElementById('bankList').addEventListener('click', (e) => {
+  const del = e.target.closest('[data-del]');
+  if (del) {
+    e.stopPropagation();
+    const id = del.dataset.del;
+    const c = db.children.find(x => x.id === id);
+    if (c && confirm(`Remover "${c.name || 'Sem nome'}" e todas as suas consultas do banco? Esta ação não pode ser desfeita aqui (mas o arquivo já salvo no pendrive permanece).`)) {
+      deleteChild(id);
+      showToast('Criança removida do banco');
+    }
+    return;
+  }
+  const card = e.target.closest('.child-card');
+  if (card) {
+    selectChild(card.dataset.child);
+    showToast('Criança selecionada');
+  }
+});
+
+/* Banner de criança ativa (botão criado dinamicamente) */
+document.getElementById('secBank').addEventListener('click', (e) => {
+  if (e.target.id === 'btnDeselect') {
+    activeChildId = null;
+    renderBank();
+    render();
+    showToast('Criança desvinculada');
+  }
 });
 
 document.getElementById('btnPrint').addEventListener('click', () => {
@@ -1979,10 +3349,17 @@ document.getElementById('btnPrint').addEventListener('click', () => {
 /* Setar data da consulta como hoje */
 document.getElementById('cDate').value = new Date().toISOString().slice(0,10);
 
-/* Reagir a qualquer mudança */
-document.addEventListener('input', () => { render(); debounceSave(); });
-document.addEventListener('change', () => { render(); debounceSave(); });
+/* Reagir a qualquer mudança (exceto digitação na busca do banco, que tem handler próprio) */
+document.addEventListener('input', (e) => {
+  if (e.target && e.target.id === 'bankSearch') return;
+  render(); debounceSave();
+});
+document.addEventListener('change', (e) => {
+  if (e.target && e.target.id === 'bankSearch') return;
+  render(); debounceSave();
+});
 
+renderBank();
 render();
 </script>
 
